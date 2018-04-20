@@ -52,6 +52,10 @@ public class Popupwindow extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/negative_button']")
 	private MobileElement bill_dont_cancel_button;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
+	private MobileElement popup_message_title;
+
 	public synchronized static Popupwindow get() {
 		if (popup == null) {
 			popup = new Popupwindow();
@@ -151,4 +155,22 @@ public class Popupwindow extends _CommonPage {
 		}
 	}
 
+	public void verifyPopupCancelCurrencyOrder() {
+		Decorator();
+		try {
+			String expectedTitle = getTextInCurrentLocale(StringArray.ARRAY_OFX_POPUP_CANCEL_TITLE);
+			String expectedMsg = getTextInCurrentLocale(StringArray.ARRAY_OFX_POPUP_CANCEL_ORDER);
+			mobileAction.verifyElementTextIsDisplayed(popup_message_title, expectedTitle);
+			mobileAction.verifyElementTextIsDisplayed(rbp_popup_message, expectedMsg);
+			mobileAction.verifyElementTextIsDisplayed(bill_cancel_button,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_POPUP_CANCEL));
+			mobileAction.verifyElementTextIsDisplayed(bill_dont_cancel_button,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_POPUP_DONT_CANCEL));
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
 }

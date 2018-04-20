@@ -33,7 +33,7 @@ public class Confirm_Payee extends _CommonPage {
 	private MobileElement addPayee_Btn;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee' or @text='Pay This Payee']")
 	private MobileElement payThisPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank You!')]")

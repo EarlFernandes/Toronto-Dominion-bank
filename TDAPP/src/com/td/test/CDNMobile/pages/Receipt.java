@@ -225,6 +225,18 @@ public class Receipt extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement cnfrDetailRewards;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
+	private MobileElement ofx_copy_text;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/static_label_row_label']")
+	private MobileElement ofx_what_happen_next;	
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/static_label_row_description']")
+	private MobileElement ofx_what_happen_next_text;	
 
 	public synchronized static Receipt get() {
 		if (Receipt == null) {
@@ -1217,5 +1229,51 @@ public class Receipt extends _CommonPage {
 		}
 
 	}
+	
+	public void VerifyOFXReceiptContent() {
+		Decorator();
+		try {
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(ofx_copy_text, getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_CONFIRM_COPY));
+			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next, getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN));
+			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next_text, getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_COPY));
+			
+			String [] expectedTextArray = {
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_REQUEST),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_CURRENCY),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_EXCHANGE_RATE),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_AMOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_DEBIT_AMOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_PICKUP_LOCATION),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PHONE),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_EMAIL)
+					
+			};
+			String elementXpath="";
+			for (int i=0; i< expectedTextArray.length; i++ ) {
+				
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) { 
+					
+					elementXpath ="//android.widget.TextView[@text='"+expectedTextArray[i] +"']";						
+				} else {
+					elementXpath ="//XCUIElementTypeStaticText[@label='"+expectedTextArray[i] +"']";
+				}
+				
+				if(mobileAction.verifyElementIsPresentByXpath(elementXpath)) {
+					mobileAction.Report_Pass_Verified(expectedTextArray[i]);
+				} else {
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.verifyElementUsingXPath(elementXpath, expectedTextArray[i]);
+				}
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 
 }

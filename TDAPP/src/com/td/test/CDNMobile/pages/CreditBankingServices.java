@@ -82,6 +82,7 @@ public class CreditBankingServices extends _CommonPage {
 
 			mobileAction.FuncClick(order_foreign_currency_link,
 					getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY));
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");

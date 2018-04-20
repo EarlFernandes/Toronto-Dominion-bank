@@ -839,11 +839,11 @@ public class Accounts extends _CommonPage {
 					Acnt_Description = Acnt_Description + "]/following-sibling::android.widget.TextView[@text='"
 							+ from_Account_num + "']";
 				} else {
-					Acnt_Description = "//XCUIElementTypeStaticText[@label='";
+					Acnt_Description = "//XCUIElementTypeStaticText[contains(@label,'";
 					for (int i = 0; i < lengthOfArray; i++) {
-						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "'";
+						Acnt_Description = Acnt_Description + from_Account_des_option[i].trim() + "')";
 						if (i < lengthOfArray - 1) {
-							Acnt_Description = Acnt_Description + " or @label='";
+							Acnt_Description = Acnt_Description + " or contains(@label,'";
 						}
 					}
 					Acnt_Description = Acnt_Description + "]/../XCUIElementTypeStaticText[@label='" + from_Account_num

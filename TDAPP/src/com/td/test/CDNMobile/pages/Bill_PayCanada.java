@@ -408,13 +408,22 @@ public class Bill_PayCanada extends _CommonPage {
 			isPayeePrefilled = true;
 		}
 
-		String payeeAccount = getTestdata("Payee");
+		String payeeAccount = getTestdata("Payee").trim();
 		System.out.println("Payee account:" + payeeAccount);
 		String payeeNumber = "";
-		if (payeeAccount.matches(".*\\d+")) {
+		if (payeeAccount.matches(".*\\d+RP\\d+")) {
+			payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+RP\\d+");
+		} else if (payeeAccount.matches(".*\\d+")) {
 			payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
 		}
 		String payeeName = payeeAccount.replaceAll(payeeNumber, "").trim();
+		if(payeeName.contains("|")) {
+			if(currentLocale.equalsIgnoreCase("fr")) {
+				payeeName = payeeName.split("\\|")[1].trim();
+			} else {
+				payeeName = payeeName.split("\\|")[0].trim();
+			}
+		}	
 		System.out.println("Payee name:" + payeeName);
 		try {
 			if (isPayeePrefilled) {
@@ -2356,7 +2365,7 @@ public class Bill_PayCanada extends _CommonPage {
 		// getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG);
 		// }
 
-		if (!errorSheet.matches("error\\-fre\\-\\d{1}")) {
+		if (!errorSheet.matches("error\\-fre\\-\\d{1}") && !errorSheet.matches("error\\-ccra")) {
 			System.out.println("Error data from sheet is wrong:" + errorSheet);
 			return "";
 		}
@@ -2374,6 +2383,8 @@ public class Bill_PayCanada extends _CommonPage {
 			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_SEMIMONTHLY);
 		case "error-fre-5":
 			return getTextInCurrentLocale(StringArray.ARRAY_RBP_PAY_BILL_ERROR_MSG_QUARTERLY);
+		case "error-ccra":
+			return getTextInCurrentLocale(StringArray.ARRAY_RBP_CCRA_ERROR_MESSAGE);
 		}
 		return "";
 	}
@@ -2465,6 +2476,17 @@ public class Bill_PayCanada extends _CommonPage {
 			selectOngoingFromHowOftenDropDown();
 
 			mobileAction.verifyElementIsDisplayed(frequency, "Frequency");
+
+		} catch (Exception e) {
+			mobileAction.Report_Fail("Failed to verifyRBPScreen");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+	
+	public void SelectCCRAPayee() {
+		Decorator();
+		try {
+			selectPayee();
 
 		} catch (Exception e) {
 			mobileAction.Report_Fail("Failed to verifyRBPScreen");

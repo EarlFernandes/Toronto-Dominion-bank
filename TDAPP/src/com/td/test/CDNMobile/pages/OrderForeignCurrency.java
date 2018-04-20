@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
@@ -65,17 +66,43 @@ public class OrderForeignCurrency extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/toCurrencyET']//android.widget.EditText[@resource-id='com.td:id/currencyVal']")
 	private MobileElement to_currency_amount;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeStaticText[5]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeStaticText[4]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toCurrencyDesc']")
 	private MobileElement min_max_value;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeStaticText[4]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeStaticText[5]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fromCurrencyDesc']")
 	private MobileElement exchange_rate;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/destCD']")
 	private MobileElement dest_currency;
+
+	// @iOSXCUITFindBy(iOSClassChain =
+	// "**/XCUIElementTypeStaticText[`label=='Select account'`]")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/selectedText' and
+	// @text='Select account']")
+	private MobileElement from_account_dropdown;
+
+	// @iOSXCUITFindBy(iOSClassChain =
+	// "**/XCUIElementTypeStaticText[`label=='Select a branch'`]")
+	// @AndroidFindBy(xpath =
+	// "//android.widget.TextView[@resource-id='com.td:id/selectedText' and
+	// @text='Select a branch']")
+	private MobileElement select_branch_dropdown;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert//XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/oneBtnDialogTitle']")
+	private MobileElement rate_expired_text;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert//XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/oneBtnDialogDesc']")
+	private MobileElement rate_expired_copy;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert//XCUIElementTypeButton")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	private MobileElement rate_expired_ok_btn;
 
 	public synchronized static OrderForeignCurrency get() {
 		if (orderforeignCurrency == null) {
@@ -350,7 +377,6 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 			String emailtexe = getTestdata("EmailProfile");
-			;
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
@@ -392,7 +418,6 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 			String phonetext = getTestdata("PhoneProfile");
-			;
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
@@ -404,7 +429,7 @@ public class OrderForeignCurrency extends _CommonPage {
 				String phonexpath = "//XCUIElementTypeStaticText[@label='" + phoneText
 						+ "']/../XCUIElementTypeTextField";
 
-				email_text = mobileAction.verifyElementUsingXPath(phonexpath, phoneText);
+				phone_text = mobileAction.verifyElementUsingXPath(phonexpath, phoneText);
 
 			}
 			mobileAction.FuncSendKeys(phone_text, phonetext);
@@ -419,6 +444,23 @@ public class OrderForeignCurrency extends _CommonPage {
 			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_INVALID_PHONE_ERROR);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyInsufficientFundError() {
+		Decorator();
+		try {
+			Fill_OFX_Form();
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_ERROR_AMOUNT_GREATER_BALANCE);
+			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -484,7 +526,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncSendKeys(from_currency_amount, "129");
+			mobileAction.FuncSendKeys(from_currency_amount, "99");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -492,7 +534,7 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
-			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MIN_AMOUNT_ERROR);
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MIN_CAD_AMOUNT_ERROR);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 
 		} catch (Exception e) {
@@ -518,7 +560,7 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
-			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MAX_AMOUNT_ERROR);
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MAX_CAD_AMOUNT_ERROR);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 
 		} catch (Exception e) {
@@ -544,7 +586,7 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
-			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MAX_AMOUNT_ERROR);
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MAX_DES_AMOUNT_ERROR);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 
 		} catch (Exception e) {
@@ -697,20 +739,275 @@ public class OrderForeignCurrency extends _CommonPage {
 		try {
 
 			String capturedCurrency = mobileAction.getValue(exchange_rate);
-			if (capturedCurrency.matches("1\\s*CAD\\s*=\\s*\\d+\\.\\d+.*")) {
+			String rateFormat = getTextInCurrentLocale(StringArray.ARRAY_OFX_RATE_FORMAT);
+			if (capturedCurrency.matches(rateFormat)) {
 				mobileAction.Report_Pass_Verified("Exchange Rate format 1 CAD = X");
 			} else {
 				mobileAction.Report_Fail("Failed to verify exchange Rate format:" + capturedCurrency);
 			}
 
 			String capturedMinMaxValue = mobileAction.getValue(min_max_value);
-			System.out.println("capturedMinMaxValue:"+capturedMinMaxValue);
-			
-			if(capturedMinMaxValue.matches("Min:\\s*\\d+(,\\d+)*\\s*Max:\\s*\\d+(,\\d+)*")) {
+			System.out.println("capturedMinMaxValue:" + capturedMinMaxValue);
+			String minmaxFormat = getTextInCurrentLocale(StringArray.ARRAY_OFX_MIN_MAX_FORMAT);
+			if (capturedMinMaxValue.matches(minmaxFormat)) {
 				mobileAction.Report_Pass_Verified("Min Max without decimal");
 			} else {
 				mobileAction.Report_Fail("Failed to verify Min Max format:" + capturedMinMaxValue);
 			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	private void init_from_account_dropdown() {
+		String xpath = "";
+		String fromaccountText = getTextInCurrentLocale(StringArray.ARRAY_OFX_SELECT_ACCOUNT_DEFAULT);
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			xpath = "//XCUIElementTypeStaticText[@label='" + fromaccountText + "']";
+		} else {
+			xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + fromaccountText
+					+ "']";
+		}
+		try {
+			from_account_dropdown = mobileAction.verifyElementUsingXPath(xpath, "From Account Dropdown");
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Failed to init from account dropdown");
+		}
+
+	}
+
+	private void init_pickup_location_dropdown() {
+		String xpath = "";
+		String pickLocationText = getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_PICKUP_LOCATION_DEFAULT);
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			xpath = "//XCUIElementTypeStaticText[@label='" + pickLocationText + "']";
+		} else {
+			xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + pickLocationText
+					+ "']";
+		}
+		try {
+			from_account_dropdown = mobileAction.verifyElementUsingXPath(xpath, "From Account Dropdown");
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Failed to init from account dropdown");
+		}
+
+	}
+
+	private String selectFromAccount() {
+
+		String from_Account = getTestdata("FromAccount");
+
+		String AccountNum = mobileAction.FuncGetValByRegx(from_Account, "\\d+");
+
+		String accountName = from_Account.replaceAll(AccountNum, "").trim();
+
+		if (accountName.contains("\\|")) {
+			String[] s_AccountName = accountName.split("\\|");
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				accountName = s_AccountName[1];
+			} else {
+				accountName = s_AccountName[0];
+			}
+		}
+
+		try {
+			init_from_account_dropdown();
+			mobileAction.FuncClick(from_account_dropdown, "From Account clicked");
+			String fromAccountxPath = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				fromAccountxPath = "//XCUIElementTypeStaticText[contains(@label,'" + AccountNum + "')]";
+			} else {
+				fromAccountxPath = "//android.widget.TextView[@resource-id='com.td:id/txtAccountNoValue' and @text='"
+						+ AccountNum + "']";
+			}
+			mobileAction.FuncSwipeWhileElementNotFoundByxpath(fromAccountxPath, true, 10, "up");
+			if (!accountName.isEmpty()) {
+				return accountName;
+			} else {
+				return AccountNum;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Failed to select account:" + from_Account);
+			return "";
+		}
+	}
+
+	private void fillPhoneIfnotprefilled() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				if (!mobileAction.verifyElementIsPresent(phone_text))
+					mobileAction.FuncSwipeOnce("up");
+
+			} else {
+
+				String phoneText = getTextInCurrentLocale(StringArray.ARRAY_OFX_PHONE);
+				String phonexpath = "//XCUIElementTypeStaticText[@label='" + phoneText
+						+ "']/../XCUIElementTypeTextField";
+
+				phone_text = mobileAction.verifyElementUsingXPath(phonexpath, phoneText);
+
+			}
+
+			String prefilledPhone = mobileAction.getValue(phone_text);
+			String defaultPhone = getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE_PLACEHOLDER);
+			if (prefilledPhone == null || prefilledPhone.contentEquals(defaultPhone)) {
+				System.out.println("Phone is empty");
+				mobileAction.FuncSendKeys(phone_text, "4239877687");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					mobileAction.FuncHideKeyboard();
+				} else {
+					mobileAction.FuncClickDone();
+				}
+			} else {
+				System.out.println("Phone is prefilled with:" + prefilledPhone);
+			}
+
+		} catch (Exception e) {
+
+		}
+	}
+
+	private void fillEmailIfnotprefilled() {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				if (!mobileAction.verifyElementIsPresent(email_text))
+					mobileAction.FuncSwipeOnce("up");
+
+			} else {
+
+				String emailText = getTextInCurrentLocale(StringArray.ARRAY_OFX_EMAIL);
+				String phonexpath = "//XCUIElementTypeStaticText[@label='" + emailText
+						+ "']/../XCUIElementTypeTextField";
+
+				email_text = mobileAction.verifyElementUsingXPath(phonexpath, emailText);
+
+			}
+
+			String prefilledEmail = mobileAction.getValue(email_text);
+			String defaultPhone = getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL_PLACEHOLDER);
+			if (prefilledEmail == null || prefilledEmail.contains(defaultPhone)) {
+				System.out.println("Email is empty");
+				mobileAction.FuncSendKeys(email_text, "abcde@td.com");
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+					mobileAction.FuncHideKeyboard();
+				} else {
+					mobileAction.FuncClickDone();
+				}
+			} else {
+				System.out.println("Email is prefilled with:" + prefilledEmail);
+			}
+
+		} catch (Exception e) {
+
+		}
+	}
+
+	public void Fill_OFX_Form() {
+		Decorator();
+		try {
+
+			String USD_value = CL.getTestDataInstance().TCParameters.get("Amount");
+			mobileAction.FuncSendKeys(to_currency_amount, USD_value);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+
+			selectFromAccount();
+			init_pickup_location_dropdown();
+			mobileAction.FuncClick(select_branch_dropdown, "Select a branch");
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncClick(select_branch_dropdown, "Select a branch");
+			}
+
+			// mobileAction.FuncClickCoordinatesInElement(select_branch_dropdown);//,
+			// "Select a branch");
+			FindLocations.get().SelectBranchLocation();
+			Branch.get().clickSendMyCurrencyHereButton();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncSwipeOnce("up");
+			}
+			fillPhoneIfnotprefilled();
+			fillEmailIfnotprefilled();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void ClickPreviewCurrencyOrder() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(preview_currency_order_button, "Preview Currency Order Button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void waitForRateTimerExpired() {
+		Decorator();
+		boolean toScrollUp = true;
+		try {
+			for (int i = 0; i < 8; i++) {
+				Thread.sleep(20000);
+				if (toScrollUp) {
+					mobileAction.FuncSwipeOnce("up");
+					toScrollUp = false;
+				} else {
+					mobileAction.FuncSwipeOnce("down");
+					toScrollUp = true;
+				}
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyRateExpiredContent() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementTextIsDisplayed(rate_expired_text,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RATE_EXPIRED));
+			mobileAction.verifyElementTextIsDisplayed(rate_expired_copy,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RATE_EXPIRED_COPY));
+			mobileAction.verifyElementTextIsDisplayed(rate_expired_ok_btn,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RATE_EXPIRED_OK));
+
+			mobileAction.FuncClick(rate_expired_ok_btn, "OK");
+			VerifyOrderForeignCurrencyPageHeader();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
