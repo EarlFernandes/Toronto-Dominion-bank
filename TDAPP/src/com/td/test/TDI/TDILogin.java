@@ -113,8 +113,8 @@ public class TDILogin extends _CommonPage {
 							.findElement(By.xpath("(//XCUIElementTypeStaticText[contains(@value,'choose the account')]"
 									+ "//following::XCUIElementTypeOther)[1]"));
 					String AccountNo = acNo.getAttribute("name");
-					System.out.println(AccountNo);
-					String acn = AccountNo.substring(8, AccountNo.length() - 1);
+					String acn = AccountNo.replaceAll("[^0-9]","");
+					System.out.println(acn);
 					MobileElement actoclick = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath("//XCUIElementTypeStaticText[contains(@value,'" + acn + "')]"));
 					mobileAction.FuncClick(actoclick, "acc clicked");
@@ -123,11 +123,10 @@ public class TDILogin extends _CommonPage {
 					MobileElement acNo = (MobileElement) (CL.GetAppiumDriver())
 							.findElement(By.xpath("(//android.view.View[contains(@text,'Go to account')])[1]"));
 					String AccountNo = acNo.getText();
-					System.out.println(AccountNo);
-					String acn = AccountNo.substring(15, AccountNo.length() - 1);
+					String acn = AccountNo.replaceAll("[^0-9]","");
 					System.out.println(acn);
 					MobileElement actoclick = (MobileElement) (CL.GetAppiumDriver()).findElement(By
-							.xpath("(//android.view.View/following::android.view.View[contains(@text,'2481844')])[2]"));
+							.xpath("(//android.view.View/following::android.view.View[contains(@text,'" + acn + "')])[2]"));
 					mobileAction.FuncClick(actoclick, "acc clicked");
 				}
 			}
