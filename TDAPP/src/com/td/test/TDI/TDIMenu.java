@@ -107,6 +107,83 @@ public class TDIMenu extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Manage Policies' or @text='TBD' or @text='TBD' or @text='TBD']")
 	private MobileElement managePolicies;
 
+	// vishal------
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Homepage']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Homepage']")
+	private MobileElement homePage;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Start a Claim']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Start a Claim']")
+	private MobileElement startClaim;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Get a Quote']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Get A Quote']")
+	private MobileElement getQuote;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='TD MyAdvantage']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='TD MyAdvantage']")
+	private MobileElement advantage;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Accident Reports']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='My Accident Reports']")
+	private MobileElement ac_report;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Preferred Auto Shops']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Preferred Auto Shops']")
+	private MobileElement autoShops;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Insurance Card']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Insurance Card']")
+	private MobileElement insuranceCard;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Insurance FAQs']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Insurance FAQs']")
+	private MobileElement menu_faq;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Contact Us']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Contact Us']")
+	private MobileElement contactUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label= 'Logout']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/lblListHeader' and @text='Logout']")
+	private MobileElement logout;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Policies']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Policies']")
+	private MobileElement policies;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Billing']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Billing']")
+	private MobileElement billing;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Claims']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Claims']")
+	private MobileElement claims;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Inbox']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Inbox']")
+	private MobileElement inbox;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='My Profile']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='My Profile']")
+	private MobileElement profile;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Info Centre']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Info Centre']")
+	private MobileElement infoCenter;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Give Feedback']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td.insurance:id/navText' and @text='Give Feedback']")
+	private MobileElement giveFeedback;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[contains(@value,'Toronto-Dominion Bank') and @label='Address' and @name='URL']")
+	// TODO@AndroidFindBy(xpath="")
+	private MobileElement webPage;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Return to TD Insurance']")
+	private MobileElement returntoQuote;
+
 	public synchronized static TDIMenu get() {
 		if (TDIMenu == null) {
 			TDIMenu = new TDIMenu();
@@ -119,7 +196,7 @@ public class TDIMenu extends _CommonPage {
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
 
-	public void clickManagePolicies() {
+	public void managePolicies() {
 		Decorator();
 		try {
 
@@ -137,4 +214,530 @@ public class TDIMenu extends _CommonPage {
 		}
 	}
 
+	// vishal------
+	/**
+	 * This method will click on the home screen in the menu.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuHomeScreen() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			mobileAction.FuncClick(homePage, "Menu Home Page");
+
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on start a claim in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuStartclaim() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			mobileAction.FuncClick(startClaim, "Menu Start a claim");
+
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on manage policies in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuManagePolicies() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			mobileAction.FuncClick(managePolicies, "Menu Manage Policies");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on the get a quote in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuGetQuote() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			mobileAction.FuncClick(getQuote, "Menu get a quote");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on the TD Advantage on the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuTDAdvantage() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(advantage, "Menu TD Advantage");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on the accident report on the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuAccidentReport() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(ac_report, "Menu Accident Report");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on the auto shops in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuAutoShops() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(autoShops, "Menu Auto shops");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on the insurance card in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuInsuranceCard() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(insuranceCard, "Menu Insurance Card");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on the frequently asked questions in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuFAQ() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(menu_faq, "Menu FAQs");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on contact us in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void menuContactUs() {
+		Decorator();
+		try {
+			mobileAction.waitTDIProgressBarVanish();
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(contactUS, "Menu Contact us");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on My Policies in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void myPolicies() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(policies, "My Policies");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on My Billing in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void myBilling() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(billing, "My billing");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on My claims in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void myClaims() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(claims, "My Claims");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on inbox in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void inbox() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(inbox, "Inbox");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on My Profile in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void myProfile() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(profile, "profile");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on info center in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void infoCenter() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(infoCenter, "info center");
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
+
+	/**
+	 * This method will click on give feedback in the menu bar.
+	 * 
+	 * @throws InterruptedException
+	 *             In case an exception occurs while clicking over the element.
+	 * @throws IOException
+	 *             If there is problem while reporting.
+	 * @throws NoSuchElementException
+	 *             In case the element is not found over the screen.
+	 * 
+	 * 
+	 */
+	public void giveFeedback() {
+		Decorator();
+		try {
+			TDIHomescreen.get().clickMenu();
+			mobileAction.FuncClick(giveFeedback, "give feedback");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				mobileAction.waitForElement(webPage);
+				mobileAction.verifyElementIsDisplayed(webPage, "URL header");
+				mobileAction.FuncClick(returntoQuote, "return to quote page");
+			} else
+				// TODO::Android verification
+				mobileAction.FuncClickBackButton();
+
+		} catch (Exception e) {
+			try {
+				CL.GetReporting().FuncReport("Fail",
+						"NoSuchElementException from Method " + this.getClass().toString());
+			} catch (IOException e1) {
+				System.err.println("Failed to write in report.");
+			}
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+
+		}
+	}
 }

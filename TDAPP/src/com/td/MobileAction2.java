@@ -3443,6 +3443,25 @@ public class MobileAction2 extends CommonLib {
 		waitForElementToVanish(progressBar);
 	}
 
+	public void waitTDIProgressBarVanish() {
+		MobileElement progressBar = null;
+		String progressbarXpath = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
+		} else {
+			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='One moment please']";
+		}
+
+		try {
+			progressBar = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(progressbarXpath));
+		} catch (Exception e) {
+			System.out.println("Progress bar not found");
+			return;
+		}
+		System.out.println("Waiting for progress vanishing");
+		waitForElementToVanish(progressBar);
+	}
+	
 	public void clickMenuButton() {
 
 		// Not clear why it failed to click menu on iPad, so let's try max 5
