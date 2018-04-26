@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -260,22 +261,17 @@ public class Login extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='Text Me' or @text='Textez-moi' or @text='短信' or @text='短訊']")
 	private MobileElement textOption;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='getCode']")
 	private MobileElement getCodeButton;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeTextField[1] | //XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeTextField[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeTextField[1] | //XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='secretCode']")
 	private MobileElement securityCodeField;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='enter']")
 	private MobileElement submitCodeButton;
-
-	final String OTP_LAST4DIGITS = "2677";
-
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeStaticText[`label CONTAINS '" + OTP_LAST4DIGITS + "'`]")
-	private MobileElement phoneListCell;
 
 	final int REPEAT_TIMES = 4;
 
@@ -506,8 +502,14 @@ public class Login extends _CommonPage {
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_OTP_CHALLENGE_HEADER_TEXT))) {
 				// OTP Challenge page
-				// Uncomment when default OTP passcode is in effect
-				// this.enterOTPPasscode();
+
+				String isOTPTest = getTestdata("Env");
+				if (isOTPTest != null && isOTPTest.toLowerCase().contains("otp test")) {
+					// If OTP testcase, do not enter any passcode
+					// Continue on to next OTP test steps
+				} else {
+					this.enterOTPPasscode();
+				}
 				return false;
 			} else if (screenheader.getText()
 					.contains(getTextInCurrentLocale(StringArray.ARRAY_PREFERENCE_SECURITY_SETTINGS))) {
@@ -2099,32 +2101,70 @@ public class Login extends _CommonPage {
 		Decorator();
 		try {
 			boolean onlyOnePhone = mobileAction.verifyElementIsPresent(textOption);
+			// For now, only 1 phone number is associated with any ConnectIDs
+			String otpLast4Digits = "2677";
+			boolean useRealOTP = false;
+			MobileElement phoneListCell = null;
+
 			if (!onlyOnePhone) {
+				// More than 1 phone#
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 					// Cannot read phone cell text for correct phone#
 					String phoneListXpath = "//android.widget.Button[contains(@resource-id,'phone')]";
 					List<MobileElement> phoneList = mobileAction.getElementsList(phoneListXpath);
 					for (MobileElement cell : phoneList) {
 						String text = mobileAction.FuncGetText(cell);
-						if (text.contains(OTP_LAST4DIGITS)) {
+						if (text.contains(otpLast4Digits)) {
 							phoneListCell = cell;
+							useRealOTP = true;
 							break;
 						}
+					}
+					if (phoneListCell == null) {
+						// if 2677 not found, use 1st phone#
+						phoneListCell = phoneList.get(0);
+					}
+				} else {
+					phoneListCell = mobileAction.getMobileElement(
+							By.xpath("//XCUIElementTypeStaticText[contains(@label,'" + otpLast4Digits + "')]"));
+					if (phoneListCell != null) {
+						useRealOTP = true;
+					} else {
+						// if 2677 not found, use 1st phone#
+						phoneListCell = mobileAction.getMobileElement(
+								By.xpath("//XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]"));
 					}
 				}
 				mobileAction.FuncClick(phoneListCell, "OTP Phone number");
 				mobileAction.sleep(5000);
+
+			} else {
+				// Only 1 phone#
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+					phoneListCell = mobileAction.getMobileElement(
+							By.xpath("//android.widget.Button[contains(@text,'" + otpLast4Digits + "')]"));
+				} else {
+					phoneListCell = mobileAction.getMobileElement(
+							By.xpath("//XCUIElementTypeStaticText[contains(@label,'" + otpLast4Digits + "')]"));
+
+				}
+				if (phoneListCell != null) {
+					useRealOTP = true;
+				}
 			}
 
 			mobileAction.FuncClick(textOption, "Text option");
 			mobileAction.FuncClick(getCodeButton, "Get Code Button");
 
-			// Use passcode in xls when default passcode in effect
-			OTPChallenge.get().enterSecurityCode();
-			// String securityCode = getTestdata("SecurityAnswer");
-			// mobileAction.FuncClick(securityCodeField, "Security Code Field");
-			// mobileAction.FuncSendKeys(securityCodeField, securityCode);
-			// mobileAction.FuncHideKeyboard();
+			if (useRealOTP) {
+				OTPChallenge.get().enterLoginSecurityCode();
+			} else {
+				// String securityCode = getTestdata("SecurityAnswer");
+				String fakePasscode = "123456";
+				mobileAction.FuncClick(securityCodeField, "Security Code Field");
+				mobileAction.FuncSendKeys(securityCodeField, fakePasscode);
+				mobileAction.FuncHideKeyboard();
+			}
 
 			mobileAction.FuncClick(submitCodeButton, "submit code button");
 			mobileAction.waitProgressBarVanish();

@@ -188,13 +188,13 @@ public class EventCase {
 		ManagePayee_ClickNewPayee, ManagePayees_Button, ManagePayee_AddCanadianPayee, ManagePayee_ClickPayeeByAcctNumber, ManagePayee_DeletePayee, ManagePayee_EditPayee, ManagePayee_VerifyCanadianPayeeDeleted, ManagePayee_VerifyPayeeEdited, ManagePayee_VerifyUSPayeeDeleted, ManagePayee_EditPayeeDescription, ManagePayee_EditPayeeDescriptionPAT,
 
 		// Menu
-		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ, clickPrivacySecurityAndLegal,clickLocations,
+		Menu_VerifyAllMenuItems, Menu_ClickChatBot, Menu_ClickFAQ, clickPrivacySecurityAndLegal, clickLocations,
 
 		// Mobile Payment
 		MobilePayment_AcceptIntroAndValidate,
 
 		// Page Header
-		PageHeader_ClickBackButton, PageHeader_GoHome, PageHeader_ClickBackButtonIfIOS,
+		PageHeader_ClickBackButton, PageHeader_GoHome, PageHeader_ClickBackButtonIfIOS, PageHeader_VerifyHeaderVisible,
 
 		// Pay Bill
 		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen,
@@ -239,7 +239,6 @@ public class EventCase {
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
 
 		// MIT Refactor
-
 		HomeScreen_click_Markets, Trade_MIT_REF_searchAndClickMarketSymbol, Trade_MIT_REF_verifyTradeSymbols, Trade_MIT_REF_QuoteverifyRecentSearchSymbol, Investing_MIT_REF_verifyHoldingsDetails, Investing_MIT_REF_clickHoldingsTab, Trade_MIT_REF_verifyExchangeAgreementErrorDetails, Investing_MIT_REF_clickTradeQuickLink, Trade_MIT_REF_ClickEnterNameOrSymbol, Trade_MIT_REF_verifyFirstOrderPlaced, Trade_MIT_REF_verifyQuoteSymbol, HomeScreen_clickQuoteQuickLink, Trade_MIT_REF_goBack, Trade_MIT_REF_verifyRecentSearchSymbol, Trade_MIT_REF_goBackToHome, Investing_MIT_REF_buyHoldingsETF, Investing_MIT_REF_sendETFOrder, Investing_MIT_REF_clickHoldingsETF, Investing_MIT_REF_clickAccount_Multiple, Investing_MIT_REF_verifyTabs, Trade_MIT_REF_cancelOrder, Trade_MIT_REF_changeOrder, Trade_MIT_REF_click_RecentOrder, Trade_MIT_REF_click_Orders_Link, Trade_MIT_REF_verify_StockOrderSent_Msg, Trade_MIT_REF_clickSendOrder, Trade_MIT_REF_sendStockOrder, Trade_MIT_REF_verifyTradeHeader, Trade_MIT_REF_verifyTradeElements, Trade_MIT_REF_EnterNameOrSymbol, Trade_MIT_REF_verifyQuoteDetails, Trade_MIT_REF_sendOptionsOrder,
 
 		// Privacy Security and Legal
@@ -250,12 +249,12 @@ public class EventCase {
 
 		// Faq's
 		VerirfyFAQPage, VerirfyQuestionsPage, verifyAnswerPage,
-		
+
 		// Locations
 		verifyLocationsPage,
-		
-		//TDI Regression - vishal
-		TDI_ClickMenu,TDI_HomeStartClaim,TDI_HomeManagePolicies,TDI_HomeQuote,TDI_HomeAdvantage,TDI_HomeAutoShops,TDI_HomeInsuranceCard,TDI_HomeAccidentReport,TDI_HomeFAQ,TDI_HomeContactUs,TDI_Dummy,TDI_ATVQuote,TDI_motorCycleQuote,TDI_CollisionRepair,TDI_StartClaimHeader,TDI_StartClaimAccident,TDI_StartClaimhitRun,TDI_StartClaimCarStolen,TDI_StartClaimIncident,TDI_StartClaimInsuranceCard,TDI_StartClaimEmergencyCall,TDI_StartClaimAccountHistory,TDI_ContactUsHeader,TDI_Login,TDI_Logout,TDI_menuHomepag,TDI_menuStartClaim,TDI_menuManagePolicies,TDI_menuGetQuote,TDI_menuTDAdvantage,TDI_menuAccidentReport,TDI_menuAutoShops,TDI_menuInsuranceCard,TDI_menuFAQ,TDI_menuContactUS,TDI_myPolicies,TDI_myBilling,TDI_myClaims,TDI_Inbox,TDI_myProfile,TDI_infoCenter,TDI_giveFeedback,TDI_HomeClaimLink,TDI_HomeAccidentAssistance,
+
+		// TDI Regression - vishal
+		TDI_ClickMenu, TDI_HomeStartClaim, TDI_HomeManagePolicies, TDI_HomeQuote, TDI_HomeAdvantage, TDI_HomeAutoShops, TDI_HomeInsuranceCard, TDI_HomeAccidentReport, TDI_HomeFAQ, TDI_HomeContactUs, TDI_Dummy, TDI_ATVQuote, TDI_motorCycleQuote, TDI_CollisionRepair, TDI_StartClaimHeader, TDI_StartClaimAccident, TDI_StartClaimhitRun, TDI_StartClaimCarStolen, TDI_StartClaimIncident, TDI_StartClaimInsuranceCard, TDI_StartClaimEmergencyCall, TDI_StartClaimAccountHistory, TDI_ContactUsHeader, TDI_Login, TDI_Logout, TDI_menuHomepag, TDI_menuStartClaim, TDI_menuManagePolicies, TDI_menuGetQuote, TDI_menuTDAdvantage, TDI_menuAccidentReport, TDI_menuAutoShops, TDI_menuInsuranceCard, TDI_menuFAQ, TDI_menuContactUS, TDI_myPolicies, TDI_myBilling, TDI_myClaims, TDI_Inbox, TDI_myProfile, TDI_infoCenter, TDI_giveFeedback, TDI_HomeClaimLink, TDI_HomeAccidentAssistance,
 	}
 
 	public void FuncCOREEventCase(String sFunctionname)
@@ -1078,8 +1077,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_clickChangeorder: OrderDetails.get().performChangeorder();
-		 * break;
+		 * case OrderDetails_clickChangeorder:
+		 * OrderDetails.get().performChangeorder(); break;
 		 */
 
 		case OrderDetailsLimitPrice:
@@ -1503,8 +1502,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_CancelOrder: OrderDetails.get().performCancelOrder();
-		 * break;
+		 * case OrderDetails_CancelOrder:
+		 * OrderDetails.get().performCancelOrder(); break;
 		 */
 
 		case ConfirmOrderReciept:
@@ -2094,7 +2093,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists(); break;
+		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists();
+		 * break;
 		 */
 
 		case stocksVerifyWatchlists:
@@ -4972,6 +4972,10 @@ public class EventCase {
 			PageHeader.get().clickBackButtonIfIOS();
 			break;
 
+		case PageHeader_VerifyHeaderVisible:
+			PageHeader.get().verifyHeaderVisible();
+			break;
+
 		// Pay Bill
 		case PayBill_PayBill:
 			PayBill.get().payBill();
@@ -5476,7 +5480,7 @@ public class EventCase {
 		case verifyLocationsPage:
 			Locations.get().verifyLocationsPage();
 			break;
-		
+
 		// Performance metrics
 		case Transfers_ClickBetweenMyAccountsPERF:
 			Transfers.get().clickBetweenMyAccountsPERF();
@@ -5594,177 +5598,178 @@ public class EventCase {
 		case verifyAnswerPage:
 			FAQ.get().verifyAnswerPage();
 			break;
-			
-	//TDI - Vishal
-			
+
+		// TDI - Vishal
+
 		case TDI_ClickMenu:
 			TDIHomescreen.get().clickMenu();
 			break;
-						
+
 		case TDI_HomeStartClaim:
 			TDIHomescreen.get().clickStartClaim();
 			break;
-			
+
 		case TDI_HomeManagePolicies:
 			TDIHomescreen.get().clickManagePolicies();
-			break;	
-						
+			break;
+
 		case TDI_HomeQuote:
 			TDIHomescreen.get().getQuote();
 			break;
-						
+
 		case TDI_HomeAdvantage:
 			TDIHomescreen.get().TDMyAdvantage();
 			break;
-						
+
 		case TDI_HomeAutoShops:
 			TDIHomescreen.get().preAutoShops();
 			break;
-						
+
 		case TDI_HomeInsuranceCard:
 			TDIHomescreen.get().insuranceCard();
 			break;
-						
+
 		case TDI_HomeAccidentReport:
 			TDIHomescreen.get().accidentReport();
 			break;
-						
+
 		case TDI_HomeFAQ:
-	    	TDIHomescreen.get().homeFAQ();
+			TDIHomescreen.get().homeFAQ();
 			break;
-						
+
 		case TDI_HomeContactUs:
 			TDIHomescreen.get().homeContactUs();
 			break;
-		
+
 		case TDI_ATVQuote:
 			TDIGetQuote.get().getATVQuote();
 			break;
-			
+
 		case TDI_motorCycleQuote:
 			TDIGetQuote.get().getMotorCycleQuote();
-			break;	
-			
+			break;
+
 		case TDI_CollisionRepair:
 			TDIPreferredAutoShops.get().collisionRepair();
 			break;
-			
+
 		case TDI_StartClaimHeader:
 			TDIStartClaim.get().verifyHeader();
 			break;
-			
+
 		case TDI_StartClaimAccident:
 			TDIStartClaim.get().accident();
 			break;
-			
+
 		case TDI_StartClaimhitRun:
 			TDIStartClaim.get().hitRun();
 			break;
-			
+
 		case TDI_StartClaimCarStolen:
 			TDIStartClaim.get().carStolen();
-			break;	
-			
+			break;
+
 		case TDI_StartClaimIncident:
 			TDIStartClaim.get().anotherIncident();
 			break;
-			
+
 		case TDI_StartClaimInsuranceCard:
 			TDIStartClaim.get().insuranceCard();
 			break;
-			
+
 		case TDI_StartClaimEmergencyCall:
 			TDIStartClaim.get().callEmergency();
 			break;
-			
+
 		case TDI_StartClaimAccountHistory:
 			TDIStartClaim.get().accountHistory();
 			break;
-			
+
 		case TDI_ContactUsHeader:
 			TDIContactUs.get().UnivStudents();
-			break;	
-			
+			break;
+
 		case TDI_Login:
 			TDILogin.get().login();
-			break;	
-			
+			break;
+
 		case TDI_Logout:
 			TDILogin.get().logout();
-			break;	
+			break;
 
 		case TDI_menuHomepag:
 			TDIMenu.get().menuHomeScreen();
 			break;
-			
+
 		case TDI_menuStartClaim:
-			TDIMenu.get().menuStartclaim();;
+			TDIMenu.get().menuStartclaim();
+			;
 			break;
-			
+
 		case TDI_menuManagePolicies:
 			TDIMenu.get().menuManagePolicies();
-			break;	
-			
+			break;
+
 		case TDI_menuGetQuote:
 			TDIMenu.get().menuGetQuote();
-			break;	
-			
+			break;
+
 		case TDI_menuTDAdvantage:
 			TDIMenu.get().menuTDAdvantage();
 			break;
-			
+
 		case TDI_menuAccidentReport:
 			TDIMenu.get().menuAccidentReport();
 			break;
-			
+
 		case TDI_menuAutoShops:
 			TDIMenu.get().menuAutoShops();
 			break;
-			
+
 		case TDI_menuInsuranceCard:
 			TDIMenu.get().menuInsuranceCard();
 			break;
-			
+
 		case TDI_menuFAQ:
 			TDIMenu.get().menuFAQ();
-			break;	
-			
+			break;
+
 		case TDI_menuContactUS:
 			TDIMenu.get().menuContactUs();
-			break;	
-			
+			break;
+
 		case TDI_myPolicies:
 			TDIMenu.get().myPolicies();
 			break;
-			
+
 		case TDI_myBilling:
 			TDIMenu.get().myBilling();
 			break;
-			
+
 		case TDI_myClaims:
 			TDIMenu.get().myClaims();
 			break;
-			
+
 		case TDI_Inbox:
 			TDIMenu.get().inbox();
 			break;
-		
+
 		case TDI_myProfile:
 			TDIMenu.get().myProfile();
 			break;
-			
+
 		case TDI_infoCenter:
 			TDIMenu.get().infoCenter();
 			break;
-			
+
 		case TDI_giveFeedback:
 			TDIMenu.get().giveFeedback();
 			break;
-			
+
 		case TDI_HomeClaimLink:
 			TDIHomescreen.get().startClaimLink();
 			break;
-			
+
 		case TDI_HomeAccidentAssistance:
 			TDIHomescreen.get().accidentAssistance();
 			break;
