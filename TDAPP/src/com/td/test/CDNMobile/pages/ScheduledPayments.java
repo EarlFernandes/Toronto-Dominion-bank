@@ -434,7 +434,12 @@ public class ScheduledPayments extends _CommonPage {
 				}
 				int randNum = getRandomInRange(1, size - 1);
 				payeeSelected = mobileAction.getValue(payee_filter_List.get(randNum));
-				mobileAction.FuncClick(payee_filter_List.get(randNum), payeeSelected);
+				if(!mobileAction.verifyElementIsPresent(payee_filter_List.get(randNum))) {
+					mobileAction.FuncSwipeWhileElementNotFound(payee_filter_List.get(randNum), true, 3, "up");
+				} else {
+					mobileAction.FuncClick(payee_filter_List.get(randNum), payeeSelected);
+				}
+				
 				CL.getTestDataInstance().TCParameters.put("Payee", payeeSelected);
 			} else {
 				if (payeeSelected.matches(regAccount)) {

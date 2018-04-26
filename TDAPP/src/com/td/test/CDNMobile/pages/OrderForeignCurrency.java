@@ -552,7 +552,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncSendKeys(from_currency_amount, "5000.5");
+			mobileAction.FuncSendKeys(from_currency_amount, "59");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -684,13 +684,9 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
-			if (mobileAction.verifyElementIsPresent(order_foreign_currency_Banner_Info)) {
-				String incrementBanner = mobileAction.getValue(order_foreign_currency_Banner_Info);
-				System.out.println("Increment banner:" + incrementBanner);
-				mobileAction.Report_Pass_Verified(incrementBanner);
-			} else {
-				mobileAction.Report_Fail("No increment banner found");
-			}
+			
+			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_CURRENCY_ADJUST_WARNING));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -707,7 +703,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncSendKeys(from_currency_amount, "3500");
+			mobileAction.FuncSendKeys(from_currency_amount, "120");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -715,13 +711,19 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
-			if (mobileAction.verifyElementIsPresent(order_foreign_currency_Banner_Info)) {
-				String incrementBanner = mobileAction.getValue(order_foreign_currency_Banner_Info);
-				System.out.println("Increment banner:" + incrementBanner);
-				mobileAction.Report_Pass_Verified(incrementBanner);
-			} else {
-				mobileAction.Report_Fail("No increment banner found");
-			}
+
+			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_CURRENCY_ADJUST_WARNING));
+			// if
+			// (mobileAction.verifyElementIsPresent(order_foreign_currency_Banner_Info))
+			// {
+			// String incrementBanner =
+			// mobileAction.getValue(order_foreign_currency_Banner_Info);
+			// System.out.println("Increment banner:" + incrementBanner);
+			// mobileAction.Report_Pass_Verified(incrementBanner);
+			// } else {
+			// mobileAction.Report_Fail("No increment banner found");
+			// }
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -794,7 +796,7 @@ public class OrderForeignCurrency extends _CommonPage {
 					+ "']";
 		}
 		try {
-			from_account_dropdown = mobileAction.verifyElementUsingXPath(xpath, "From Account Dropdown");
+			select_branch_dropdown = mobileAction.verifyElementUsingXPath(xpath, "Pickup Location Dropdown");
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			mobileAction.Report_Fail("Failed to init from account dropdown");
@@ -928,12 +930,6 @@ public class OrderForeignCurrency extends _CommonPage {
 			init_pickup_location_dropdown();
 			mobileAction.FuncClick(select_branch_dropdown, "Select a branch");
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				mobileAction.FuncClick(select_branch_dropdown, "Select a branch");
-			}
-
-			// mobileAction.FuncClickCoordinatesInElement(select_branch_dropdown);//,
-			// "Select a branch");
 			FindLocations.get().SelectBranchLocation();
 			Branch.get().clickSendMyCurrencyHereButton();
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
@@ -971,10 +967,10 @@ public class OrderForeignCurrency extends _CommonPage {
 
 	public void waitForRateTimerExpired() {
 		Decorator();
-		boolean toScrollUp = true;
+		boolean toScrollUp = false;
 		try {
-			for (int i = 0; i < 8; i++) {
-				Thread.sleep(20000);
+			for (int i = 0; i < 16; i++) {
+				Thread.sleep(60000);
 				if (toScrollUp) {
 					mobileAction.FuncSwipeOnce("up");
 					toScrollUp = false;
@@ -1007,7 +1003,37 @@ public class OrderForeignCurrency extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_RATE_EXPIRED_OK));
 
 			mobileAction.FuncClick(rate_expired_ok_btn, "OK");
-			VerifyOrderForeignCurrencyPageHeader();
+			//VerifyOrderForeignCurrencyPageHeader();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+	
+	public void verifyMinErrorWhileUpdateCurrency() {
+		Decorator();
+		try {
+			mobileAction.FuncSendKeys(from_currency_amount, "59");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+
+			mobileAction.FuncSwipeOnce("down");
+			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MIN_CAD_AMOUNT_ERROR);
+			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
+			
+			mobileAction.FuncClick(dest_currency, "Currency Selection Button");
+			Currency.get().randomSelectCurrency();
+			
+			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

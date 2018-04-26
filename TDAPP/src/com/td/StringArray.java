@@ -971,7 +971,10 @@ public final class StringArray {
 			"You don't have enough funds in the account you selected.  Please try a lower amount or use a different account.",
 			"Le compte sélectionné ne contient pas les fonds requis. Entrez un montant inférieur ou utilisez un autre compte.",
 			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選賬戶中沒有足夠的資金。請輸入較低金額或使用其他賬戶。" };
-
+	public static final String[] ARRAY_OFX_SEARCH_DISCLAIMER = {
+			"We couldn't find the currency you entered. Please check the spelling and try again.",
+			"Nous n'avons pas trouvé la devise entrée. Veuillez vérifier que l’orthographe est correcte, puis réessayez.",
+			"找不到您输入的货币。请检查拼写，然后重试。", "找不到您輸入的貨幣。請檢查拼字，然後再試。" };
 	// End of OFX
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",

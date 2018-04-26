@@ -239,7 +239,7 @@ public class EventCase {
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
 
 		// RBP
-		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate, clickPayBillDashboard, verifyRBPScreen, verifyBankingHeader, clickPayBillQuickLink, confirmAddPayeeAndPayThisPayee, verifyPayeeOrder, verifyDefaultPayeeFilter, verifyListOfPaymentsAreWithSamePayee, clickViewpaymentForSelectPayee, verifyPaymentListByDate, clickViewAll_Link, verifyScheduledPaymentsContent, verifyMonthGrouping, verifyPaymentDue7Date, verifyBillDetailsPageHeader, selectFirstPayment, verifyBillDetailsContent, verifyCancelButtonDisplayed, selectFirstActivePayment, verifyCancelButtonNotDisplayed, selectFirstCancelledPayment, clickRBPCancelButton, ClickRBPPopupCancelButton, ClickRBPPopupDontCancelButton, verifyPopupCancelPayment, VerifyRBPErrorMessageInReviewPage, verifypayeeFilterContainsMultiAccessCardPayees, verifyBillCancelledReceipt,SelectCCRAPayee,
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate, clickPayBillDashboard, verifyRBPScreen, verifyBankingHeader, clickPayBillQuickLink, confirmAddPayeeAndPayThisPayee, verifyPayeeOrder, verifyDefaultPayeeFilter, verifyListOfPaymentsAreWithSamePayee, clickViewpaymentForSelectPayee, verifyPaymentListByDate, clickViewAll_Link, verifyScheduledPaymentsContent, verifyMonthGrouping, verifyPaymentDue7Date, verifyBillDetailsPageHeader, selectFirstPayment, verifyBillDetailsContent, verifyCancelButtonDisplayed, selectFirstActivePayment, verifyCancelButtonNotDisplayed, selectFirstCancelledPayment, clickRBPCancelButton, ClickRBPPopupCancelButton, ClickRBPPopupDontCancelButton, verifyPopupCancelPayment, VerifyRBPErrorMessageInReviewPage, verifypayeeFilterContainsMultiAccessCardPayees, verifyBillCancelledReceipt, SelectCCRAPayee,
 
 		// Deeplink
 		verifyCreditLimitIncreaseAndCancel, confirmCancel, openChromeBrowser, verifyDamageCardWebpageAndCancel, verifyReturnToApp, verifyCancelPromptYesorNo, VerifyGetStartButton, ClickNoForCancelPrompt, waitSessionExpiredAndCancel,
@@ -248,7 +248,7 @@ public class EventCase {
 		clickMenuExploreProducts, VerifyProductlandingPageHeader, verifyProductPagePlacement, VerifyProductlandingPageContent, verifyBankAccountsSysURL, clickCreditCardslink, clickMortgageslink, clickBorrowinglink, clickPersonalInvestinglink, clickTravelMedicalInsurancelink, clickBankAccountslink, verifyBankAccountsPatURL, verifyBankAccountsProdURL, verifyCreditCardsSysURL, verifyCreditCardsPatURL, verifyCreditCardsProdURL, verifyMortgagesSysURL, verifyMortgagesPatURL, verifyMortgagesProdURL, verifyBorrowingSysURL, verifyBorrowingPatURL, verifyBorrowingProdURL, verifyPersonalInvestingSysURL, verifyPersonalInvestingPatURL, verifyPersonalInvestingProdURL, verifyTravelInsuranceSysURL, verifyTravelInsurancePatURL, verifyTravelInsuranceProdURL,
 
 		// OFX
-		clickFlyout_CreditBankingServices, verifyCreditBankingServicesContent, clickOrderForeignCurrency, verifyOrderForeignCurrencyContent, updateHomeAndMobilePhoneIfNotexist, VerifyCreditBankingServicePageHeader, verifyPhoneIsPrefilledWithProfileMobile, VerifyOrderForeignCurrencyPageHeader, updateHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithProfileHome, emptyHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithNothing, verifyemailIsPrefilledWithProfileEmail, updateEmailifNotExist, verifyErrorWithInvalidEmail, verifyErrorWithInvalidPhone, verifyNoErrorWithEmptyEmail, verifyMinErrorWithCADAmount, verifyMaxErrorWithCADAmount, verifyMaxErrorWithForignAmount, clickCurrencySelection, VerifyCurrencyPageHeader, randomSelectCurrency, verifyCurrencyUpdatedAsSelected, cancelSelection, verifycurrencyRateUpdatedtoSelectedCurrency, verifyIncrementBannerforCADUpdate, verifyIncrementBannerforCurrencyUpdate, VerifyRateAndMinMaxValueFormat, Fill_OFX_Form, ClickPreviewCurrencyOrder, VerifyPreviewCurrencyOrderContent, VerifyOFXReceiptContent, clickOrderNow, VerifyOFXPhoneisMasked,verifyPopupCancelCurrencyOrder,clickOFXCancelButton,VerifyPreviewCurrencyOrderPageHeader,waitForRateTimerExpired,verifyRateExpiredContent,verifyInsufficientFundError,
+		clickFlyout_CreditBankingServices, verifyCreditBankingServicesContent, clickOrderForeignCurrency, verifyOrderForeignCurrencyContent, updateHomeAndMobilePhoneIfNotexist, VerifyCreditBankingServicePageHeader, verifyPhoneIsPrefilledWithProfileMobile, VerifyOrderForeignCurrencyPageHeader, updateHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithProfileHome, emptyHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithNothing, verifyemailIsPrefilledWithProfileEmail, updateEmailifNotExist, verifyErrorWithInvalidEmail, verifyErrorWithInvalidPhone, verifyNoErrorWithEmptyEmail, verifyMinErrorWithCADAmount, verifyMaxErrorWithCADAmount, verifyMaxErrorWithForignAmount, clickCurrencySelection, VerifyCurrencyPageHeader, randomSelectCurrency, verifyCurrencyUpdatedAsSelected, cancelSelection, verifycurrencyRateUpdatedtoSelectedCurrency, verifyIncrementBannerforCADUpdate, verifyIncrementBannerforCurrencyUpdate, VerifyRateAndMinMaxValueFormat, Fill_OFX_Form, ClickPreviewCurrencyOrder, VerifyPreviewCurrencyOrderContent, VerifyOFXReceiptContent, clickOrderNow, VerifyOFXPhoneisMasked, verifyPopupCancelCurrencyOrder, clickOFXCancelButton, VerifyPreviewCurrencyOrderPageHeader, waitForRateTimerExpired, verifyRateExpiredContent, verifyInsufficientFundError, VerifyDefaultCurrenyUSD, VerifySearchDisclaimer, VerifySearchEntryFunctional, verifyMinErrorWhileUpdateCurrency, VerifyCurrencyContent,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -4269,10 +4269,10 @@ public class EventCase {
 		case clickBankAccountslink:
 			GetAnAccount.get().clickBankAccountslink();
 			break;
-			
+
 		case SelectCCRAPayee:
 			Bill_PayCanada.get().SelectCCRAPayee();
-			break;			
+			break;
 		// End of RBP
 
 		// start of OFX
@@ -4416,30 +4416,50 @@ public class EventCase {
 		case VerifyOFXPhoneisMasked:
 			PreviewCurrencyOrder.get().VerifyOFXPhoneisMasked();
 			break;
-			
+
 		case clickOFXCancelButton:
 			PreviewCurrencyOrder.get().clickOFXCancelButton();
 			break;
-			
+
 		case verifyPopupCancelCurrencyOrder:
 			Popupwindow.get().verifyPopupCancelCurrencyOrder();
 			break;
-			
+
 		case VerifyPreviewCurrencyOrderPageHeader:
 			PreviewCurrencyOrder.get().VerifyPreviewCurrencyOrderPageHeader();
 			break;
-						
+
 		case waitForRateTimerExpired:
 			OrderForeignCurrency.get().waitForRateTimerExpired();
 			break;
-			
+
 		case verifyRateExpiredContent:
 			OrderForeignCurrency.get().verifyRateExpiredContent();
 			break;
-			
+
 		case verifyInsufficientFundError:
 			OrderForeignCurrency.get().verifyInsufficientFundError();
-			break;			
+			break;
+
+		case VerifyDefaultCurrenyUSD:
+			Currency.get().VerifyDefaultCurrenyUSD();
+			break;
+
+		case VerifySearchDisclaimer:
+			Currency.get().VerifySearchDisclaimer();
+			break;
+
+		case VerifySearchEntryFunctional:
+			Currency.get().VerifySearchEntryFunctional();
+			break;
+
+		case verifyMinErrorWhileUpdateCurrency:
+			OrderForeignCurrency.get().verifyMinErrorWhileUpdateCurrency();
+			break;
+
+		case VerifyCurrencyContent:
+			Currency.get().VerifyCurrencyContent();
+			break;
 		// End of OFX
 
 		case VerifyStatementBalanceHeader:
