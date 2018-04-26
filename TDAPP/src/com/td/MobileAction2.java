@@ -3433,16 +3433,17 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void waitProgressBarVanish() {
-		
-//		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-//			try {
-//				Thread.sleep(5000);
-//			} catch (Exception e) {
-//				
-//			}
-//			return;
-//		}
-		
+
+		// if
+		// (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+		// try {
+		// Thread.sleep(5000);
+		// } catch (Exception e) {
+		//
+		// }
+		// return;
+		// }
+
 		MobileElement progressBar = null;
 		String progressbarXpath = "";
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
