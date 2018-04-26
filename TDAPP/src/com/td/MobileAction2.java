@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.td.test.CDNMobile.pages.Login;
 import com.td.test.framework.CommonLib;
+import com.td.test.framework.MobileAction;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy.ByIosClassChain;
@@ -3433,23 +3434,31 @@ public class MobileAction2 extends CommonLib {
 	}
 
 	public void waitProgressBarVanish() {
-
-		// if
-		// (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-		// try {
-		// Thread.sleep(5000);
-		// } catch (Exception e) {
-		//
-		// }
-		// return;
-		// }
-
 		MobileElement progressBar = null;
 		String progressbarXpath = "";
 		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
 		} else {
 			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='1']";
+		}
+
+		try {
+			progressBar = (MobileElement) ((AppiumDriver) GetDriver()).findElement(By.xpath(progressbarXpath));
+		} catch (Exception e) {
+			System.out.println("Progress bar not found");
+			return;
+		}
+		System.out.println("Waiting for progress vanishing");
+		waitForElementToVanish(progressBar);
+	}
+
+	public void waitTDIProgressBarVanish() {
+		MobileElement progressBar = null;
+		String progressbarXpath = "";
+		if (getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+			progressbarXpath = "//android.widget.TextView[@resource-id='android:id/message' or @resource-id='com.td:id/loading_indicator_textview']";
+		} else {
+			progressbarXpath = "//XCUIElementTypeActivityIndicator[@value='One moment please']";
 		}
 
 		try {

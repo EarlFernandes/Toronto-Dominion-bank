@@ -658,6 +658,7 @@ public class MenuPage extends _CommonPage {
 
 		Decorator();
 		try {
+			mobileAction.FuncSwipeUpTillScreenBottom(faq);
 			mobileAction.FuncClick(faq, "FAQ menu button");
 
 		} catch (Exception e) {
@@ -897,6 +898,45 @@ public class MenuPage extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		} finally {
 		}
+	}
+
+	public void clickLocations() {
+
+		Decorator();
+		try {
+			mobileAction.FuncSwipeUpTillScreenBottom(locations);
+			mobileAction.FuncClick(locations, "Click on Locations");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+	
+	public void clickPrivacySecurityAndLegal() {
+
+		Decorator();
+		try {
+			mobileAction.FuncSwipeUpTillScreenBottom(privacy);
+			mobileAction.FuncClick(privacy, "Click on Privacy Security and Legal");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 
 	public void clickMenuAccountsPERF() {

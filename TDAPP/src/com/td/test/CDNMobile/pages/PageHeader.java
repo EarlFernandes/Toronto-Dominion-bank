@@ -74,6 +74,24 @@ public class PageHeader extends _CommonPage {
 		}
 	}
 
+	public void verifyHeaderVisible() {
+		Decorator();
+
+		try {
+
+			mobileAction.verifyElementIsDisplayed(screenHeader, "Page Header element");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
 	public void goHome() {
 		Decorator();
 

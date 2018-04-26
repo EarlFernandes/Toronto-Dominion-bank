@@ -1057,4 +1057,9 @@ public final class StringArray {
 			"Consultez les instructions que vous avez reçues", "", "" };
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
+
+	// TDI
+	public static final String[] LOGIN_ERROR_MSG = {
+			"select the Forgot your Username or Password? link below to reset", };
+
 }
