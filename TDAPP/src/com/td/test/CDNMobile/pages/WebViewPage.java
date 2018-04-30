@@ -41,7 +41,7 @@ public class WebViewPage extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.view.View[@resource-id='cancelApp']")
 	private MobileElement confirmToCancel;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@text='No, take me back to finish' or @text='Non, je veux terminer.']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='No, take me back to finish' or @content-desc='Non, je veux terminer.' or @text='No, take me back to finish' or @text='Non, je veux terminer.']")
 	private MobileElement confirmNotCancel;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='before-app-btn']")
@@ -348,7 +348,7 @@ public class WebViewPage extends _CommonPage {
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				cliText = StringArray.ARRAY_CLIP_FORM_TITLE[1];
 			}
-			String titleXpath = "//android.view.View[@content-desc='" + cliText + "']";
+			String titleXpath = "//android.view.View[@content-desc='" + cliText + "' or @text='" + cliText + "' ]";
 			for (int i = 0; i < 20; i++) {
 				if (mobileAction.verifyElementIsPresentByXpath(titleXpath)) {
 					isWebPageAccessed = true;
@@ -475,7 +475,7 @@ public class WebViewPage extends _CommonPage {
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				ccrText = StringArray.ARRAY_DM_REQUEST_FORM_TITLE[1];
 			}
-			String titleXpath = "//android.view.View[@content-desc='" + ccrText + "']";
+			String titleXpath = "//android.view.View[@content-desc='" + ccrText + "' or @text='" + ccrText + "']";
 			for (int i = 0; i < 20; i++) {
 				if (mobileAction.verifyElementIsPresentByXpath(titleXpath)) {
 					isWebPageAccessed = true;
