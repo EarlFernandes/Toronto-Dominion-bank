@@ -348,7 +348,7 @@ public class WebViewPage extends _CommonPage {
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				cliText = StringArray.ARRAY_CLIP_FORM_TITLE[1];
 			}
-			String titleXpath = "//android.view.View[@text='" + cliText + "']";
+			String titleXpath = "//android.view.View[@content-desc='" + cliText + "']";
 			for (int i = 0; i < 20; i++) {
 				if (mobileAction.verifyElementIsPresentByXpath(titleXpath)) {
 					isWebPageAccessed = true;
