@@ -177,7 +177,7 @@ public class PayBill extends _CommonPage {
 
 			mobileAction.verifyElementIsDisplayed(fromAccountUS, "From Account field");
 			mobileAction.verifyElementIsDisplayed(toAccountUS, "To Account field");
-			mobileAction.verifyElementIsDisplayed(amount, "Amount field");
+			mobileAction.verifyElementIsDisplayed(amountUS, "Amount field");
 			mobileAction.verifyElementIsDisplayed(payUSbillButton, "Continue button");
 
 		} catch (Exception e) {

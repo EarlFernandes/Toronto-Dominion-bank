@@ -593,9 +593,7 @@ public class Manage_Payee extends _CommonPage {
 
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-				mobileAction.sleep(3000);
-			}
+			mobileAction.sleep(3000);
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -815,9 +813,9 @@ public class Manage_Payee extends _CommonPage {
 				mobileAction.switchToWebView();
 				mobileAction.sleep(3000);
 				// To scroll screen up
-				mobileAction.FuncClick(payeeDescriptionField, "City Field");
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.FuncHideKeyboard();
+				mobileAction.FuncScrollIntoView(payeeDescriptionFieldPAT, "Description Field");
+				mobileAction.sleep(2000);
+
 			} else {
 				// To scroll screen up
 				mobileAction.FuncClick(payeeDescriptionField, "City Field");
