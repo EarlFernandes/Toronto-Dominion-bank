@@ -1905,7 +1905,7 @@ public class Login extends _CommonPage {
 				mobileAction.FuncClick(cancelActionList, "User list Cancel button");
 			} else {
 				// iPad does not have Cancel button in Login ID list
-				mobileAction.ClickBackButton();
+				mobileAction.FuncClick(select_accesscard, "Access Card dropdown button");
 			}
 
 		} catch (Exception e) {
