@@ -356,7 +356,7 @@ public class QuickAccessPage extends _CommonPage {
 		}
 
 	}
-
+	
 	public void closeQuickAccess() {
 		Decorator();
 		try {
@@ -375,5 +375,6 @@ public class QuickAccessPage extends _CommonPage {
 		}
 
 	}
+
 
 }

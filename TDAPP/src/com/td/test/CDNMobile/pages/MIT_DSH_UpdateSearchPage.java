@@ -855,7 +855,7 @@ public class MIT_DSH_UpdateSearchPage extends _CommonPage {
 
 			mobileAction.FuncClick(BT_CancelHome, "BT_CancelHome");
 
-			mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
+			//mobileAction.verifyElementIsDisplayed(hdrHome, "hdrHome");
 
 		} catch (Exception e) {
 			e.printStackTrace();
