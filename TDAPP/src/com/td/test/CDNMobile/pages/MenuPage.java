@@ -797,7 +797,7 @@ public class MenuPage extends _CommonPage {
 					case "Foire aux questions":
 						expectedHeaderText = "FAQ";
 						break;
-					case "Confidentialit�, s�curit� et avis juridique":
+					case "Confidentialité, sécurité et avis juridique":
 						expectedHeaderText = "Avis juridique";
 						break;
 					}
@@ -931,7 +931,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
-	
+
 	public void clickPrivacySecurityAndLegal() {
 
 		Decorator();
