@@ -1786,7 +1786,7 @@ public class MobileAction2 extends CommonLib {
 			String capturedText = getValue(mobileElement);
 			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
-			capturedText = capturedText.replaceAll("�", " "); // replace any
+			capturedText = capturedText.replaceAll(" ", " "); // replace any
 																// french space
 																// with english
 																// space
@@ -1798,7 +1798,7 @@ public class MobileAction2 extends CommonLib {
 					break;
 				} else if (capturedText.matches(expectedHeadertext[i].trim())) {
 					System.out.println("Expected matched:" + capturedText);
-					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+					GetReporting().FuncReport("Pass", "The '" + capturedText + "' is verified");
 					verified = true;
 					break;
 				}

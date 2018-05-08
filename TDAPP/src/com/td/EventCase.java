@@ -248,7 +248,7 @@ public class EventCase {
 		clickMenuExploreProducts, VerifyProductlandingPageHeader, verifyProductPagePlacement, VerifyProductlandingPageContent, verifyBankAccountsSysURL, clickCreditCardslink, clickMortgageslink, clickBorrowinglink, clickPersonalInvestinglink, clickTravelMedicalInsurancelink, clickBankAccountslink, verifyBankAccountsPatURL, verifyBankAccountsProdURL, verifyCreditCardsSysURL, verifyCreditCardsPatURL, verifyCreditCardsProdURL, verifyMortgagesSysURL, verifyMortgagesPatURL, verifyMortgagesProdURL, verifyBorrowingSysURL, verifyBorrowingPatURL, verifyBorrowingProdURL, verifyPersonalInvestingSysURL, verifyPersonalInvestingPatURL, verifyPersonalInvestingProdURL, verifyTravelInsuranceSysURL, verifyTravelInsurancePatURL, verifyTravelInsuranceProdURL,
 
 		// OFX
-		clickFlyout_CreditBankingServices, verifyCreditBankingServicesContent, clickOrderForeignCurrency, verifyOrderForeignCurrencyContent, updateHomeAndMobilePhoneIfNotexist, VerifyCreditBankingServicePageHeader, verifyPhoneIsPrefilledWithProfileMobile, VerifyOrderForeignCurrencyPageHeader, updateHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithProfileHome, emptyHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithNothing, verifyemailIsPrefilledWithProfileEmail, updateEmailifNotExist, verifyErrorWithInvalidEmail, verifyErrorWithInvalidPhone, verifyNoErrorWithEmptyEmail, verifyMinErrorWithCADAmount, verifyMaxErrorWithCADAmount, verifyMaxErrorWithForignAmount, clickCurrencySelection, VerifyCurrencyPageHeader, randomSelectCurrency, verifyCurrencyUpdatedAsSelected, cancelSelection, verifycurrencyRateUpdatedtoSelectedCurrency, verifyIncrementBannerforCADUpdate, verifyIncrementBannerforCurrencyUpdate, VerifyRateAndMinMaxValueFormat, Fill_OFX_Form, ClickPreviewCurrencyOrder, VerifyPreviewCurrencyOrderContent, VerifyOFXReceiptContent, clickOrderNow, VerifyOFXPhoneisMasked, verifyPopupCancelCurrencyOrder, clickOFXCancelButton, VerifyPreviewCurrencyOrderPageHeader, waitForRateTimerExpired, verifyRateExpiredContent, verifyInsufficientFundError, VerifyDefaultCurrenyUSD, VerifySearchDisclaimer, VerifySearchEntryFunctional, verifyMinErrorWhileUpdateCurrency, VerifyCurrencyContent,
+		clickFlyout_CreditBankingServices, verifyCreditBankingServicesContent, clickOrderForeignCurrency, verifyOrderForeignCurrencyContent, updateHomeAndMobilePhoneIfNotexist, VerifyCreditBankingServicePageHeader, verifyPhoneIsPrefilledWithProfileMobile, VerifyOrderForeignCurrencyPageHeader, updateHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithProfileHome, emptyHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithNothing, verifyemailIsPrefilledWithProfileEmail, updateEmailifNotExist, verifyErrorWithInvalidEmail, verifyErrorWithInvalidPhone, verifyNoErrorWithEmptyEmail, verifyMinErrorWithCADAmount, verifyMaxErrorWithCADAmount, verifyMaxErrorWithForignAmount, clickCurrencySelection, VerifyCurrencyPageHeader, randomSelectCurrency, verifyCurrencyUpdatedAsSelected, cancelSelection, verifycurrencyRateUpdatedtoSelectedCurrency, verifyIncrementBannerforCADUpdate, verifyIncrementBannerforCurrencyUpdate, VerifyRateAndMinMaxValueFormat, Fill_OFX_Form, ClickPreviewCurrencyOrder, VerifyPreviewCurrencyOrderContent, VerifyOFXReceiptContent, clickOrderNow, VerifyOFXPhoneisMasked, verifyPopupCancelCurrencyOrder, clickOFXCancelButton, VerifyPreviewCurrencyOrderPageHeader, waitForRateTimerExpired, verifyRateExpiredContent, verifyInsufficientFundError, VerifyDefaultCurrenyUSD, VerifySearchDisclaimer, VerifySearchEntryFunctional, verifyMinErrorWhileUpdateCurrency, VerifyCurrencyContent, verifyConversionRateWithoutTrailing0,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -1092,8 +1092,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_clickChangeorder:
-		 * OrderDetails.get().performChangeorder(); break;
+		 * case OrderDetails_clickChangeorder: OrderDetails.get().performChangeorder();
+		 * break;
 		 */
 
 		case OrderDetailsLimitPrice:
@@ -1521,8 +1521,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_CancelOrder:
-		 * OrderDetails.get().performCancelOrder(); break;
+		 * case OrderDetails_CancelOrder: OrderDetails.get().performCancelOrder();
+		 * break;
 		 */
 
 		case ConfirmOrderReciept:
@@ -2112,8 +2112,7 @@ public class EventCase {
 			break;
 
 		/*
-		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists();
-		 * break;
+		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists(); break;
 		 */
 
 		case stocksVerifyWatchlists:
@@ -4470,6 +4469,10 @@ public class EventCase {
 
 		case VerifyCurrencyContent:
 			Currency.get().VerifyCurrencyContent();
+			break;
+
+		case verifyConversionRateWithoutTrailing0:
+			OrderForeignCurrency.get().verifyConversionRateWithoutTrailing0();
 			break;
 		// End of OFX
 

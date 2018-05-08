@@ -862,24 +862,21 @@ public final class StringArray {
 
 	// Start of OFX
 	public static final String[] ARRAY_OFX_TITLE = { "Credit and Banking Services", "Crédit et services bancaires",
-			"信贷与理财服务", "信貸與理財服務" };
+			"信贷与银行服务", "信貸與銀行服務" };
+
 	public static final String[] ARRAY_ORDER_FOREIGN_CURRENCY = { "Order Foreign Currency", "Commander des devises",
 			"订购外币", "訂購外幣" };
-	// public static final String[] ARRAY_OFX_COPY_TEXT = {
-	// "Order cash in over 60 foreign currencies. Ready for in-branch pickup
-	// within 3-5 business days.",
-	// "Vous avez le choix de plus de 60 devises. Votre commande sera prête pour
-	// le ramassage dans un délai de 3 à 5 jours ouvrables.",
-	// "订购 60 多种外币现钞。3 至 5 个工作日内即可在分行提取。", "訂購 60 多種外幣現鈔。3 至 5 個工作日內即可在分行領取。" };
+
 	public static final String[] ARRAY_OFX_COPY_TEXT = {
-			"Order currency for over 60 foreign currencies. Ready for in-branch pickup within 3-5 business days.",
-			"Vous avez le choix de plus de 60 devises. Votre commande sera prête pour le ramassage dans un délai de 3 à 5 jours ouvrables.",
-			"订购 60 多种外币现钞。3 至 5 个工作日内即可在分行提取。", "訂購 60 多種外幣現鈔。3 至 5 個工作日內即可在分行領取。" };
+			"Order cash in over 50 foreign currencies. Ready for in-branch pickup within 3-5 business days.",
+			"Vous avez le choix de plus de 50 devises. Votre commande sera prête pour le ramassage dans un délai de 3 à 5 jours ouvrables.",
+			"订购 50 多种外币现钞。3 至 5 个工作日内即可在分行提取。", "訂購 50 多種外幣現鈔。3 至 5 個工作日內即可在分行領取。" };
 	public static final String[] ARRAY_OFX_WARNING_MSG = {
 			"Need foreign currency in less than 5 days? We suggest you visit a branch. Call first to make sure the currency you need is available.",
 			"Il vous faut les devises dans moins de cinq jours? Vous pouvez passer à une succursale. Appelez à l’avance pour vous assurer que la devise voulue est bien disponible.",
 			"需要在 5 天内获得外币？我们建议您亲临分行。请提前致电，确认分行备有您需要的货币。", "需要在 5 天內領取外幣？建議您親臨分行購買。請提前致電，確認分行備有您需要的貨幣。" };
-	public static final String[] ARRAY_OFX_CONTACT_INFO = { "CONTACT INFORMATION", "COORDONNÉES", "联系信息", "聯絡資料" };
+	// public static final String[] ARRAY_OFX_CONTACT_INFO = { "CONTACT
+	// INFORMATION", "COORDONNÉES", "联系信息", "聯絡資料" };
 	public static final String[] ARRAY_OFX_EMAIL = { "Email (optional)", "Courriel (facultatif)", "电子邮箱(选填)",
 			"電子郵件(選填)" };
 	public static final String[] ARRAY_OFX_PHONE = { "Phone Number", "Numéro de téléphone", "电话号码", "電話號碼" };
@@ -889,41 +886,49 @@ public final class StringArray {
 			"我们仅会使用您的联系信息向您查询订单。", "我們只會使用您的聯絡資料來向您查詢訂單。" };
 	public static final String[] ARRAY_OFX_PREVIEW_CURRENCY_ORDER = { "Preview Currency Order",
 			"Visualiser la commande de devises", "预览货币订单", "預覽貨幣訂單" };
-	public static final String[] ARRAY_OFX_CURRENCY_TITLE = { "Currency", "Devise", "货币", "貨幣" };
-	public static final String[] ARRAY_OFX_CURRENCY_TITLE_IOS = { "Select a Currency", "Sélectionnez une devise",
-			"选择货币", "選擇貨幣" };
+	public static final String[] ARRAY_OFX_CONTINUE = { "Continue", "Continuer", "继续", "繼續" };
+	// public static final String[] ARRAY_OFX_CURRENCY_TITLE = { "Currency",
+	// "Devise", "货币", "貨幣" };
+	public static final String[] ARRAY_OFX_CURRENCY_TITLE = { "Select a currency", "Sélectionnez une devise", "选择货币",
+			"選擇貨幣" };
 	public static final String[] ARRAY_OFX_CURRENCY_DROPDOWN_SEARCH = { "Search currencies", "Rerchercher des devises",
 			"搜索货币", "搜尋貨幣" };
 	public static final String[] ARRAY_OFX_FORM_I_HAVE = { "I have", "J’ai", "现有货币", "現有貨幣" };
 	public static final String[] ARRAY_OFX_FORM_I_WANT = { "I want", "Je veux", "我要兑换", "我要兌換" };
-	public static final String[] ARRAY_OFX_PICKUP_LOCATION = { "Pickup Location", "Lieu de ramassa", "提取地点", "領取地點" };
+	public static final String[] ARRAY_OFX_PICKUP_LOCATION = { "Pickup Location", "Lieu de ramassage", "提取地点", "領取地點" };
 	public static final String[] ARRAY_OFX_PICKUP_DEFAULT = { "Select a branch", "Sélectionnez une succursale", "选择分行",
 			"選擇分行" };
-	public static final String[] ARRAY_OFX_RATE_FORMAT = { "$1 CAD = ", "1 $ CA = ", "$1 CAD = ", "$1 CAD = " };
-	public static final String[] ARRAY_OFX_MIN_MAX_FORMAT = { "Min =.*Max =.*", "Min\\. =.*Max\\. =.*", "最少 =.*最多 =.*",
-			"最少 =.*最多 =.*" };
+	public static final String[] ARRAY_OFX_RATE_FORMAT = { "1 CAD =.*", "1 CA =.*", "1 CAD =.*", "1 CAD =.*" };
+	public static final String[] ARRAY_OFX_MIN_MAX_FORMAT = { "Min\\s*:.*Max\\s*:.*", "Min\\.\\s*:.*Max\\.\\s*:.*",
+			"最少\\s*:.*最多\\s*:.*", "最少\\s*:.*最多\\s*:.*" };
 	public static final String[] ARRAY_OFX_INVALID_EMAIL_ERROR = { "Please type in a valid email address.",
 			"Veuillez entrer une adresse courriel valide.", "请输入有效的电子邮箱地址。", "請輸入有效的電子郵箱地址。" };
 	public static final String[] ARRAY_OFX_INVALID_PHONE_ERROR = { "Please enter a 10-digit phone number.",
-			"Veuillez entrer une adresse courriel valide.", "请输入有效的电子邮箱地址。", "請輸入有效的電子郵箱地址。" };
+			"Veuillez entrer un numéro de téléphone à 10 chiffres.", "请输入 10 位数电话号码。", "請輸入 10 位數電話號碼。" };
 	public static final String[] ARRAY_OFX_MIN_CAD_AMOUNT_ERROR = {
-			"We need a minimum of CAD $100 for a currency exchange. Please try a higher amount.",
-			"Il faut échanger au moins $ CA 100 . Veuillez entrer un montant plus élevé.",
-			"外币兑换必须至少CAD $100起。请输入较高的金额。", "外幣兌換必須至少CAD $100起。請輸入較高的金額。" };
+			"We need a minimum of CAD 100 for a currency exchange. Please try a higher amount.",
+			"Il faut échanger au moins 100 CAD. Veuillez entrer un montant plus élevé.", "外币兑换必须至少CAD 100起。请输入较高的金额。",
+			"外幣兌換必須至少CAD 100起。請輸入較高的金額。" };
 	public static final String[] ARRAY_OFX_MAX_CAD_AMOUNT_ERROR = {
-			"Sorry, we can't process more than CAD \\d+(\\.\\d+)*.* for this currency exchange. Please try a lower amount.",
-			"Désolés, nous ne pouvons pas traiter plus de $ CA \\d+(\\.\\d+)*.*.Veuillez entrer un montant moins élevé.",
-			"很抱歉，我们暂时无法为此货币兑换超过CAD\\d+(\\.\\d+)*.*。请输入较低的金额。", "很抱歉，我們暫時無法為此貨幣兌換超過CAD \\d+(\\.\\d+)*.*。請輸入較低的金額。" };
+			"Sorry, we can't process more than CAD \\d+(,\\d{3})*(\\.\\d+)*.* for this currency exchange. Please try a lower amount.",
+			"Désolés, nous ne pouvons pas traiter plus de \\d+(\\s\\d{3})*(,\\d+)*\\s*CAD.\\s*Veuillez entrer un montant moins élevé.",
+			"很抱歉，我们暂时无法为此货币兑换超过CAD\\s*\\d+(,\\d{3})*(\\.\\d+)*。请输入较低的金额。",
+			"很抱歉，我們暫時無法為此貨幣兌換超過CAD\\s*\\d+(,\\d{3})*(\\.\\d+)*.*。請輸入較低的金額。" };
+	public static final String[] ARRAY_OFX_MIN_DES_AMOUNT_ERROR = {
+			"We need a minimum [A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*.Please try a higher amount.",
+			"Il faut un montant d’au moins  \\d+(\\s\\d{3})*(,\\d+)*\\s*[A-Z]{3}\\s*.\\s*Veuillez entrer un montant plus élevé.",
+			"金额必须至少\\s*[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*起。请输入较高的金额。",
+			"金額必須至少\\s*[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*起。請輸入較高的金額。" };
 	public static final String[] ARRAY_OFX_MAX_DES_AMOUNT_ERROR = {
-			"Sorry, we can't process more than [A-Z]{3} \\d+(\\.\\d+)*.*. Please try a lower amount.",
-			"Désolés, nous ne pouvons pas traiter plus de .*\\d+(\\.\\d+)*.*.Veuillez entrer un montant moins élevé.",
-			"很抱歉，我们暂时无法为此货币兑换超过[A-Z]{3}\\s*\\d+(\\.\\d+)*.*。请输入较低的金额。",
-			"很抱歉，我們暫時無法為此貨幣兌換超過[A-Z]{3}\\s*\\d+(\\.\\d+)*.*。請輸入較低的金額。" };
+			"Sorry, we can't process more than [A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*. Please try a lower amount.",
+			"Désolés, nous ne pouvons pas traiter plus de \\d+(\\s\\d{3})*(,\\d+)*\\s*[A-Z]{3}.\\s*Veuillez entrer un montant moins élevé.",
+			"很抱歉，我们暂时无法为此货币兑换超过[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*。请输入较低的金额。",
+			"很抱歉，我們暫時無法為此貨幣兌換超過[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*。請輸入較低的金額。" };
 	public static final String[] ARRAY_OFX_PREVIEW_WARNING = {
 			"All online currency orders are final and cannot be cancelled once the order is placed.",
 			"Toutes les commandes de devises en ligne sont finales et ne peuvent pas être annulées une fois soumises.",
 			"所有在线货币订单均为最终交易，下单之后便无法取消。", "所有網上貨幣訂單均為最終交易，下單之後即無法取消。" };
-	public static final String[] ARRAY_OFX_PREVIEW_CURRENCY = { "Foreign Currency", "Devise", "货币", "貨幣" };
+	public static final String[] ARRAY_OFX_PREVIEW_CURRENCY = { "Foreign Currency", "Devises", "货币", "貨幣" };
 	public static final String[] ARRAY_OFX_PREVIEW_EXCHANGE_RATE = { "Foreign Exchange Rate", "Taux de change", "汇率",
 			"匯率" };
 	public static final String[] ARRAY_OFX_PREVIEW_AMOUNT = { "Amount I want", "Montant désiré", "我要兌換", "我要兌換" };
@@ -934,8 +939,8 @@ public final class StringArray {
 			"Le traitement de votre commande de devises a commencé.", "我们已经开始处理您的货币订购请求。", "我們已經開始處理您的貨幣訂購請求。" };
 
 	public static final String[] ARRAY_OFX_RECEIPT_COPY = {
-			"Orders are ready in 3-5 business days\\s*We'll call you when it's ready for pick up\\s*Allow up to 6 hours for the withdrawal of funds to be reflected in your account\\s*Currency not picked up after 4 weeks will be exchanged back to Canadian dollars at the latest exchange rate and deposited to your account",
-			"Les commandes sont prêtes pour le ramassage dans un délai de 3 à 5 jours ouvrables.\\s*Nous vous appellerons pour vous informer que votre commande est prête.\\s*•	Veuillez noter que le retrait des fonds peut prendre 6 heures avant d'être porté à votre compte.\\s*Si la commande n’est pas ramassée dans un délai de 4 semaines, les devises seront converties en dollars canadiens au taux de change en vigueur et le tout sera déposé dans votre compte.",
+			"Orders are ready in 3-5 business days\\.*\\s*We'll call you when it's ready for pick up\\.*\\s*Allow up to 6 hours for the withdrawal of funds to be reflected in your account\\.*\\s*Currency not picked up after 4 weeks will be exchanged back to Canadian dollars at the latest exchange rate\\.* and deposited to your account",
+			"Les commandes sont prêtes pour le ramassage dans un délai de 3 à 5 jours ouvrables.\\s*Nous vous appellerons pour vous informer que votre commande est prête.\\s*Veuillez noter que le retrait des fonds peut prendre 6 heures avant d'être porté à votre compte.\\s*Si la commande n’est pas ramassée dans un délai de 4 semaines, les devises seront converties en dollars canadiens au taux de change en vigueur et le tout sera déposé dans votre compte.",
 			"您订购的外币将在 3 至 5 个工作日内备妥\\s*我们会打电话通知您何时可以提取\\s*取款将在 6 个小时内显示在您的账户中\\s*如果外币在四周后尚未提取，将按照最新汇率重新兑换成加元并存入您的账户",
 			"所訂外幣將在 3 至 5 個工作日內備妥\\s*我們會打電話通知您何時可以領取\\s*取款將在 6 個小時內顯示在您的賬戶中\\s*如外幣在四個星期後仍未領取，將按照最新匯率重新兌換成加元存入您的賬戶" };
 	public static final String[] ARRAY_OFX_RECEIPT_REQUEST = { "Requested", "Date de la demande", "申请时间", "申購時間" };
@@ -952,7 +957,7 @@ public final class StringArray {
 			"Veuillez continuer pour consulter le nouveau taux de change et poursuivre votre commande.",
 			"请继续查看更新后的汇率，并继续订购。", "請繼續查看更新後的匯率，並繼續訂購。" };
 	public static final String[] ARRAY_OFX_RATE_EXPIRED_OK = { "Continue", "Continuer", "继续", "繼續" };
-	public static final String[] ARRAY_OFX_SELECT_ACCOUNT_DEFAULT = { "Select account", "Sélectionner un compte",
+	public static final String[] ARRAY_OFX_SELECT_ACCOUNT_DEFAULT = { "Select account", "Sélectionnez un compte",
 			"选择账户", "選擇賬戶" };
 	public static final String[] ARRAY_OFX_PREVIEW_PICKUP_LOCATION_DEFAULT = { "Select a branch",
 			"Sélectionnez une succursale", "选择分行", "選擇分行" };
@@ -968,13 +973,15 @@ public final class StringArray {
 			"Nous n'avons pas trouvé la devise entrée. Veuillez vérifier que l’orthographe est correcte, puis réessayez.",
 			"找不到您输入的货币。请检查拼写，然后重试。", "找不到您輸入的貨幣。請檢查拼字，然後再試。" };
 	public static final String[] ARRAY_OFX_ERROR_AMOUNT_GREATER_BALANCE = {
-			"You don't have enough funds in the account you selected.  Please try a lower amount or use a different account.",
-			"Le compte sélectionné ne contient pas les fonds requis. Entrez un montant inférieur ou utilisez un autre compte.",
+			"You don't have enough funds in the account you selected.\\s*Please try a lower amount or use a different account.",
+			"Le compte sélectionné ne contient pas les fonds requis.\\s*Entrez un montant inférieur ou utilisez un autre compte.",
 			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選賬戶中沒有足夠的資金。請輸入較低金額或使用其他賬戶。" };
 	public static final String[] ARRAY_OFX_SEARCH_DISCLAIMER = {
 			"We couldn't find the currency you entered. Please check the spelling and try again.",
 			"Nous n'avons pas trouvé la devise entrée. Veuillez vérifier que l’orthographe est correcte, puis réessayez.",
 			"找不到您输入的货币。请检查拼写，然后重试。", "找不到您輸入的貨幣。請檢查拼字，然後再試。" };
+	public static final String[] ARRAY_OFX_SEND_CURRENCY_TOBRANCH = { "Send My Currency Here", "Choisir cette adresse",
+			"递送货币到此分行", "遞送貨幣到此分行" };
 	// End of OFX
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",

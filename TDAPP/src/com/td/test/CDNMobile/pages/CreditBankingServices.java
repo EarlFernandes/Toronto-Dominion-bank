@@ -19,11 +19,11 @@ public class CreditBankingServices extends _CommonPage {
 
 	private static CreditBankingServices creditBankingService;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/landing_row_title']")
 	private MobileElement order_foreign_currency_link;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/landing_row_description']")
 	private MobileElement order_foreign_currency_copy;
 
@@ -53,12 +53,26 @@ public class CreditBankingServices extends _CommonPage {
 		}
 	}
 
+	private void init_Order_foreign_currency_link() {
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			try {
+				order_foreign_currency_link = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeStaticText[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY) + "']",
+						"Order Foreign Currency");
+			} catch (Exception e) {
+				System.out.println("Cannot find 'Order Forign Currency'");
+			}
+
+		}
+	}
+
 	public void verifyCreditBankingServicesContent() {
 		Decorator();
 		try {
 
 			VerifyCreditBankingServicePageHeader();
-
+			init_Order_foreign_currency_link();
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_link,
 					getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY));
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_copy,
@@ -79,7 +93,7 @@ public class CreditBankingServices extends _CommonPage {
 	public void clickOrderForeignCurrency() {
 		Decorator();
 		try {
-
+			init_Order_foreign_currency_link();
 			mobileAction.FuncClick(order_foreign_currency_link,
 					getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY));
 			mobileAction.waitProgressBarVanish();

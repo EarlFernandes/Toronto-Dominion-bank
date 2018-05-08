@@ -40,7 +40,7 @@ public class Branch extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/text_branch_hours']")
 	private MobileElement brancn_working_hour;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeButton")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/action_button']")
 	private MobileElement send_My_Currency_Here;
@@ -162,7 +162,7 @@ public class Branch extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void VerifyBookAppointmentIconNotDisplayed() {
 		Decorator();
 		String expectedText = "";
@@ -187,11 +187,13 @@ public class Branch extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void clickSendMyCurrencyHereButton() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(send_My_Currency_Here, "Send My Currency Here");
+			String expectedText = getTextInCurrentLocale(StringArray.ARRAY_OFX_SEND_CURRENCY_TOBRANCH);
+			mobileAction.verifyElementTextIsDisplayed(send_My_Currency_Here, expectedText);
+			mobileAction.FuncClick(send_My_Currency_Here, expectedText);
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

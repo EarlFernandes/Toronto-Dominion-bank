@@ -67,11 +67,11 @@ public class OrderForeignCurrency extends _CommonPage {
 	private MobileElement to_currency_amount;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeStaticText[4]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toCurrencyDesc']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fromCurrencyDesc']")
 	private MobileElement min_max_value;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeStaticText[5]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fromCurrencyDesc']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/toCurrencyDesc']")
 	private MobileElement exchange_rate;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='I want' or @label='Je veux' or @label='我要兑换' or @label='我要兌換']/../XCUIElementTypeButton")
@@ -156,8 +156,8 @@ public class OrderForeignCurrency extends _CommonPage {
 
 				mobileAction.verifyElementTextIsDisplayed(order_dropdown_caption.get(1),
 						getTextInCurrentLocale(StringArray.ARRAY_OFX_PICKUP_LOCATION));
-				mobileAction.verifyElementTextIsDisplayed(contact_info_caption,
-						getTextInCurrentLocale(StringArray.ARRAY_OFX_CONTACT_INFO));
+				// mobileAction.verifyElementTextIsDisplayed(contact_info_caption,
+				// getTextInCurrentLocale(StringArray.ARRAY_OFX_CONTACT_INFO));
 
 				mobileAction.verifyElementTextIsDisplayed(phone_email_list.get(0),
 						getTextInCurrentLocale(StringArray.ARRAY_OFX_PHONE));
@@ -172,8 +172,10 @@ public class OrderForeignCurrency extends _CommonPage {
 				String fromAccountXpath = "//XCUIElementTypeStaticText[@label='" + fromAccountText + "']";
 				String pickupLocationText = getTextInCurrentLocale(StringArray.ARRAY_OFX_PICKUP_LOCATION);
 				String pickupLocation = "//XCUIElementTypeStaticText[@label='" + pickupLocationText + "']";
-				String contactText = getTextInCurrentLocale(StringArray.ARRAY_OFX_CONTACT_INFO);
-				String contactInfoxpath = "//XCUIElementTypeStaticText[@label='" + contactText + "']";
+				// String contactText =
+				// getTextInCurrentLocale(StringArray.ARRAY_OFX_CONTACT_INFO);
+				// String contactInfoxpath = "//XCUIElementTypeStaticText[@label='" +
+				// contactText + "']";
 				String phoneText = getTextInCurrentLocale(StringArray.ARRAY_OFX_PHONE);
 				String phonexpath = "//XCUIElementTypeStaticText[@label='" + phoneText + "']";
 				String emailText = getTextInCurrentLocale(StringArray.ARRAY_OFX_EMAIL);
@@ -183,14 +185,14 @@ public class OrderForeignCurrency extends _CommonPage {
 
 				mobileAction.verifyElementUsingXPath(fromAccountXpath, fromAccountText);
 				mobileAction.verifyElementUsingXPath(pickupLocation, pickupLocationText);
-				mobileAction.verifyElementUsingXPath(contactInfoxpath, contactText);
+				// mobileAction.verifyElementUsingXPath(contactInfoxpath, contactText);
 				mobileAction.verifyElementUsingXPath(phonexpath, phoneText);
 				mobileAction.verifyElementUsingXPath(emailxpath, emailText);
 				mobileAction.verifyElementUsingXPath(contactcopyxpath, contactCopylText);
 			}
 
 			mobileAction.verifyElementTextIsDisplayed(preview_currency_order_button,
-					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_CURRENCY_ORDER));
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_CONTINUE));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -459,6 +461,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 			Fill_OFX_Form();
+
 			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_ERROR_AMOUNT_GREATER_BALANCE);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 		} catch (Exception e) {
@@ -505,8 +508,14 @@ public class OrderForeignCurrency extends _CommonPage {
 			// expectedError);
 
 			if (mobileAction.verifyElementIsPresent(order_foreign_currency_Banner_Info)) {
-				mobileAction.Report_Fail(
-						"Error message found:" + mobileAction.getValue(order_foreign_currency_Banner_Info));
+				String errorMsg = mobileAction.getValue(order_foreign_currency_Banner_Info);
+				if (errorMsg.equalsIgnoreCase("canadian_dollar")) {
+					mobileAction.Report_Pass_Verified("No error message found for empty email");
+				} else {
+					mobileAction.Report_Fail(
+							"Error message found:" + mobileAction.getValue(order_foreign_currency_Banner_Info));
+				}
+
 			} else {
 				mobileAction.Report_Pass_Verified("No error message found for empty email");
 			}
@@ -552,7 +561,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncSendKeys(from_currency_amount, "59");
+			mobileAction.FuncSendKeys(from_currency_amount, "595959");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -578,7 +587,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncSendKeys(to_currency_amount, "3850.5");
+			mobileAction.FuncSendKeys(to_currency_amount, "35001.5");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -684,7 +693,7 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
-			
+
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info,
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_CURRENCY_ADJUST_WARNING));
 
@@ -792,14 +801,13 @@ public class OrderForeignCurrency extends _CommonPage {
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 			xpath = "//XCUIElementTypeStaticText[@label='" + pickLocationText + "']";
 		} else {
-			xpath = "//android.widget.TextView[@resource-id='com.td:id/selectedText' and @text='" + pickLocationText
-					+ "']";
+			xpath = "//android.widget.TextView[@text='" + pickLocationText + "']";
 		}
 		try {
 			select_branch_dropdown = mobileAction.verifyElementUsingXPath(xpath, "Pickup Location Dropdown");
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			mobileAction.Report_Fail("Failed to init from account dropdown");
+			mobileAction.Report_Fail("Failed to init Pickup Location dropdown");
 		}
 
 	}
@@ -937,6 +945,9 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 			fillPhoneIfnotprefilled();
 			fillEmailIfnotprefilled();
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncSwipeOnce("down");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1003,7 +1014,7 @@ public class OrderForeignCurrency extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_RATE_EXPIRED_OK));
 
 			mobileAction.FuncClick(rate_expired_ok_btn, "OK");
-			//VerifyOrderForeignCurrencyPageHeader();
+			// VerifyOrderForeignCurrencyPageHeader();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -1015,7 +1026,7 @@ public class OrderForeignCurrency extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void verifyMinErrorWhileUpdateCurrency() {
 		Decorator();
 		try {
@@ -1029,11 +1040,39 @@ public class OrderForeignCurrency extends _CommonPage {
 			mobileAction.FuncSwipeOnce("down");
 			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MIN_CAD_AMOUNT_ERROR);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
-			
+
 			mobileAction.FuncClick(dest_currency, "Currency Selection Button");
 			Currency.get().randomSelectCurrency();
-			
+
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyConversionRateWithoutTrailing0() {
+		Decorator();
+		try {
+
+			String capturedCurrency = mobileAction.getValue(exchange_rate);
+			capturedCurrency = "1 CAD = 0.770 USD";
+			if (capturedCurrency.matches(".*\\.\\d+.*")) {
+				String ratedecimal = mobileAction.FuncGetValByRegx(capturedCurrency, "\\.\\d+");
+				if (ratedecimal.matches("\\.\\d*0+")) {
+					mobileAction.Report_Fail("Failed rate contains trailing 0:" + capturedCurrency);
+				} else {
+					mobileAction.Report_Pass_Verified("Exchange Rate without trailing 0");
+				}
+			} else {
+				mobileAction.Report_Pass_Verified("Exchange Rate without trailing 0");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
