@@ -790,10 +790,34 @@ public class MenuPage extends _CommonPage {
 			} else {
 				MobileElement header = PageHeader.get().getHeaderTextElement();
 				mobileAction.verifyElementIsDisplayed(header, menuText);
+				boolean isPass = false;
 
 				if (menuText.contains(header.getText()) || header.getText().contains(menuText)
 						|| header.getText().toLowerCase().contains(menuText.toLowerCase())) {
 					mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+					isPass = true;
+
+				} else if (currentLocale.toLowerCase().startsWith("fr")) {
+					String expectedHeaderText = "";
+					switch (menuText) {
+					case "Succursales":
+						expectedHeaderText = "Trouver une succursale";
+						break;
+					case "Contactez-nous":
+						expectedHeaderText = "Contacter nous";
+						break;
+					case "Foire aux questions":
+						expectedHeaderText = "FAQ";
+						break;
+					case "Confidentialité, sécurité et avis juridique":
+						expectedHeaderText = "Avis juridique";
+						break;
+					}
+					if (header.getText().contains(expectedHeaderText)) {
+						mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
+						isPass = true;
+					}
+
 				} else if (currentLocale.toLowerCase().startsWith("zh")) {
 					char[] chars = menuText.toCharArray();
 					boolean matched = false;
@@ -806,12 +830,12 @@ public class MenuPage extends _CommonPage {
 
 					if (matched) {
 						mobileAction.GetReporting().FuncReport("Pass", "Header text: " + header.getText());
-					} else {
-						mobileAction.GetReporting().FuncReport("Fail",
-								"Header text: " + header.getText() + " Menu text: " + menuText);
+						isPass = true;
 					}
 
-				} else {
+				}
+
+				if (!isPass) {
 					mobileAction.GetReporting().FuncReport("Fail",
 							"Header text: " + header.getText() + " Menu text: " + menuText);
 				}
@@ -919,7 +943,7 @@ public class MenuPage extends _CommonPage {
 		}
 
 	}
-	
+
 	public void clickPrivacySecurityAndLegal() {
 
 		Decorator();

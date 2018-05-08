@@ -1903,7 +1903,12 @@ public class Login extends _CommonPage {
 				CL.GetReporting().FuncReport("Fail", "Not all IDs remembered");
 			}
 
-			mobileAction.FuncClick(cancelActionList, "User list Cancel button");
+			if (mobileAction.verifyElementIsPresent(cancelActionList)) {
+				mobileAction.FuncClick(cancelActionList, "User list Cancel button");
+			} else {
+				// iPad does not have Cancel button in Login ID list
+				mobileAction.FuncClick(select_accesscard, "Access Card dropdown button");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

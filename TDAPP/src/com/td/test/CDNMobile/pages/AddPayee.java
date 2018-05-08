@@ -80,6 +80,10 @@ public class AddPayee extends _CommonPage {
 	@FindBy(xpath = "//button[contains(@ng-click,'addAnotherPayee')]")
 	private WebElement addAnotherPayeeBtn;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
+	@FindBy(xpath = "//button[contains(@ng-click,'payToPayee')]")
+	private WebElement payThisPayeeBtn;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeKeyboard[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeButton[2]")
 	private MobileElement keyboardTypeBtn;
 
@@ -1071,6 +1075,32 @@ public class AddPayee extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(addAnotherPayeeBtn, "Add Another Payee btn");
+			mobileAction.sleep(5000);
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+			mobileAction.switchAppiumContext("NATIVE_APP");
+		}
+
+	}
+
+	public void clickPayThisPayeeBtn() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.sleep(10000);
+				mobileAction.switchToWebView();
+			}
+
+			mobileAction.FuncClick(payThisPayeeBtn, "Pay This Payee btn");
 			mobileAction.sleep(5000);
 
 		} catch (Exception e) {

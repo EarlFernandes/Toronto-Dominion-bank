@@ -248,7 +248,7 @@ public final class StringArray {
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
-			"我的账户间", "我的賬戶之間" };
+			"在我的账户间转账", "在賬戶之間轉賬" };
 
 	// Chatbot
 	public static final String[] ARRAY_CHATBOT_HEADER = { "TD ChatBot", "TBD", "TBD", "TBD" };
@@ -259,8 +259,8 @@ public final class StringArray {
 	public static final String[] ARRAY_TD_POINTS = { "TD Points", "Points TD", "TD Points", "TD Points" };
 	public static final String[] ARRAY_CASH_BACK_DOLLARS = { "Cash Back Dollars", "dollars de remise",
 			"Cash Back Dollars", "Cash Back Dollars" };
-	public static final String[] ARRAY_TD_REWARDS_POINTS = { "TD Rewards Points", "", "TD Rewards Points",
-			"TD Rewards Points" };
+	public static final String[] ARRAY_TD_REWARDS_POINTS = { "TD Rewards Points", "points Primes TD",
+			"TD Rewards Points", "TD Rewards Points" };
 
 	// Homescreen
 	public static final String[] ARRAY_HOMESCREEN_DASHBOARD_PAYNOW = { "PAY NOW", "PAYER MAINTENANT", "现在付款", "立即付款" };
@@ -1065,8 +1065,8 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 
-	// TDI
-	public static final String[] LOGIN_ERROR_MSG = {
-			"select the Forgot your Username or Password? link below to reset", };
+//TDI
+	public static final String[] LOGIN_ERROR_MSG = { "select the Forgot your Username or Password? link below to reset",	};
 
 }
+

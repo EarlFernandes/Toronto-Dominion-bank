@@ -96,8 +96,7 @@ public class PayWithRewards extends _CommonPage {
 	}
 
 	/**
-	 * This method will validate and enter the Amount in Pay With Regards
-	 * screen.
+	 * This method will validate and enter the Amount in Pay With Regards screen.
 	 * 
 	 * If the amount is not valid it will throws error text.
 	 * 
@@ -250,8 +249,7 @@ public class PayWithRewards extends _CommonPage {
 	}
 
 	/**
-	 * This method will validate and enter the Amount in Pay With Regards
-	 * screen.
+	 * This method will validate and enter the Amount in Pay With Regards screen.
 	 * 
 	 * If the amount is not valid it will throws error text.
 	 * 

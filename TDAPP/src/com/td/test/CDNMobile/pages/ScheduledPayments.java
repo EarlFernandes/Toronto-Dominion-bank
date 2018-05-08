@@ -253,7 +253,12 @@ public class ScheduledPayments extends _CommonPage {
 				mobileAction.swipeAndSearchByxpath(paymentDescription, false, 10, "Up");
 				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(paymentDescription,
 						"Last Payment Amt");
-				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+
+				if (lastPaymentAmt.getText().contains(amt)) {
+					mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+				} else {
+					mobileAction.verifyElementTextContains(lastPaymentAmt, amtLastHr);
+				}
 
 			} else {
 				// Full path to each cell
@@ -275,18 +280,16 @@ public class ScheduledPayments extends _CommonPage {
 				MobileElement lastPaymentAmt = mobileAction.verifyElementUsingXPath(lastPaymentAmtXpath,
 						"Last Payment Amt");
 
-				mobileAction.verifyElementIsDisplayed(lastPaymentTitle, "Last Payment Title");
-				mobileAction.verifyElementIsDisplayed(lastPaymentDesc, "Last Payment Description");
-				mobileAction.verifyElementIsDisplayed(lastPaymentAmt, "Last Payment Amt");
-
-				/*
-				 * mobileAction.verifyElementTextContains(lastPaymentTitle,
-				 * toAccount);
-				 * mobileAction.verifyElementTextContains(lastPaymentDesc,
-				 * fromAccount); if (cal.get(Calendar.MINUTE) <= 1) { amt =
-				 * amtLastHr; }
-				 * mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
-				 */
+				String payeeName = getTestdata("USAccount").toUpperCase();
+				mobileAction.verifyElementTextContains(lastPaymentTitle, payeeName);
+				mobileAction.verifyElementTextContains(lastPaymentTitle, toAccount);
+				mobileAction.verifyElementTextContains(lastPaymentDesc, fromAccount);
+				if (lastPaymentAmt.getText().contains(amt)) {
+					mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
+				} else {
+					mobileAction.verifyElementTextContains(lastPaymentAmt, amtLastHr);
+				}
+				mobileAction.verifyElementTextContains(lastPaymentAmt, amt);
 
 			}
 

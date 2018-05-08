@@ -95,10 +95,36 @@ public class PayBill extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='1']/android.widget.LinearLayout[@index='0']")
 	private MobileElement firstAcct;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/txtPayee'])[1]")
+	private MobileElement firstAcctName;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1] | "
-			+ "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+			+ "//XCUIElementTypeOther[2]/XCUIElementTypeOther[3]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
 	private MobileElement firstUSAcct;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1] | "
+			+ "//XCUIElementTypeOther[2]/XCUIElementTypeOther[3]//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.ListView[@index='2']//android.widget.TextView[@index='0']")
+	private MobileElement firstUSAcctText;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/edtPayee")
+	private MobileElement payeeSelected;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/payee_name")
+	private MobileElement payeeUSSelected;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/edtPayee")
+	private MobileElement payeeNumSelected;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='PAYUSBILL_VIEW_PAYEE']/following-sibling::XCUIElementTypeStaticText/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(id = "com.td:id/payee_name")
+	private MobileElement payeeUSNumSelected;
 
 	@AndroidFindBy(id = "com.td:id/textview_action_title")
 	private MobileElement payWithRewards;
@@ -132,6 +158,27 @@ public class PayBill extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(to_account_post, "To Account field");
 			mobileAction.verifyElementIsDisplayed(amount, "Amount field");
 			mobileAction.verifyElementIsDisplayed(continue_pay, "Continue button");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void verifyPayUSBillScreen() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(fromAccountUS, "From Account field");
+			mobileAction.verifyElementIsDisplayed(toAccountUS, "To Account field");
+			mobileAction.verifyElementIsDisplayed(amountUS, "Amount field");
+			mobileAction.verifyElementIsDisplayed(payUSbillButton, "Continue button");
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -209,8 +256,16 @@ public class PayBill extends _CommonPage {
 				} else {
 					// Use first acct
 					mobileAction.FuncClick(to_account_post, "Select Payee field");
+					mobileAction.sleep(2000);
+
+					String firstCellText = mobileAction.FuncGetText(firstAcctName);
+					String firstCellName = firstCellText.substring(0, firstCellText.lastIndexOf(" ")).trim();
+					String firstCellNum = firstCellText.substring(firstCellText.lastIndexOf(" ")).trim();
+
 					mobileAction.FuncClick(firstAcct, "1st Account in List");
 					mobileAction.sleep(2000);
+					mobileAction.verifyElementTextContains(payeeSelected, firstCellName);
+					mobileAction.verifyElementTextContains(payeeNumSelected, firstCellNum);
 
 				}
 			}
@@ -286,7 +341,15 @@ public class PayBill extends _CommonPage {
 			}
 
 			mobileAction.FuncClick(toAccountUS, "Select Payee field");
+			mobileAction.sleep(2000);
+
+			String firstCellText = mobileAction.FuncGetText(firstUSAcctText);
+			String firstCellName = firstCellText.substring(0, firstCellText.lastIndexOf(" ")).trim();
+			String firstCellNum = firstCellText.substring(firstCellText.lastIndexOf(" ")).trim();
+
 			mobileAction.FuncClick(firstUSAcct, "1st Account in List");
+			mobileAction.verifyElementTextContains(payeeUSSelected, firstCellName);
+			mobileAction.verifyElementTextContains(payeeUSNumSelected, firstCellNum);
 
 			String amt = getTestdata("Amount");
 			mobileAction.FuncClick(amountUS, "Amount button clicked");
