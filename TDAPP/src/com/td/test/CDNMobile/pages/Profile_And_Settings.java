@@ -168,6 +168,8 @@ public class Profile_And_Settings extends _CommonPage {
 				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[@text='" + quickSetting + "']",
 						"Quick Access Settings");
 			}
+
+			mobileAction.FunctionSwipe("up", 1000, 0);
 			mobileAction.FuncClick(quickaccesssetting, quickSetting);
 			mobileAction.waitProgressBarVanish();
 

@@ -71,7 +71,7 @@ public class OTPUpdate extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1] | "
 			+ "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
-	@FindBy(xpath = "(//div[@class='td-row-white'])[1]")
+	@FindBy(xpath = "//div[@ng-repeat='phone in spc.savedPhones'][1]//div[@class='td-row-white'][1]/a/div[1]")
 	private WebElement phoneCard1Phone;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[6]/XCUIElementTypeStaticText[1] | "

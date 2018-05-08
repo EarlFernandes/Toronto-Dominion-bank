@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
@@ -42,6 +44,10 @@ public class AccountDetails extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/amount']")
 	private MobileElement lastTransactionAmt;
+
+	@iOSXCUITFindBy(id = "RVB_DETAIL_ACTIVITY_CELL_TITLE_2")
+	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/date'])[1]")
+	private MobileElement todayTrxns;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "(//android.widget.TextView[@resource-id='com.td:id/amount'])[1]")
@@ -195,6 +201,10 @@ public class AccountDetails extends _CommonPage {
 		Decorator();
 		try {
 
+			// Check for real time updated trxns
+			mobileAction.verifyElementIsDisplayed(todayTrxns, "Today trxns header");
+			mobileAction.verifyElementTextContains(todayTrxns, "Today");
+
 			String amt = getTestdata("Amount");
 			String lastTrxnXpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
@@ -276,8 +286,23 @@ public class AccountDetails extends _CommonPage {
 			String receiptBalance = getTestdata("SecondTimeout");
 			String receiptValue = getTestdata("MerchantName");
 
-			mobileAction.verifyElementTextContains(acctBankBalance, receiptBalance);
-			mobileAction.verifyElementTextContains(lastBankTransactionAmt, receiptValue);
+			String balanceText = acctBankBalance.getText();
+			String trxnText = lastBankTransactionAmt.getText();
+			String compare = "Balance text: " + balanceText + " Expected Balance: " + receiptBalance + "<br>"
+					+ "Trxn amt text: " + trxnText + " Expected Trxn amt: " + receiptValue;
+
+			// Extract just numbers from text for comparison
+			// French $ made it difficult for .contains method
+			receiptBalance = this.extractNumbers(receiptBalance);
+			balanceText = this.extractNumbers(balanceText);
+			receiptValue = this.extractNumbers(receiptValue);
+			trxnText = this.extractNumbers(trxnText);
+
+			if (receiptBalance.contains(balanceText) && receiptValue.contains(trxnText)) {
+				mobileAction.GetReporting().FuncReport("Pass", "Test passed: " + compare);
+			} else {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + compare);
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -310,4 +335,17 @@ public class AccountDetails extends _CommonPage {
 		}
 	}
 
+	// Extract all numbers and return string of numbers
+	private String extractNumbers(String input) {
+		String result = "";
+
+		Pattern p = Pattern.compile("[0-9]+");
+		Matcher m = p.matcher(input);
+		while (m.find()) {
+			result += m.group();
+		}
+
+		return result;
+
+	}
 }

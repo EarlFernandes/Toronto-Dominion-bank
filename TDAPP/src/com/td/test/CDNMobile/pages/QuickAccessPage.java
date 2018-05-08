@@ -250,7 +250,14 @@ public class QuickAccessPage extends _CommonPage {
 				}
 				MobileElement tdPoints = mobileAction.verifyElementUsingXPath(tdPointsXpath, "TD Points element");
 				mobileAction.verifyElementIsDisplayed(tdPoints, "TD Points element");
-				mobileAction.verifyElementTextContains(tdPoints, getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
+				String TDPointsText = tdPoints.getText();
+				if (TDPointsText.contains(getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS))) {
+					mobileAction.verifyElementTextContains(tdPoints,
+							getTextInCurrentLocale(StringArray.ARRAY_TD_POINTS));
+				} else {
+					mobileAction.verifyElementTextContains(tdPoints,
+							getTextInCurrentLocale(StringArray.ARRAY_TD_REWARDS_POINTS));
+				}
 
 			} else {
 				mobileAction.GetReporting().FuncReport("Fail", "Cannot find specified card: " + card);

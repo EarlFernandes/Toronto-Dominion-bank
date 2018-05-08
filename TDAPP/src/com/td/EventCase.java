@@ -155,7 +155,7 @@ public class EventCase {
 		Accounts_VerifyCreditHeader, Accounts_SelectFirstAccount, Accounts_SelectToAccount,
 
 		// Add Payee
-		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt, AddPayee_EnterUSPayeeDetailsPAT, AddPayee_ClickFirstUSPayeeFoundPAT,
+		AddPayee_SearchCdnPayees, AddPayee_SearchUSPayees, AddPayee_ClickFirstPayeeFound, AddPayee_EnterPayeeDetails, AddPayee_EnterUSPayeeDetails, AddPayee_ClickGoBackHomeBtn, AddPayee_ClickFirstUSPayeeFound, AddPayee_ClickAddAnotherPayeeBtn, AddPayee_VerifyAddPayeeReceipt, AddPayee_EnterUSPayeeDetailsPAT, AddPayee_ClickFirstUSPayeeFoundPAT, AddPayee_ClickPayThisPayeeBtn,
 
 		// Between My Accounts
 		BetweenMyAccounts_SpecifiedAccountsTransfer, Transfers_Click_Between_My_Accounts, BetweenMyAccounts_1stAccountsTransfer,
@@ -197,7 +197,7 @@ public class EventCase {
 		PageHeader_ClickBackButton, PageHeader_GoHome, PageHeader_ClickBackButtonIfIOS, PageHeader_VerifyHeaderVisible,
 
 		// Pay Bill
-		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen,
+		PayBill_PayBill, PayBill_PayFutureBill, PayBill_PayUSBill, PayBill_VerifyNoPayWithRewardsLink, PayBill_VerifyPayWithRewardsLink, PayBill_VerifyPayBillScreen, PayBill_VerifyPayUSBillScreen,
 
 		// Pay With Rewards
 		PayWithRewards_EnterRedemptionAmount,
@@ -4760,6 +4760,10 @@ public class EventCase {
 			AddPayee.get().verifyAddPayeeReceipt();
 			break;
 
+		case AddPayee_ClickPayThisPayeeBtn:
+			AddPayee.get().clickPayThisPayeeBtn();
+			break;
+
 		// Bills
 		case PayBill_Canada_Button:
 			Bills.get().clickPayCanadianBill();
@@ -4999,6 +5003,10 @@ public class EventCase {
 
 		case PayBill_VerifyPayBillScreen:
 			PayBill.get().verifyPayBillScreen();
+			break;
+
+		case PayBill_VerifyPayUSBillScreen:
+			PayBill.get().verifyPayUSBillScreen();
 			break;
 
 		// Pay With Rewards

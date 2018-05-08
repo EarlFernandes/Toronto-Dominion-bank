@@ -794,9 +794,13 @@ public class Receipt extends _CommonPage {
 			String toBalance = mobileAction.FuncGetElementText(ToAccountValue);
 			String fxamt = mobileAction.FuncGetElementText(amountValueBank);
 
-			fromBalance = fromBalance.substring(fromBalance.lastIndexOf(" ") + 1);
-			toBalance = toBalance.substring(toBalance.lastIndexOf(" ") + 1);
-			fxamt = fxamt.substring(fxamt.lastIndexOf(" ") + 1);
+			if (!currentLocale.toLowerCase().equals("fr")) {
+				fromBalance = fromBalance.substring(fromBalance.lastIndexOf(" ") + 1);
+				toBalance = toBalance.substring(toBalance.lastIndexOf(" ") + 1);
+				fxamt = fxamt.substring(fxamt.lastIndexOf(" ") + 1);
+			} else {
+				// fxamt = fxamt.substring(0, fxamt.lastIndexOf(" "));
+			}
 
 			System.out.println(fromBalance + " " + toBalance + " " + fxamt);
 
