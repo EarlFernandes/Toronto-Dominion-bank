@@ -225,18 +225,18 @@ public class Receipt extends _CommonPage {
 	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement cnfrDetailRewards;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/sub_header']")
 	private MobileElement ofx_copy_text;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/static_label_row_label']")
-	private MobileElement ofx_what_happen_next;	
-	
+	private MobileElement ofx_what_happen_next;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/static_label_row_description']")
-	private MobileElement ofx_what_happen_next_text;	
+	private MobileElement ofx_what_happen_next_text;
 
 	public synchronized static Receipt get() {
 		if (Receipt == null) {
@@ -597,9 +597,10 @@ public class Receipt extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_COPY));
 		}
 
-//		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-//			mobileAction.FuncSwipeOnce("up");
-//		}
+		// if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		// {
+		// mobileAction.FuncSwipeOnce("up");
+		// }
 		int caption_size = rbp_receipt_caption_list.size();
 
 		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
@@ -636,14 +637,15 @@ public class Receipt extends _CommonPage {
 
 	public void VerifyRBPReceipt() {
 		Decorator();
-//		try {
-//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-//				mobileAction.FuncSwipeOnce("up");
-//			}
-//
-//		} catch (Exception e) {
-//
-//		}
+		// try {
+		// if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
+		// {
+		// mobileAction.FuncSwipeOnce("up");
+		// }
+		//
+		// } catch (Exception e) {
+		//
+		// }
 		int caption_size = rbp_receipt_caption_list.size();
 		int info_size = rbp_receipt_info_list.size();
 		if (info_size != caption_size) {
@@ -746,13 +748,13 @@ public class Receipt extends _CommonPage {
 		String from_account = getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT);
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				payee_account_number = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + payeeCaption
-								+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_secondary_text']",
+				payee_account_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ payeeCaption
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_secondary_text']",
 						"Payee number");
-				frome_account_number = mobileAction.verifyElementUsingXPath(
-						"//android.widget.TextView[@text='" + from_account
-								+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_secondary_text']",
+				frome_account_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ from_account
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_secondary_text']",
 						"From Account number");
 			} else {
 				payee_account_number = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
@@ -1233,18 +1235,20 @@ public class Receipt extends _CommonPage {
 		}
 
 	}
-	
+
 	public void VerifyOFXReceiptContent() {
 		Decorator();
 		try {
 			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
 					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
-			mobileAction.verifyElementTextIsDisplayed(ofx_copy_text, getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_CONFIRM_COPY));
-			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next, getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN));
-			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next_text, getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_COPY));
-			
-			String [] expectedTextArray = {
-					getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_REQUEST),
+			mobileAction.verifyElementTextIsDisplayed(ofx_copy_text,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_CONFIRM_COPY));
+			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN));
+			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next_text,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_COPY));
+
+			String[] expectedTextArray = { getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_REQUEST),
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_CURRENCY),
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_EXCHANGE_RATE),
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_AMOUNT),
@@ -1253,23 +1257,40 @@ public class Receipt extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_PICKUP_LOCATION),
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_PHONE),
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_EMAIL)
-					
+
 			};
-			String elementXpath="";
-			for (int i=0; i< expectedTextArray.length; i++ ) {
-				
-				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) { 
-					
-					elementXpath ="//android.widget.TextView[@text='"+expectedTextArray[i] +"']";						
+			String elementXpath = "";
+			for (int i = 0; i < expectedTextArray.length; i++) {
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+					elementXpath = "//android.widget.TextView[@text='" + expectedTextArray[i] + "']";
 				} else {
-					elementXpath ="//XCUIElementTypeStaticText[@label='"+expectedTextArray[i] +"']";
+					elementXpath = "//XCUIElementTypeStaticText[@label='" + expectedTextArray[i] + "']";
 				}
-				
-				if(mobileAction.verifyElementIsPresentByXpath(elementXpath)) {
+
+				if (mobileAction.verifyElementIsPresentByXpath(elementXpath)) {
 					mobileAction.Report_Pass_Verified(expectedTextArray[i]);
 				} else {
 					mobileAction.FuncSwipeOnce("up");
 					mobileAction.verifyElementUsingXPath(elementXpath, expectedTextArray[i]);
+				}
+				if (i == 0) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						elementXpath = "//android.widget.TextView[@text='" + expectedTextArray[i]
+								+ "']/../android.widget.RelativeLayout/android.widget.TextView";
+					} else {
+						elementXpath = "//XCUIElementTypeStaticText[@label='" + expectedTextArray[i]
+								+ "']/following-sibling::XCUIElementTypeStaticText";
+					}
+					MobileElement requestedTimeDate = mobileAction.verifyElementUsingXPath(elementXpath,
+							"Requested Data and Time");
+					String dateTime = mobileAction.getValue(requestedTimeDate);
+					if (dateTime.matches(getTextInCurrentLocale(StringArray.ARRAY_OFX_DATE_NORMAL_FORMAT))) {
+						mobileAction.Report_Pass_Verified(dateTime);
+					} else {
+						mobileAction.Report_Fail("Failed to verify date and time format:" + dateTime);
+					}
 				}
 			}
 
@@ -1278,6 +1299,5 @@ public class Receipt extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-
 
 }

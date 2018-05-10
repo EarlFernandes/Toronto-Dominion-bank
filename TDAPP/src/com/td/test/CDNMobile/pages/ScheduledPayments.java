@@ -436,9 +436,10 @@ public class ScheduledPayments extends _CommonPage {
 					return;
 				}
 				int randNum = getRandomInRange(1, size - 1);
+				randNum =4;
 				payeeSelected = mobileAction.getValue(payee_filter_List.get(randNum));
 				if(!mobileAction.verifyElementIsPresent(payee_filter_List.get(randNum))) {
-					mobileAction.FuncSwipeWhileElementNotFound(payee_filter_List.get(randNum), true, 3, "up");
+					mobileAction.FuncSwipeWhileElementNotFound(payee_filter_List.get(randNum), true, 5, "up");
 				} else {
 					mobileAction.FuncClick(payee_filter_List.get(randNum), payeeSelected);
 				}
@@ -799,6 +800,9 @@ public class ScheduledPayments extends _CommonPage {
 					if (!checkDayFormat(oriDate)) {
 						mobileAction.Report_Fail("Failed to verify 'Due in 7 days'");
 						return;
+//						System.out.println("Date format is not true, need to swipe");
+//						mobileAction.FuncSwipeOnce("up");
+//						i--;
 					}
 
 				} catch (Exception e) {

@@ -982,6 +982,11 @@ public final class StringArray {
 			"找不到您输入的货币。请检查拼写，然后重试。", "找不到您輸入的貨幣。請檢查拼字，然後再試。" };
 	public static final String[] ARRAY_OFX_SEND_CURRENCY_TOBRANCH = { "Send My Currency Here", "Choisir cette adresse",
 			"递送货币到此分行", "遞送貨幣到此分行" };
+	public static final String[] ARRAY_OFX_DATE_NORMAL_FORMAT = {
+			"[A-Z,a-z]{3}\\s{1}\\d{1,2},\\s{1}\\d{4}\\s{1}at\\s{1}\\d{1,2}:\\d{2}:\\d{2}\\s{1}\\s{1}[A-Z]{3}",
+			"\\d{1,2}.*\\d{4}\\s{1}a\\s{1}\\d{1,2}:\\d{2}:\\d{2}\\s{1}[A-Z]{3}",
+			"\\d{4}年\\d{1,2}月\\d{1,2}日.*（上午）*（下午）*\\s*\\d{1,2}:\\d{2}:\\d{2}",
+			"\\d{4}年\\d{1,2}月\\d{1,2}日.*（上午）*（下午）*\\s*\\d{1,2}:\\d{2}:\\d{2}" };
 	// End of OFX
 
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
@@ -1065,8 +1070,8 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 
-//TDI
-	public static final String[] LOGIN_ERROR_MSG = { "select the Forgot your Username or Password? link below to reset",	};
+	// TDI
+	public static final String[] LOGIN_ERROR_MSG = {
+			"select the Forgot your Username or Password? link below to reset", };
 
 }
-

@@ -470,9 +470,13 @@ public class MyCalendar extends _CommonPage {
 		// update days of Feb
 		int startMonth_int = stringToMonthMap.get(startMonth);
 		int startYear_int = Integer.parseInt(startYear);
+		int startDay_int = Integer.parseInt(startDay);
 		int expectedYear_int = startYear_int;
 		int expectedmonth = startMonth_int + numberOfpayments;
-
+		if(startDay_int < 6) {
+			//Start day should be the end of month, it means the start day should be the month before this month
+			expectedmonth = expectedmonth -1;
+		}
 		if (expectedmonth > 12) {
 			expectedmonth = expectedmonth % 12;
 			expectedYear_int = expectedYear_int + 1;
