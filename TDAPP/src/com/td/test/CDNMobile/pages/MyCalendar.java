@@ -539,6 +539,9 @@ public class MyCalendar extends _CommonPage {
 		int expectedYear_int = startYear_int;
 		int startDay_int = Integer.parseInt(startDay);
 		int expectedmonth = startMonth_int + numberOfpayments / 2;
+		if(startDay_int <6 ) {
+			expectedmonth = expectedmonth -1;
+		}
 
 		if (expectedmonth > 12) {
 			expectedmonth = expectedmonth % 12;

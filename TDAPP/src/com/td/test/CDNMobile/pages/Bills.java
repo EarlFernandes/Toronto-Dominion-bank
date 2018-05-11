@@ -374,8 +374,8 @@ public class Bills extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify Bill Payment landing page is accessed from menu
-	 * Bill Payment
+	 * This method will verify Bill Payment landing page is accessed from menu Bill
+	 * Payment
 	 * 
 	 * @return void
 	 * 
@@ -547,11 +547,9 @@ public class Bills extends _CommonPage {
 						"Pending");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("order_receipt_confirmation") + "']", "Confirmation #");
-				mobileAction
-						.verifyElementUsingXPath(
-								"//android.widget.TextView[@text='" + mobileAction
-										.getAppString("payBillDropdownHeaderFromAccount").replaceAll(" ", "\n") + "']",
-								"From Account");
+				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replaceAll(" ", "\n") + "']",
+						"From Account");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
 						+ mobileAction.getAppString("payBillDropdownHeaderPayee") + "']", "Payee");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
@@ -700,8 +698,8 @@ public class Bills extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements when there are no payees
-	 * when attempting to pay a bill
+	 * This method will verify text within elements when there are no payees when
+	 * attempting to pay a bill
 	 * 
 	 * @return void
 	 * 
@@ -831,11 +829,9 @@ public class Bills extends _CommonPage {
 						"//XCUIElementTypeStaticText[@value='" + mobileAction.getAppString("disclaimer") + "']",
 						"Disclaimer");
 
-				mobileAction
-						.verifyElementUsingXPath(
-								"//XCUIElementTypeStaticText[@value='" + mobileAction
-										.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
-								"From Account");
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
+						+ mobileAction.getAppString("payBillDropdownHeaderFromAccount").replace(" ", "\n") + "']",
+						"From Account");
 
 				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@value='"
 						+ mobileAction.getAppString("payBillConfirmFieldHeaderPayee") + "']", "Payee");
@@ -996,12 +992,12 @@ public class Bills extends _CommonPage {
 						} else {
 							textViewList = scheduled_Payments_List.get(i)
 									.findElements(By.xpath("//XCUIElementTypeOther"));
-							if(textViewList.size() != 0) {
+							if (textViewList.size() != 0) {
 								System.out.println("Found Active Scheduled payments");
 								mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
 								isActivePaymentFound = true;
 								break;
-							} 
+							}
 						}
 					}
 				} else {

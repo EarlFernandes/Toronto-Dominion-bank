@@ -345,6 +345,7 @@ public class Bill_PayCanada extends _CommonPage {
 			getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL) };
 
 	MobileElement[] Payment_End_Item = { null, null, null };
+	MobileElement[] Date_text_Item = { null, null };
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Number of Payments' or @label='Nombre de paiements' or @label='付款次数' or @label='付款次數']/../XCUIElementTypeTextField")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Number of Payments' or @text='Nombre de paiements' or @text='付款次数' or @text='付款次數']/..//android.widget.EditText")
@@ -385,15 +386,51 @@ public class Bill_PayCanada extends _CommonPage {
 				Payment_End_Item[0] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
 						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_SPECIFIC_DATE) + "']", "On a specific date ");
 
-				Payment_End_Item[1] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT) + "']", "After a number of payments");
-				
-				Payment_End_Item[2] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
-						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL) + "']", "When I decide to cancel");
+				Payment_End_Item[1] = mobileAction.verifyElementUsingXPath(
+						"//XCUIElementTypeButton[@label='"
+								+ getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT) + "']",
+						"After a number of payments");
+
+				Payment_End_Item[2] = mobileAction
+						.verifyElementUsingXPath(
+								"//XCUIElementTypeButton[@label='"
+										+ getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL) + "']",
+								"When I decide to cancel");
 			} else {
 				Payment_End_Item[0] = payment_end_list.get(0);
 				Payment_End_Item[1] = payment_end_list.get(1);
 				Payment_End_Item[2] = payment_end_list.get(2);
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
+	private void init_dateText_Item(int index) {
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+
+				if (index == 0) {
+					Date_text_Item[0] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+							+ getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE)
+							+ "']/following-sibling::XCUIElementTypeStaticText | //XCUIElementTypeStaticText[@label='"
+							+ getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE)
+							+ "']/preceding-sibling::XCUIElementTypeStaticText", "Start date content ");
+					return;
+				}
+				Date_text_Item[0] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE)
+						+ "']/following-sibling::XCUIElementTypeStaticText | //XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE)
+						+ "']/preceding-sibling::XCUIElementTypeStaticText", "Start date content ");
+
+				Date_text_Item[1] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE)
+						+ "']/following-sibling::XCUIElementTypeStaticText | //XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE)
+						+ "']/preceding-sibling::XCUIElementTypeStaticText", "END date content ");
+
 			}
 		} catch (Exception e) {
 
@@ -1951,7 +1988,14 @@ public class Bill_PayCanada extends _CommonPage {
 
 		// Save start date in "Timeout"
 		try {
-			String startDate_text = mobileAction.getValue(dateText_List.get(0));
+			String startDate_text = "";
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				init_dateText_Item(0);
+				startDate_text = mobileAction.getValue(Date_text_Item[0]);
+			} else {
+				startDate_text = mobileAction.getValue(dateText_List.get(0));
+			}
+
 			System.out.println("Start Date:" + startDate_text);
 			CL.getTestDataInstance().TCParameters.put("Timeout", startDate_text);
 		} catch (Exception e) {
@@ -2445,7 +2489,14 @@ public class Bill_PayCanada extends _CommonPage {
 		String endDate_day = getTestdata("SecondTimeout");
 		System.out.println("Previous end of date:" + endDate_day);
 		try {
-			String currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
+			String currentEndOfdate = "";
+			if ((CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))) {
+				init_dateText_Item(1);
+				currentEndOfdate = mobileAction.getValue(Date_text_Item[1]);
+			} else {
+				currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
+			}
+			currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
 			if (currentEndOfdate.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE_PLACEHOLDER))) {
 				mobileAction.Report_Pass_Verified("End of date is blank");
 			} else {
@@ -2467,7 +2518,14 @@ public class Bill_PayCanada extends _CommonPage {
 		}
 		System.out.println("Previous end of date:" + endDate_day);
 		try {
-			String currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
+			String currentEndOfdate = "";
+			if ((CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios"))) {
+				init_dateText_Item(1);
+				currentEndOfdate = mobileAction.getValue(Date_text_Item[1]);
+			} else {
+				currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
+			}
+
 			if (currentEndOfdate.equals(endDate_day)) {
 				mobileAction.Report_Pass_Verified("End of date remains");
 			} else {

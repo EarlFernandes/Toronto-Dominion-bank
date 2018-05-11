@@ -94,7 +94,7 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/timestampContainer']/android.widget.TextView[@resource-id='com.td:id/custom_text']")
 	private MobileElement month_grouping;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Cancelled' or label='Annulé' or @label='已取消']/..")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='Cancelled' or @label='Annulé' or @label='已取消']/.. | //XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeOther[contains(@label,'Cancelled') or contains(@label,'Annulé') or contains(@label,'已取消')]/..")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/recurrence' and (@text='Cancelled' or @text='Annulé' or @text='已取消')]/..")
 	private List<MobileElement> cancelled_payments_List;
 
@@ -340,7 +340,7 @@ public class ScheduledPayments extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(view_payments_for_title, expected_View_Payments);
 			mobileAction.verifyElementTextIsDisplayed(all_payee_title,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE));
-			if(mobileAction.verifyElementIsPresent(cancel_button)) {
+			if (mobileAction.verifyElementIsPresent(cancel_button)) {
 				mobileAction.verifyElementTextIsDisplayed(cancel_button, expected_cancel);
 			}
 
@@ -436,14 +436,14 @@ public class ScheduledPayments extends _CommonPage {
 					return;
 				}
 				int randNum = getRandomInRange(1, size - 1);
-				//randNum =4;
+				// randNum =4;
 				payeeSelected = mobileAction.getValue(payee_filter_List.get(randNum));
-				if(!mobileAction.verifyElementIsPresent(payee_filter_List.get(randNum))) {
+				if (!mobileAction.verifyElementIsPresent(payee_filter_List.get(randNum))) {
 					mobileAction.FuncSwipeWhileElementNotFound(payee_filter_List.get(randNum), true, 5, "up");
 				} else {
 					mobileAction.FuncClick(payee_filter_List.get(randNum), payeeSelected);
 				}
-				
+
 				CL.getTestDataInstance().TCParameters.put("Payee", payeeSelected);
 			} else {
 				if (payeeSelected.matches(regAccount)) {
@@ -800,9 +800,9 @@ public class ScheduledPayments extends _CommonPage {
 					if (!checkDayFormat(oriDate)) {
 						mobileAction.Report_Fail("Failed to verify 'Due in 7 days'");
 						return;
-//						System.out.println("Date format is not true, need to swipe");
-//						mobileAction.FuncSwipeOnce("up");
-//						i--;
+						// System.out.println("Date format is not true, need to swipe");
+						// mobileAction.FuncSwipeOnce("up");
+						// i--;
 					}
 
 				} catch (Exception e) {
