@@ -70,7 +70,7 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
 	private List<MobileElement> payee_filter_List;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name='actionsheet_checkmark']/../XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name='actionsheet_checkmark']/../XCUIElementTypeStaticText | //XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.td:id/imgActionCheckMark']/..//android.widget.TextView[@resource-id='com.td:id/txtDescriptionValue']")
 	private MobileElement default_payee_in_dropdown;
 
@@ -436,7 +436,7 @@ public class ScheduledPayments extends _CommonPage {
 					return;
 				}
 				int randNum = getRandomInRange(1, size - 1);
-				randNum =4;
+				//randNum =4;
 				payeeSelected = mobileAction.getValue(payee_filter_List.get(randNum));
 				if(!mobileAction.verifyElementIsPresent(payee_filter_List.get(randNum))) {
 					mobileAction.FuncSwipeWhileElementNotFound(payee_filter_List.get(randNum), true, 5, "up");

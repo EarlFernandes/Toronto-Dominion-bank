@@ -271,7 +271,7 @@ public class Bill_PayCanada extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/dialog_button']")
 	private MobileElement howOften_dropdown_cancel_button;
-	
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeStaticText[@label='Once' or @label='Unique' or @label='一次']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Once' or @text='Unique' or @text='一次']")
 	private MobileElement howOften_dropdown_once_option;
@@ -380,14 +380,23 @@ public class Bill_PayCanada extends _CommonPage {
 
 	private void init_Payment_End_Item() {
 		mobileAction.FuncSwipeOnce("up");
-		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			Payment_End_Item[0] = payment_end_list.get(2);
-			Payment_End_Item[1] = payment_end_list.get(0);
-			Payment_End_Item[2] = payment_end_list.get(1);
-		} else {
-			Payment_End_Item[0] = payment_end_list.get(0);
-			Payment_End_Item[1] = payment_end_list.get(1);
-			Payment_End_Item[2] = payment_end_list.get(2);
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				Payment_End_Item[0] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_SPECIFIC_DATE) + "']", "On a specific date ");
+
+				Payment_End_Item[1] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_AFTER_NEMBER_PAYMENT) + "']", "After a number of payments");
+				
+				Payment_End_Item[2] = mobileAction.verifyElementUsingXPath("//XCUIElementTypeButton[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_RBP_DECIDE_CANCEL) + "']", "When I decide to cancel");
+			} else {
+				Payment_End_Item[0] = payment_end_list.get(0);
+				Payment_End_Item[1] = payment_end_list.get(1);
+				Payment_End_Item[2] = payment_end_list.get(2);
+			}
+		} catch (Exception e) {
+
 		}
 	}
 
@@ -417,13 +426,13 @@ public class Bill_PayCanada extends _CommonPage {
 			payeeNumber = mobileAction.FuncGetValByRegx(payeeAccount, "\\d+");
 		}
 		String payeeName = payeeAccount.replaceAll(payeeNumber, "").trim();
-		if(payeeName.contains("|")) {
-			if(currentLocale.equalsIgnoreCase("fr")) {
+		if (payeeName.contains("|")) {
+			if (currentLocale.equalsIgnoreCase("fr")) {
 				payeeName = payeeName.split("\\|")[1].trim();
 			} else {
 				payeeName = payeeName.split("\\|")[0].trim();
 			}
-		}	
+		}
 		System.out.println("Payee name:" + payeeName);
 		try {
 			if (isPayeePrefilled) {
@@ -825,8 +834,8 @@ public class Bill_PayCanada extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify both First and Second Access cards having Payee
-	 * and accounts details.
+	 * This method will verify both First and Second Access cards having Payee and
+	 * accounts details.
 	 * 
 	 * @throws InterruptedException
 	 *             In case an exception occurs while clicking over the element.
@@ -1596,7 +1605,7 @@ public class Bill_PayCanada extends _CommonPage {
 			for (int i = 0; i < howOften_dropdown_option_List.size(); i++) {
 				mobileAction.verifyElementTextIsDisplayed(howOften_dropdown_option_List.get(i), expectedOption[i]);
 			}
-			//for iPad, there is no Cancel Button
+			// for iPad, there is no Cancel Button
 			mobileAction.FuncClick(howOften_dropdown_once_option, "Once");
 
 			String[] expectedCaption = { getTextInCurrentLocale(StringArray.ARRAY_RBP_ACESS_CARD),
@@ -1725,10 +1734,15 @@ public class Bill_PayCanada extends _CommonPage {
 			currentDate = currentDate.replace(" 0", " ");
 			System.out.println("Today is:" + currentDate);
 
-			if (mobileAction.verifyElementIsPresent(dateText_List.get(0))) {
-				mobileAction.verifyElementTextIsDisplayed(dateText_List.get(0), currentDate);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='" + currentDate + "']",
+						"Default Start Date");
 			} else {
-				mobileAction.Report_Fail("Failed to default Start Date");
+				if (mobileAction.verifyElementIsPresent(dateText_List.get(0))) {
+					mobileAction.verifyElementTextIsDisplayed(dateText_List.get(0), currentDate);
+				} else {
+					mobileAction.Report_Fail("Failed to default Start Date");
+				}
 			}
 
 		} catch (Exception e) {
@@ -2482,7 +2496,7 @@ public class Bill_PayCanada extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 		}
 	}
-	
+
 	public void SelectCCRAPayee() {
 		Decorator();
 		try {

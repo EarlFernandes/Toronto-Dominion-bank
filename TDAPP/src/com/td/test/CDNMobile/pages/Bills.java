@@ -993,6 +993,15 @@ public class Bills extends _CommonPage {
 							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
 							isActivePaymentFound = true;
 							break;
+						} else {
+							textViewList = scheduled_Payments_List.get(i)
+									.findElements(By.xpath("//XCUIElementTypeOther"));
+							if(textViewList.size() != 0) {
+								System.out.println("Found Active Scheduled payments");
+								mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
+								isActivePaymentFound = true;
+								break;
+							} 
 						}
 					}
 				} else {
