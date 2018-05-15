@@ -597,10 +597,10 @@ public class Receipt extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_COPY));
 		}
 
-		// if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-		// {
-		// mobileAction.FuncSwipeOnce("up");
-		// }
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce) {
+
+			mobileAction.FuncSwipeOnce("up");
+		}
 		int caption_size = rbp_receipt_caption_list.size();
 
 		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
@@ -637,15 +637,21 @@ public class Receipt extends _CommonPage {
 
 	public void VerifyRBPReceipt() {
 		Decorator();
-		// try {
-		// if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android"))
-		// {
-		// mobileAction.FuncSwipeOnce("up");
-		// }
-		//
-		// } catch (Exception e) {
-		//
-		// }
+		boolean isPaymentOnce = false;
+
+		// check payment is once or ongoing
+		String paymentType = mobileAction.getValue(rbp_howoften_selection);
+		if (paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
+			isPaymentOnce = true;
+		}
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce) {
+				mobileAction.FuncSwipeOnce("up");
+			}
+
+		} catch (Exception e) {
+
+		}
 		int caption_size = rbp_receipt_caption_list.size();
 		int info_size = rbp_receipt_info_list.size();
 		if (info_size != caption_size) {
