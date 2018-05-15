@@ -548,6 +548,9 @@ public class MyCalendar extends _CommonPage {
 			expectedYear_int = expectedYear_int + 1;
 		}
 
+		if(startDay_int < 6) {
+			startDay_int =30; //should be the end of last month
+		}
 		int expectedDay_int = startDay_int;
 		if (startDay_int < 15) {
 			startDay_int = 15;
