@@ -596,12 +596,13 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementTextContains(rbp_copy_text,
 					getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_COPY));
 		}
-
-		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce) {
+		int caption_size = rbp_receipt_caption_list.size();
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce
+				&& caption_size < 6) {
 
 			mobileAction.FuncSwipeOnce("up");
 		}
-		int caption_size = rbp_receipt_caption_list.size();
+		caption_size = rbp_receipt_caption_list.size();
 
 		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
 			System.out.println("Something wrong..., receipt caption_size:" + caption_size + " not 5, or 6, or 8");
@@ -644,8 +645,10 @@ public class Receipt extends _CommonPage {
 		if (paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
 			isPaymentOnce = true;
 		}
+		int info_size = rbp_receipt_info_list.size();
 		try {
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce) {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce
+					&& info_size < 6) {
 				mobileAction.FuncSwipeOnce("up");
 			}
 
@@ -653,7 +656,8 @@ public class Receipt extends _CommonPage {
 
 		}
 		int caption_size = rbp_receipt_caption_list.size();
-		int info_size = rbp_receipt_info_list.size();
+		info_size = rbp_receipt_info_list.size();
+
 		if (info_size != caption_size) {
 			System.out.println("Something wrong..., caption_size:" + caption_size + ",info_size:" + info_size);
 			return;

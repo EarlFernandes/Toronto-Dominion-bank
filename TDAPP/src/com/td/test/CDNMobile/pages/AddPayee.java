@@ -1,6 +1,7 @@
 package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -32,19 +33,21 @@ public class AddPayee extends _CommonPage {
 	private MobileElement errorMessage;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeTextField[1]")
-	@FindBy(xpath = "//input[@ng-model='searchText']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Search for') or contains(@content-desc,'Search for')]")
 	private WebElement searchPayeeField;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//td-switch//li[1]")
+	@AndroidFindBy(xpath = "//android.view.View[@content-desc='Canada' or @text='Canada']")
+	// @FindBy(xpath = "//td-switch//li[1]")
 	private WebElement tabCanada;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[2]")
-	@FindBy(xpath = "//td-switch//li[2]")
+	@AndroidFindBy(xpath = "//android.view.View[@content-desc='U.S.' or @text='U.S.']")
+	// @FindBy(xpath = "//td-switch//li[2]")
 	private WebElement tabUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
-	@FindBy(id = "result0")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='result0']")
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
@@ -53,28 +56,32 @@ public class AddPayee extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
 			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
-	@FindBy(name = "accountNumber")
-	private WebElement payeeAcctNumber;
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber1']")
+	private MobileElement payeeAcctNumber;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
-	@FindBy(id = "btn")
-	private WebElement payeeContinueBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='btn']")
+	private MobileElement payeeContinueBtn;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayeeBtn;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//button[contains(@ng-click,'continuePayee')]")
-	private WebElement addPayeeContinueBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Continue') or contains(@content-desc,'Continue')]")
+	// @FindBy(xpath = "//button[contains(@ng-click,'continuePayee')]")
+	private MobileElement addPayeeContinueBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
-	@FindBy(xpath = "//div[contains(@class,'thank-you')]")
-	private WebElement addPayeeReceiptHeader;
+	@AndroidFindBy(xpath = "//android.view.View[contains(@text, 'Thank you!') or contains(@content-desc,'Thank you!')]")
+	private MobileElement addPayeeReceiptHeader;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
-	@FindBy(xpath = "//button[contains(@ng-click,'goHome')]")
-	private WebElement goHomeBtn;
+	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Go Back Home') or contains(@content-desc,'Go Back Home')]")
+	private MobileElement goHomeBtn;
+	
+	@AndroidFindBy(xpath = "//android.widget.ListView/android.view.View/android.widget.Button")
+	private List<MobileElement> Receipt_Quick_Link;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
 	@FindBy(xpath = "//button[contains(@ng-click,'addAnotherPayee')]")
@@ -383,8 +390,7 @@ public class AddPayee extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements for the add payee review
-	 * screen
+	 * This method will verify text within elements for the add payee review screen
 	 * 
 	 * @return void
 	 * 
@@ -547,8 +553,8 @@ public class AddPayee extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements for the add payee
-	 * confirmation screen
+	 * This method will verify text within elements for the add payee confirmation
+	 * screen
 	 * 
 	 * @return void
 	 * 
@@ -646,8 +652,7 @@ public class AddPayee extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements for the add payee success
-	 * screen
+	 * This method will verify text within elements for the add payee success screen
 	 * 
 	 * @return void
 	 * 
@@ -799,12 +804,31 @@ public class AddPayee extends _CommonPage {
 		}
 	}
 
+	private void init_search_payee() {
+		String usTabText = getTextInCurrentLocale(StringArray.ARRAY_US_TAB);
+		String cadTabText = getTextInCurrentLocale(StringArray.ARRAY_CAD_TAB);
+		String searchForText = getTextInCurrentLocale(StringArray.ARRAY_SEARCH_FOR);
+
+		String ustabxpath = "//android.view.View[@content-desc='" + usTabText + "' or @text='" + usTabText + "']";
+		String cadtabxpath = "//android.view.View[@content-desc='" + cadTabText + "' or @text='" + cadTabText + "']";
+		String searchforxpath = "//android.widget.EditText[contains(@text,'" + searchForText
+				+ "') or contains(@content-desc,'" + searchForText + "')]";
+
+		try {
+			tabCanada = mobileAction.verifyWebElementUsingXPath(cadtabxpath, "CAD Tab");
+			tabUS = mobileAction.verifyWebElementUsingXPath(ustabxpath, "U.S. Tab");
+			searchPayeeField = mobileAction.verifyWebElementUsingXPath(searchforxpath, "Search payee field");
+		} catch (Exception e) {
+
+		}
+	}
+
 	public void searchCdnPayees() {
 		Decorator();
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
+				init_search_payee();
 			}
 
 			mobileAction.FuncClick(tabCanada, "Canada tab");
@@ -838,18 +862,14 @@ public class AddPayee extends _CommonPage {
 
 	public void searchUSPayees() {
 		Decorator();
+		String payee = getTestdata("USAccount");
 		try {
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
+				init_search_payee();
 			}
-
 			mobileAction.FuncClick(tabUS, "US tab");
-
-			String payee = getTestdata("USAccount");
 			mobileAction.FuncClick(searchPayeeField, "Search Payee Field");
 			mobileAction.FuncSendKeys(searchPayeeField, payee);
-
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -858,9 +878,6 @@ public class AddPayee extends _CommonPage {
 				}
 				mobileAction.FuncClickDone();
 			}
-
-			mobileAction.sleep(3000);
-
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -869,8 +886,6 @@ public class AddPayee extends _CommonPage {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		} finally {
-			mobileAction.switchAppiumContext("NATIVE_APP");
 		}
 
 	}
@@ -904,12 +919,10 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
+
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 				mobileAction.sleep(5000);
 
-				mobileAction.switchAppiumContext("NATIVE_APP");
-				mobileAction.sleep(5000);
 				System.out.println((CL.GetDriver()).getPageSource());
 				if (mobileAction.verifyElementIsPresent(firstUSAddressFound)) {
 					mobileAction.FuncClick(firstUSAddressFound, "First Payee Address found");
@@ -921,7 +934,10 @@ public class AddPayee extends _CommonPage {
 				}
 				mobileAction.sleep(5000);
 
-				mobileAction.switchToWebView();
+				String continueText = getTextInCurrentLocale(StringArray.ARRAY_BUTTON_CONTINUE_AND);
+				String addpayeexpath = "//android.widget.Button[contains(@text, '" + continueText
+						+ "') or contains(@content-desc,'" + continueText + "')]";
+				addPayeeContinueBtn = mobileAction.verifyElementUsingXPath(addpayeexpath, "Add Payee Continue button");
 				mobileAction.FuncClick(addPayeeContinueBtn, "Add Payee Continue");
 				mobileAction.sleep(5000);
 
@@ -999,23 +1015,16 @@ public class AddPayee extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
-			}
-
 			String acctNum = getRandomAccountNumber("FromAccount");
 			mobileAction.FuncClick(payeeAcctNumber, "Payee Acct Number");
 			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("NATIVE_APP");
+
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.sleep(5000);
-
-				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
 			} else {
@@ -1042,13 +1051,7 @@ public class AddPayee extends _CommonPage {
 	public void clickGoBackHomeBtn() {
 		Decorator();
 		try {
-
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.sleep(3000);
-				mobileAction.switchToWebView();
-			}
-
-			mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
+			mobileAction.FuncClick(Receipt_Quick_Link.get(0), "Go Back Home btn");
 			mobileAction.sleep(5000);
 
 		} catch (Exception e) {
@@ -1123,12 +1126,12 @@ public class AddPayee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.sleep(5000);
-				mobileAction.switchToWebView();
+				String thankyou = getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU);
+				addPayeeReceiptHeader = mobileAction.verifyElementUsingXPath("//android.view.View[contains(@text, '"
+						+ thankyou + "') or contains(@content-desc,'" + thankyou + "')]", thankyou);
 			}
 
 			mobileAction.verifyElementIsDisplayed(addPayeeReceiptHeader, "Add Payee Receipt header");
-			mobileAction.verifyElementTextContains(addPayeeReceiptHeader,
-					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

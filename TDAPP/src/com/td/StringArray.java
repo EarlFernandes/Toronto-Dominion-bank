@@ -245,6 +245,13 @@ public final class StringArray {
 
 	// Buttons
 	public static final String[] ARRAY_BUTTON_CONTINUE = { "Continue", "Continuer", "继续", "繼續" };
+	public static final String[] ARRAY_BUTTON_CONTINUE_AND = { "Continue", "Continuer", "继续", "下一步" };
+	public static final String[] ARRAY_SEARCH_FOR = { "Search for", "Rechercher un", "搜索", "搜尋" };
+	public static final String[] ARRAY_US_TAB = { "U.S.", "États-Unis", "美国", "美國" };
+	public static final String[] ARRAY_CAD_TAB = { "Canada", "Canada", "加拿大", "加拿大" };
+	public static final String[] ARRAY_RECEIPT_GOHOME = { "Go Back Home", "Retour À L'Accueil", "返回主页", "返回首頁" };
+	public static final String[] ARRAY_PAYEE_EDIT = { "Edit", "Modifier", "编辑", "編輯" };
+	public static final String[] ARRAY_EDIT_PAYEE_DONE = { "Done", "Terminé", "完成", "完成" };
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",

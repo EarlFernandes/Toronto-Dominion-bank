@@ -86,6 +86,9 @@ public class ScheduledPayments extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/due_date']")
 	private List<MobileElement> payments_date_List;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[4]")
+	private List<MobileElement> payments_date_List1;
+
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable")
 	@AndroidFindBy(xpath = "//android.support.v4.widget.DrawerLayout[@resource-id='com.td:id/drawer_layout']")
 	private MobileElement payments_layout;
@@ -436,7 +439,6 @@ public class ScheduledPayments extends _CommonPage {
 					return;
 				}
 				int randNum = getRandomInRange(1, size - 1);
-				// randNum =4;
 				payeeSelected = mobileAction.getValue(payee_filter_List.get(randNum));
 				if (!mobileAction.verifyElementIsPresent(payee_filter_List.get(randNum))) {
 					mobileAction.FuncSwipeWhileElementNotFound(payee_filter_List.get(randNum), true, 5, "up");
@@ -541,26 +543,48 @@ public class ScheduledPayments extends _CommonPage {
 		String convertedDate = "";
 		List<String> dateList = new ArrayList<String>();
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			int dateSize = payments_date_List.size();
+			int dateSize = scheduled_Payments_List.size();
 			System.out.println("Date size:" + dateSize);
-			String xpathExpression = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]";
+			boolean wrongdateformatfound = false;
+			boolean isDatexpathswitched = false;
 			for (int i = 1; i < dateSize; i++) {
 
 				try {
-					oriDate = mobileAction.getValue(payments_date_List.get(i));
+					String datePath1 = "//XCUIElementTypeStaticText[1]";
+					String datePath2 = "//XCUIElementTypeStaticText[4]";
+					if (!wrongdateformatfound) {
+						oriDate = mobileAction.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath1));
+					} else {
+						oriDate = mobileAction.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath2));
+						isDatexpathswitched = true;
+					}
+					if (!checkDayFormat(oriDate)) {
+						wrongdateformatfound = true;
+						if (!isDatexpathswitched) {
+							oriDate = mobileAction
+									.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath2));
+						} else {
+							oriDate = mobileAction
+									.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath1));
+						}
+						if (!checkDayFormat(oriDate)) {
+							mobileAction.Report_Fail("Failed to verify Scheduled Payment Date format");
+							return;
+						}
+					}
 					convertedDate = MyCalendar.get().dateConversion(oriDate);
 					dateList.add(convertedDate);
+
 				} catch (Exception e) {
 					if (mobileAction.verifyElementIsPresent(paymentlist_foot)) {
 						break;
 					} else {
 						mobileAction.FuncSwipeOneScreenWithInElement(payments_layout, "up");
-						payments_date_List = CL.GetDriver().findElements(By.xpath(xpathExpression));
-						// dateSize = payments_date_List.size();
 						i--;
 					}
 				}
 			}
+
 		} else {
 			try {
 				do {
@@ -576,9 +600,6 @@ public class ScheduledPayments extends _CommonPage {
 						mobileAction.FuncSwipeOneScreenWithInElement(payments_layout, "up");
 					}
 				} while (true);
-
-				// mobileAction.Report_Pass_Verified("All payee are:"+
-				// payeeNameExpected);
 
 			} catch (Exception e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -770,7 +791,7 @@ public class ScheduledPayments extends _CommonPage {
 			if (days_int > 1 && days_int < 8) {
 				return true;
 			} else {
-				System.out.print("Failed to verify 'Due in x days':" + days);
+				System.out.println("Failed to verify 'Due in x days':" + days);
 				return false;
 			}
 		}
@@ -779,7 +800,7 @@ public class ScheduledPayments extends _CommonPage {
 		if (oriDate.matches(noralDateFormat)) {
 			return true;
 		} else {
-			System.out.print("Failed to verify format:" + oriDate);
+			System.out.println("Failed to verify format:" + oriDate);
 			return false;
 		}
 
@@ -790,19 +811,36 @@ public class ScheduledPayments extends _CommonPage {
 		Decorator();
 		String oriDate = "";
 		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-			int dateSize = payments_date_List.size();
+			int dateSize = scheduled_Payments_List.size();
 			System.out.println("Date size:" + dateSize);
-			String xpathExpression = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]";
+			boolean wrongdateformatfound = false;
+			boolean isDatexpathswitched = false;
 			for (int i = 1; i < dateSize; i++) {
 
 				try {
-					oriDate = mobileAction.getValue(payments_date_List.get(i));
+					String datePath1 = "//XCUIElementTypeStaticText[1]";
+					String datePath2 = "//XCUIElementTypeStaticText[4]";
+					if (!wrongdateformatfound) {
+						oriDate = mobileAction.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath1));
+					} else {
+						oriDate = mobileAction.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath2));
+						isDatexpathswitched = true;
+					}
+					System.out.println("Index:" + i + " date:" + oriDate);
 					if (!checkDayFormat(oriDate)) {
-						mobileAction.Report_Fail("Failed to verify 'Due in 7 days'");
-						return;
-						// System.out.println("Date format is not true, need to swipe");
-						// mobileAction.FuncSwipeOnce("up");
-						// i--;
+						wrongdateformatfound = true;
+						if (!isDatexpathswitched) {
+							oriDate = mobileAction
+									.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath2));
+						} else {
+							oriDate = mobileAction
+									.getValue(scheduled_Payments_List.get(i).findElementByXPath(datePath1));
+						}
+						System.out.println("Index:" + i + "  correct date:" + oriDate);
+						if (!checkDayFormat(oriDate)) {
+							mobileAction.Report_Fail("Failed to verify 'Due in 7 days'");
+							return;
+						}
 					}
 
 				} catch (Exception e) {
@@ -810,12 +848,11 @@ public class ScheduledPayments extends _CommonPage {
 						break;
 					} else {
 						mobileAction.FuncSwipeOneScreenWithInElement(payments_layout, "up");
-						payments_date_List = CL.GetDriver().findElements(By.xpath(xpathExpression));
-						// dateSize = payments_date_List.size();
 						i--;
 					}
 				}
 			}
+
 		} else {
 			try {
 				do {

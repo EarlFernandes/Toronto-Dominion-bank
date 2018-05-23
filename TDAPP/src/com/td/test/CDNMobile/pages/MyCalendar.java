@@ -169,8 +169,9 @@ public class MyCalendar extends _CommonPage {
 		}
 	};
 
-	static int[] holiday_array = { 20180101, 20180219, 20180223, 20180330, 20180521, 20180702, 20180806, 20180903,
-			20181008, 20181112, 20181225, 20181226 };
+	static int[] holiday_array = { 20180101, 20180219, 20180330, 20180521, 20180702, 20180806, 20180903, 20181008,
+			20181112, 20181225, 20181226, 20190101, 20190218, 20190419, 20190520, 20190701, 20190805, 20190902,
+			20191014, 20191111, 20191225, 20191226 };
 
 	static Integer[] DigitTorNumber = { 0, // 0 mapping empty
 			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -473,9 +474,10 @@ public class MyCalendar extends _CommonPage {
 		int startDay_int = Integer.parseInt(startDay);
 		int expectedYear_int = startYear_int;
 		int expectedmonth = startMonth_int + numberOfpayments;
-		if(startDay_int < 6) {
-			//Start day should be the end of month, it means the start day should be the month before this month
-			expectedmonth = expectedmonth -1;
+		if (startDay_int < 6) {
+			// Start day should be the end of month, it means the start day should be the
+			// month before this month
+			expectedmonth = expectedmonth - 1;
 		}
 		if (expectedmonth > 12) {
 			expectedmonth = expectedmonth % 12;
@@ -539,8 +541,8 @@ public class MyCalendar extends _CommonPage {
 		int expectedYear_int = startYear_int;
 		int startDay_int = Integer.parseInt(startDay);
 		int expectedmonth = startMonth_int + numberOfpayments / 2;
-		if(startDay_int <6 ) {
-			expectedmonth = expectedmonth -1;
+		if (startDay_int < 6) {
+			expectedmonth = expectedmonth - 1;
 		}
 
 		if (expectedmonth > 12) {
@@ -548,8 +550,8 @@ public class MyCalendar extends _CommonPage {
 			expectedYear_int = expectedYear_int + 1;
 		}
 
-		if(startDay_int < 6) {
-			startDay_int =30; //should be the end of last month
+		if (startDay_int < 6) {
+			startDay_int = 30; // should be the end of last month
 		}
 		int expectedDay_int = startDay_int;
 		if (startDay_int < 15) {
@@ -1318,7 +1320,6 @@ public class MyCalendar extends _CommonPage {
 		String currentDate = DateTimeFormatter.ofPattern("MMM dd, yyyy").format(localDate);
 		currentDate = currentDate.replace(" 0", " ");
 		currentDate = currentDate.replace(",", "");
-		System.out.println("Today is:" + currentDate);
 		String[] todayStr = currentDate.split(" ");
 		String yearOfToday = todayStr[2];
 		String monthOfToday = todayStr[0];
