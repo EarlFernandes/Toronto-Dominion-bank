@@ -56,7 +56,7 @@ public class AddPayee extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
 			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber1']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@resource-id,'accountNumber')]")
 	private MobileElement payeeAcctNumber;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
@@ -894,11 +894,11 @@ public class AddPayee extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
-			}
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+//				//mobileAction.switchToWebView();
+//			}
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-			mobileAction.sleep(3000);
+			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -970,23 +970,17 @@ public class AddPayee extends _CommonPage {
 		Decorator();
 		try {
 
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
-			}
 
 			String acctNum = getRandomAccountNumber("Accounts");
 			mobileAction.FuncClick(payeeAcctNumber, "Payee Acct Number");
 			mobileAction.FuncSendKeys(payeeAcctNumber, acctNum);
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncHideKeyboard();
 
-				mobileAction.switchToWebView();
 				mobileAction.FuncClick(payeeContinueBtn, "Payee Continue button");
 				mobileAction.sleep(5000);
 
-				mobileAction.switchAppiumContext("NATIVE_APP");
 				mobileAction.FuncClick(addPayeeBtn, "Add Payee button");
 
 			} else {

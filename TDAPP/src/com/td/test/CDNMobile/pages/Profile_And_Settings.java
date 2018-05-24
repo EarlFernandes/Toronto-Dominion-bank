@@ -162,10 +162,10 @@ public class Profile_And_Settings extends _CommonPage {
 		try {
 			String quickSetting = getTextInCurrentLocale(StringArray.ARRAY_QUICK_ACCESS_SETTINGS);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
-				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[@label='" + quickSetting + "']",
+				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[contains(@label,'" + quickSetting + "')]",
 						"Quick Access Settings");
 			} else {
-				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[@text='" + quickSetting + "']",
+				quickaccesssetting = mobileAction.verifyElementUsingXPath("//*[contains(@text,'" + quickSetting + "')]",
 						"Quick Access Settings");
 			}
 

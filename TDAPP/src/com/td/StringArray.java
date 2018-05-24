@@ -176,7 +176,7 @@ public final class StringArray {
 	public static final String[] ARRAY_CUSTOMER_FEEDBACK = { "Give Feedback", "Fournir des commentaires", "发送意见回馈",
 			"發送意見" };
 	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = { "Quick Access Settings", "Paramètres Accès rapide",
-			"特快结余查询设定", "特快結餘查詢設定" };
+			"特快结余查询设", "特快結餘查詢設定" };
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = { "Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢" };
 
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {
@@ -251,6 +251,7 @@ public final class StringArray {
 	public static final String[] ARRAY_CAD_TAB = { "Canada", "Canada", "加拿大", "加拿大" };
 	public static final String[] ARRAY_RECEIPT_GOHOME = { "Go Back Home", "Retour À L'Accueil", "返回主页", "返回首頁" };
 	public static final String[] ARRAY_PAYEE_EDIT = { "Edit", "Modifier", "编辑", "編輯" };
+	public static final String[] ARRAY_PAYEE_DELETE = { "Delete", "Supprimer", "删除", "删除" };
 	public static final String[] ARRAY_EDIT_PAYEE_DONE = { "Done", "Terminé", "完成", "完成" };
 
 	// Between My Accounts

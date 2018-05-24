@@ -74,7 +74,8 @@ public class Manage_Payee extends _CommonPage {
 	private MobileElement confirmYes;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
-	@FindBy(xpath = "//div[contains(@ng-repeat,'alerts.S')]")
+	@FindBy(xpath = "//a[@id='alertMessage']/div/div[contains(@class,'message-holder')]")
+	//@AndroidFindBy(id = "alertMessage")
 	private WebElement deleteMsg;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
@@ -596,8 +597,13 @@ public class Manage_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");
 				mobileAction.sleep(3000);
+			} else {
+				String deletetext = getTextInCurrentLocale(StringArray.ARRAY_PAYEE_DELETE);
+				deletePayeeBtn = mobileAction.verifyElementUsingXPath(
+						"//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, '"
+								+ deletetext + "')]",
+								deletetext);
 			}
-
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
 			mobileAction.sleep(3000);

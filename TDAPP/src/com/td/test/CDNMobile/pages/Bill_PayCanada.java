@@ -454,7 +454,7 @@ public class Bill_PayCanada extends _CommonPage {
 			isPayeePrefilled = true;
 		}
 
-		String payeeAccount = getTestdata("Payee").trim();
+		String payeeAccount = getTestdata("Payee");
 		System.out.println("Payee account:" + payeeAccount);
 		String payeeNumber = "";
 		if (payeeAccount.matches(".*\\d+RP\\d+")) {
