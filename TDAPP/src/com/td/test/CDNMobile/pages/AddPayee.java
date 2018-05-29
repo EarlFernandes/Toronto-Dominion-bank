@@ -804,7 +804,7 @@ public class AddPayee extends _CommonPage {
 		}
 	}
 
-	private void init_search_payee() {
+	private boolean init_search_payee() {
 		String usTabText = getTextInCurrentLocale(StringArray.ARRAY_US_TAB);
 		String cadTabText = getTextInCurrentLocale(StringArray.ARRAY_CAD_TAB);
 		String searchForText = getTextInCurrentLocale(StringArray.ARRAY_SEARCH_FOR);
@@ -819,8 +819,9 @@ public class AddPayee extends _CommonPage {
 			tabUS = mobileAction.verifyWebElementUsingXPath(ustabxpath, "U.S. Tab");
 			searchPayeeField = mobileAction.verifyWebElementUsingXPath(searchforxpath, "Search payee field");
 		} catch (Exception e) {
-
+			return false;
 		}
+		return true;
 	}
 
 	public void searchCdnPayees() {
@@ -828,10 +829,14 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				init_search_payee();
+				if(init_search_payee()) {
+					mobileAction.FuncClick(tabCanada, "Canada tab");
+				}
+			} else {
+				if(mobileAction.verifyElementIsPresent(tabCanada)) {
+					mobileAction.FuncClick(tabCanada, "Canada tab");
+				}
 			}
-
-			mobileAction.FuncClick(tabCanada, "Canada tab");
 
 			String payee = getTestdata("Payee");
 			mobileAction.FuncClick(searchPayeeField, "Search Payee Field");
@@ -865,9 +870,15 @@ public class AddPayee extends _CommonPage {
 		String payee = getTestdata("USAccount");
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				init_search_payee();
+				if(init_search_payee()) {
+					mobileAction.FuncClick(tabUS, "US tab");
+				}
+			} else {
+				if(mobileAction.verifyElementIsPresent(tabUS)) {
+					mobileAction.FuncClick(tabUS, "US tab");
+				}
 			}
-			mobileAction.FuncClick(tabUS, "US tab");
+			
 			mobileAction.FuncClick(searchPayeeField, "Search Payee Field");
 			mobileAction.FuncSendKeys(searchPayeeField, payee);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
@@ -1045,7 +1056,11 @@ public class AddPayee extends _CommonPage {
 	public void clickGoBackHomeBtn() {
 		Decorator();
 		try {
-			mobileAction.FuncClick(Receipt_Quick_Link.get(0), "Go Back Home btn");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				mobileAction.FuncClick(Receipt_Quick_Link.get(0), "Go Back Home btn");
+			} else {
+				mobileAction.FuncClick(goHomeBtn, "Go Back Home btn");
+			}
 			mobileAction.sleep(5000);
 
 		} catch (Exception e) {

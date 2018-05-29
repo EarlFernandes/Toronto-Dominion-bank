@@ -75,7 +75,7 @@ public class Manage_Payee extends _CommonPage {
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
 	@FindBy(xpath = "//a[@id='alertMessage']/div/div[contains(@class,'message-holder')]")
-	//@AndroidFindBy(id = "alertMessage")
+	// @AndroidFindBy(id = "alertMessage")
 	private WebElement deleteMsg;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[7]/XCUIElementTypeStaticText[1]")
@@ -602,7 +602,7 @@ public class Manage_Payee extends _CommonPage {
 				deletePayeeBtn = mobileAction.verifyElementUsingXPath(
 						"//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, '"
 								+ deletetext + "')]",
-								deletetext);
+						deletetext);
 			}
 			mobileAction.FuncClick(deletePayeeBtn, "Delete Payee button");
 			mobileAction.FuncClick(confirmYes, "Confirm dialog, Yes button");
@@ -708,6 +708,16 @@ public class Manage_Payee extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				mobileAction.switchToWebView();
+			} else {
+				String searchForText = getTextInCurrentLocale(StringArray.ARRAY_SEARCH_FOR);
+				String deletedMsgxpath = "//XCUIElementTypeTextField[contains(@label,'" + searchForText
+						+ "')]/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeOther[1]";
+
+				try {
+					deleteMsg = mobileAction.verifyWebElementUsingXPath(deletedMsgxpath, "Deleted Payee Msg");
+				} catch (Exception e) {
+
+				}
 			}
 
 			mobileAction.verifyElementIsDisplayed(deleteMsg, "Delete Message Canadian");
@@ -776,7 +786,7 @@ public class Manage_Payee extends _CommonPage {
 			} else {
 				// Cdn account
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
-					String descXpath = "//android.view.View[@label='" + payee + "']";
+					String descXpath = "//XCUIElementTypeStaticText[@label='" + payee + "']";
 					viewDescriptionField = mobileAction.verifyWebElementUsingXPath(descXpath, "CAD Payee Description");
 				} else {
 					mobileAction.switchToWebView();
