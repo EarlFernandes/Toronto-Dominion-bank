@@ -101,7 +101,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement cancelTransferHeader;
 
-	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeImage[`name=='td_iemt_arrow_down'`]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@label='Choose an account' or @label='Choisir un compte']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/amount_textview']")
 	private MobileElement depositToDropDown;
 
@@ -197,7 +197,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount' or @text='Montant']")
 	private MobileElement amountRecip;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Amount' or @label='Montant']/../XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Amount' or @text='Montant']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement amountRecipVal;
 
@@ -213,7 +213,7 @@ public class TransfersHistory extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']")
 	private MobileElement message;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Message']/following-sibling::XCUIElementTypeStaticText")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Message']/../XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Message']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
 	private MobileElement messageVal;
 
