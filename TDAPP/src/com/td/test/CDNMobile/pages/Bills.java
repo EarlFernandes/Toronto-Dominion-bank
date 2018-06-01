@@ -359,7 +359,7 @@ public class Bills extends _CommonPage {
 						"Scheduled Payments");
 			}
 
-			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
+			mobileAction.FuncClick(scheduledPayments_link, "Scheduled Payments");
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
