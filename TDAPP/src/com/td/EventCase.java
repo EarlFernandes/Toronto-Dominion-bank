@@ -5383,7 +5383,7 @@ public class EventCase {
 			break;
 
 		case AddPayee_ClickFirstUSPayeeFoundPAT:
-			AddPayee.get().clickFirstUSPayeeFound();
+			AddPayee.get().clickFirstUSPayeeFoundPAT();
 			break;
 
 		case AddPayee_EnterPayeeDetails:

@@ -65,8 +65,6 @@ public class Manage_Payee extends _CommonPage {
 	private MobileElement deletePayeeBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]")
-	// @AndroidFindBy(xpath = "//android.widget.Button[@index='1'] |
-	// //android.widget.TextView[contains(@content-desc, 'Edit')]")
 	private MobileElement editPayeeBtn;
 
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeAlert[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
@@ -74,7 +72,7 @@ public class Manage_Payee extends _CommonPage {
 	private MobileElement confirmYes;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
-	@FindBy(xpath = "//a[@id='alertMessage']/div/div[contains(@class,'message-holder')]")
+	@FindBy(xpath = "//a[@id='alertMessage']//div[contains(@class,'message-holder')]")
 	// @AndroidFindBy(id = "alertMessage")
 	private WebElement deleteMsg;
 
@@ -626,8 +624,7 @@ public class Manage_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 				String edittext = getTextInCurrentLocale(StringArray.ARRAY_PAYEE_EDIT);
 				editPayeeBtn = mobileAction.verifyElementUsingXPath(
-						"//android.widget.Button[@index='0'] | //android.widget.TextView[contains(@content-desc, '"
-								+ edittext + "')]",
+						"//*[contains(@content-desc, '" + edittext + "') or contains(@text,'" + edittext + "')]",
 						edittext);
 			}
 			mobileAction.FuncClick(editPayeeBtn, "Edit Payee button");

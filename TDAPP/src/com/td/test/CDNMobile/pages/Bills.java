@@ -984,7 +984,7 @@ public class Bills extends _CommonPage {
 					for (int i = 0; i < listSize; i++) {
 						List<MobileElement> textViewList = scheduled_Payments_List.get(i)
 								.findElements(By.xpath("//XCUIElementTypeStaticText"));
-						if (textViewList.size() == 5) {
+						if (textViewList.size() >= 4) {
 							System.out.println("Found Active Scheduled payments");
 							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
 							isActivePaymentFound = true;
@@ -1004,7 +1004,7 @@ public class Bills extends _CommonPage {
 					for (int i = 0; i < listSize; i++) {
 						List<MobileElement> textViewList = scheduled_Payments_List.get(i)
 								.findElements(By.xpath("//android.widget.TextView"));
-						if (textViewList.size() == 5) {
+						if (textViewList.size() >= 4) {
 							System.out.println("Found Active Scheduled payments");
 							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
 							isActivePaymentFound = true;

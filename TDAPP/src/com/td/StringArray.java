@@ -253,6 +253,7 @@ public final class StringArray {
 	public static final String[] ARRAY_PAYEE_EDIT = { "Edit", "Modifier", "编辑", "編輯" };
 	public static final String[] ARRAY_PAYEE_DELETE = { "Delete", "Supprimer", "删除", "删除" };
 	public static final String[] ARRAY_EDIT_PAYEE_DONE = { "Done", "Terminé", "完成", "完成" };
+	public static final String[] ARRAY_PAYEE_COUNTRY = { "Payee Country", "Pays du preneur", "收款人所在国家", "收款人國家" };
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",

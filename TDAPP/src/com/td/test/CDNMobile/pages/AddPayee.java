@@ -47,7 +47,7 @@ public class AddPayee extends _CommonPage {
 	private WebElement tabUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='result0']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='result0'] | //android.view.View[@text='Payee Country']/following-sibling::android.view.View/android.view.View[@index='0']")
 	private WebElement firstPayeeFound;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeLink[1]/XCUIElementTypeLink[1]/XCUIElementTypeStaticText[1]")
@@ -79,7 +79,7 @@ public class AddPayee extends _CommonPage {
 	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[contains(@text, 'Go Back Home') or contains(@content-desc,'Go Back Home')]")
 	private MobileElement goHomeBtn;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.ListView/android.view.View/android.widget.Button")
 	private List<MobileElement> Receipt_Quick_Link;
 
@@ -98,19 +98,19 @@ public class AddPayee extends _CommonPage {
 	private MobileElement keyboardGoBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[text()='Payee Address' or @index='3']")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='addressLine1_label']/../android.widget.EditText")
 	private MobileElement payeeAddressUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[text()='City' or @index='5']")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='city_label']/../android.widget.EditText")
 	private MobileElement payeeCityUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[11]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[text()='State' or @index='7']")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='state_label']/../android.widget.EditText")
 	private MobileElement payeeStateUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[14]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.widget.EditText[text()='Zip code' or @index='9']")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='zipcode_label']/../android.widget.EditText")
 	private MobileElement payeeZipCodeUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[18]/XCUIElementTypeTextField[1]")
@@ -812,7 +812,7 @@ public class AddPayee extends _CommonPage {
 		String ustabxpath = "//android.view.View[@content-desc='" + usTabText + "' or @text='" + usTabText + "']";
 		String cadtabxpath = "//android.view.View[@content-desc='" + cadTabText + "' or @text='" + cadTabText + "']";
 		String searchforxpath = "//android.widget.EditText[contains(@text,'" + searchForText
-				+ "') or contains(@content-desc,'" + searchForText + "')]";
+				+ "') or contains(@content-desc,'" + searchForText + "') or @index='0']";
 
 		try {
 			tabCanada = mobileAction.verifyWebElementUsingXPath(cadtabxpath, "CAD Tab");
@@ -829,11 +829,11 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				if(init_search_payee()) {
+				if (init_search_payee()) {
 					mobileAction.FuncClick(tabCanada, "Canada tab");
 				}
 			} else {
-				if(mobileAction.verifyElementIsPresent(tabCanada)) {
+				if (mobileAction.verifyElementIsPresent(tabCanada)) {
 					mobileAction.FuncClick(tabCanada, "Canada tab");
 				}
 			}
@@ -870,15 +870,15 @@ public class AddPayee extends _CommonPage {
 		String payee = getTestdata("USAccount");
 		try {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				if(init_search_payee()) {
+				if (init_search_payee()) {
 					mobileAction.FuncClick(tabUS, "US tab");
 				}
 			} else {
-				if(mobileAction.verifyElementIsPresent(tabUS)) {
+				if (mobileAction.verifyElementIsPresent(tabUS)) {
 					mobileAction.FuncClick(tabUS, "US tab");
 				}
 			}
-			
+
 			mobileAction.FuncClick(searchPayeeField, "Search Payee Field");
 			mobileAction.FuncSendKeys(searchPayeeField, payee);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
@@ -901,13 +901,25 @@ public class AddPayee extends _CommonPage {
 
 	}
 
+	private void init_first_payee_found() {
+		try {
+			String payeeCountry = getTextInCurrentLocale(StringArray.ARRAY_PAYEE_COUNTRY);
+			String firstPayeexpath = "//android.widget.Button[@resource-id='result0'] | //android.view.View[@text='"
+					+ payeeCountry + "']/following-sibling::android.view.View/android.view.View[@index='0']";
+			firstPayeeFound = mobileAction.verifyWebElementUsingXPath(firstPayeexpath, "First Payee Found");
+		} catch (Exception e) {
+			System.out.println("Failed to init 'first payee found'");
+		}
+
+	}
+
 	public void clickFirstPayeeFound() {
 		Decorator();
 		try {
 
-//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-//				//mobileAction.switchToWebView();
-//			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				init_first_payee_found();
+			}
 			mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 			mobileAction.waitProgressBarVanish();
 
@@ -930,7 +942,7 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-
+				init_first_payee_found();
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
 				mobileAction.sleep(5000);
 
@@ -980,7 +992,6 @@ public class AddPayee extends _CommonPage {
 	public void enterPayeeDetails() {
 		Decorator();
 		try {
-
 
 			String acctNum = getRandomAccountNumber("Accounts");
 			mobileAction.FuncClick(payeeAcctNumber, "Payee Acct Number");
@@ -1199,7 +1210,7 @@ public class AddPayee extends _CommonPage {
 	public void enterUSPayeeDetailsPAT() {
 		Decorator();
 		try {
-
+			mobileAction.sleep(5000);
 			mobileAction.FuncClick(payeeAddressUS, "US Payee Address");
 			mobileAction.FuncSendKeys(payeeAddressUS, "123 Main St");
 			mobileAction.FuncHideKeyboard();
@@ -1245,9 +1256,11 @@ public class AddPayee extends _CommonPage {
 		try {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
-				mobileAction.switchToWebView();
+
+				init_first_payee_found();
+				mobileAction.sleep(5000);
 				mobileAction.FuncClick(firstPayeeFound, "First Payee found");
-				mobileAction.switchAppiumContext("NATIVE_APP");
+
 				mobileAction.sleep(5000);
 			} else {
 				mobileAction.sleep(3000);
