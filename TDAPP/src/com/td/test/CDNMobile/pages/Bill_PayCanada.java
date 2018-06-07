@@ -379,6 +379,25 @@ public class Bill_PayCanada extends _CommonPage {
 
 	}
 
+	private void init_Add_Canadian_Payee() {
+		try {
+			String addCanadianPayeetext = getTextInCurrentLocale(StringArray.ARRAY_ADD_CANADIAN_PAYEE);
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				addCanadianPayee = mobileAction.verifyElementUsingXPath("//*[@label='" + addCanadianPayeetext + "']",
+						"Add Canadian Payee");
+
+			} else {
+				addCanadianPayee = mobileAction
+						.verifyElementUsingXPath("//android.widget.Button[contains(@content-desc,'"
+								+ addCanadianPayeetext + "')] | //android.widget.TextView[contains(@content-desc,'"
+								+ addCanadianPayeetext + "')]", "Add Canadian Payee");
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
 	private void init_Payment_End_Item() {
 		mobileAction.FuncSwipeOnce("up");
 		try {
@@ -1237,6 +1256,7 @@ public class Bill_PayCanada extends _CommonPage {
 
 		Decorator();
 		try {
+			init_Add_Canadian_Payee();
 			mobileAction.verifyElementIsDisplayed(payBill_Header, "Pay Bill");
 			mobileAction.verifyElementIsDisplayed(addCanadianPayee, "Add Canadian Payee");
 
@@ -1823,6 +1843,7 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			// clicking add payee button
+			init_Add_Canadian_Payee();
 			mobileAction.FuncClick(addCanadianPayee, "Add Payee button clicked");
 			mobileAction.waitProgressBarVanish();
 			mobileAction.ClickBackButton();
@@ -1984,7 +2005,7 @@ public class Bill_PayCanada extends _CommonPage {
 		String from_Account = selectFromAccount();
 
 		// Save how often in "Price"
-		CL.getTestDataInstance().TCParameters.put("Price", "Once");
+		CL.getTestDataInstance().TCParameters.put("Price", getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE));
 
 		// Save start date in "Timeout"
 		try {
@@ -2076,7 +2097,8 @@ public class Bill_PayCanada extends _CommonPage {
 		selectOngoingFromHowOftenDropDown();
 		init_Payment_End_Item();
 		// Save how often in "Price"
-		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
+		CL.getTestDataInstance().TCParameters.put("Price",
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONGOING));
 
 		// get current date
 		LocalDate localDate = LocalDate.now();
@@ -2264,7 +2286,8 @@ public class Bill_PayCanada extends _CommonPage {
 		selectOngoingFromHowOftenDropDown();
 		init_Payment_End_Item();
 		// Save how often in "Price"
-		CL.getTestDataInstance().TCParameters.put("Price", "Ongoing");
+		CL.getTestDataInstance().TCParameters.put("Price",
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONGOING));
 
 		if (!noStartDateSelected) {
 			selectStartDate();

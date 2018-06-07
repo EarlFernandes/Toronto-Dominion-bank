@@ -98,19 +98,19 @@ public class AddPayee extends _CommonPage {
 	private MobileElement keyboardGoBtn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='addressLine1_label']/../android.widget.EditText")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='addressLine1_label']/following-sibling::android.widget.EditText")
 	private MobileElement payeeAddressUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='city_label']/../android.widget.EditText")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='city_label']/following-sibling::android.widget.EditText")
 	private MobileElement payeeCityUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[11]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='state_label']/../android.widget.EditText")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='state_label']/following-sibling::android.widget.EditText")
 	private MobileElement payeeStateUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[14]/XCUIElementTypeTextField[1]")
-	@AndroidFindBy(xpath = "//android.view.View[@resource-id='zipcode_label']/../android.widget.EditText")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='zipcode_label']/following-sibling::android.widget.EditText")
 	private MobileElement payeeZipCodeUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[18]/XCUIElementTypeTextField[1]")

@@ -348,11 +348,12 @@ public class Receipt extends _CommonPage {
 	public void clickGoBackHomeBtn() {
 		Decorator();
 		try {
-			//mobileAction.FuncSwipeOnce("up");
+			// mobileAction.FuncSwipeOnce("up");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 10, "up");
 				mobileAction.FuncClick(quickLink_Btn_List.get(0), "GO BACK HOME");
-				//mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(0), true, 10, "up");
+				// mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(0), true,
+				// 10, "up");
 			} else {
 				mobileAction.FuncSwipeWhileElementNotFound(homeBtn, true, 10, "up");
 			}
@@ -682,6 +683,29 @@ public class Receipt extends _CommonPage {
 		String[] expectedInfo = { expectedPayee, "$" + expectedAmount, expectedAccount, expectedHowOften,
 				inputStartdate, expectedFrequency, Integer.toString(expectedNumberOfpayments), expectedEndOfDate };
 
+		// Get frequencyIn English, since in MyCalendar, frequency is in English;
+		String frequencyInEnglish = StringArray.ARRAY_RBP_FREQUENCY_OPTION[0][0];
+		boolean isFoundOfFrequency = false;
+		for (int i = 0; i < StringArray.ARRAY_RBP_FREQUENCY_OPTION.length; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (expectedFrequency.contentEquals(StringArray.ARRAY_RBP_FREQUENCY_OPTION[i][j])) {
+					frequencyInEnglish = StringArray.ARRAY_RBP_FREQUENCY_OPTION[i][0];
+					isFoundOfFrequency = true;
+					break;
+				}
+			}
+			if (isFoundOfFrequency) {
+				break;
+			}
+		}
+
+		if (!isFoundOfFrequency) {
+			System.out.println("Failed to get transferred frequency");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Failed to get transferred frequency");
+			return;
+		}
+
 		// How often is Once
 		if (info_size == 5) {
 
@@ -700,8 +724,8 @@ public class Receipt extends _CommonPage {
 
 		// How often is Ongoing and "When I decide to cancel" is selected
 		if (info_size == 6) {
-			expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
-			expectedInfo[4] = expectedStartOfDate;
+			expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, frequencyInEnglish);
+			expectedInfo[4] = MyCalendar.get().convertEnglishDateToOther(expectedStartOfDate);
 			for (int i = 0; i < info_size; i++) {
 				try {
 					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
@@ -720,24 +744,24 @@ public class Receipt extends _CommonPage {
 			if (secondTimeout.matches("\\d+")) {
 				// End of payment is select: number of payments
 				expectedNumberOfpayments = Integer.parseInt(secondTimeout);
-				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
+				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, frequencyInEnglish);
 				expectedEndOfDate = MyCalendar.get().getEndOfDateWhenNumberOfPaymentSelected(expectedStartOfDate,
-						expectedNumberOfpayments, expectedFrequency);
+						expectedNumberOfpayments, frequencyInEnglish);
 			} else {
 				// End of payment is select: On a specific day
 				String inputEndOfDate = secondTimeout;
 
-				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, expectedFrequency);
+				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, frequencyInEnglish);
 				expectedNumberOfpayments = MyCalendar.get().getNumberOfpaymentsWhenOnSpecificDayClicked(inputStartdate,
-						inputEndOfDate, expectedFrequency);
+						inputEndOfDate, frequencyInEnglish);
 				expectedEndOfDate = MyCalendar.get().geEndOfDateWhenOnSpecificDayClicked(expectedStartOfDate,
-						inputEndOfDate, expectedFrequency);
+						inputEndOfDate, frequencyInEnglish);
 			}
 
 			// update expected Info array
-			expectedInfo[4] = expectedStartOfDate;
+			expectedInfo[4] = MyCalendar.get().convertEnglishDateToOther(expectedStartOfDate);
 			expectedInfo[6] = Integer.toString(expectedNumberOfpayments);
-			expectedInfo[7] = expectedEndOfDate;
+			expectedInfo[7] = MyCalendar.get().convertEnglishDateToOther(expectedEndOfDate);
 			for (int i = 0; i < info_size; i++) {
 				try {
 					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {

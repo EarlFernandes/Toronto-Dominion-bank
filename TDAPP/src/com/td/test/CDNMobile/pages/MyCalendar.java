@@ -169,6 +169,25 @@ public class MyCalendar extends _CommonPage {
 		}
 	};
 
+	@SuppressWarnings("serial")
+	static final HashMap<String, String> EN_MonthToFR_Month = new HashMap<String, String>() {
+		{
+			put("Jan", "janv.");
+			put("Feb", "févr.");
+			put("Mar", "mars");
+			put("Apr", "avr.");
+			put("May", "mai");
+			put("Jun", "juin");
+			put("Jul", "juil.");
+			put("Aug", "août");
+			put("Sep", "sept.");
+			put("Oct", "oct.");
+			put("Nov", "nov.");
+			put("Dec", "déc.");
+
+		}
+	};
+
 	static int[] holiday_array = { 20180101, 20180219, 20180330, 20180521, 20180702, 20180806, 20180903, 20181008,
 			20181112, 20181225, 20181226, 20190101, 20190218, 20190419, 20190520, 20190701, 20190805, 20190902,
 			20191014, 20191111, 20191225, 20191226 };
@@ -1411,6 +1430,26 @@ public class MyCalendar extends _CommonPage {
 		} else {
 			System.out.println("Format not correct:" + originalDate);
 			return "Format not correct";
+		}
+	}
+
+	public String convertEnglishDateToOther(String dateInEnglish) {
+
+		if (currentLocale.equalsIgnoreCase("en")) {
+			return dateInEnglish;
+		} else {
+			String[] capturedDateStr = dateInEnglish.replace(",", "").split(" ");
+			String capturedYear = capturedDateStr[2];
+			String capturedMonth = capturedDateStr[0];
+			String capturedDay = capturedDateStr[1];
+
+			if (currentLocale.equalsIgnoreCase("fr")) {
+				String frMonth = EN_MonthToFR_Month.get(capturedMonth);
+				return add0iflengthOfStrIs1(capturedDay) + " " + frMonth + " " + capturedYear;
+			} else {
+				int digitMonth = stringToMonthMap.get(capturedMonth);
+				return capturedYear + "年" + digitMonth + "月" + capturedDay + "日";
+			}
 		}
 	}
 

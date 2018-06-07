@@ -26,7 +26,7 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quote_FundDetails_header;
 
@@ -161,8 +161,7 @@ public class FundDetails extends _CommonPage {
 				}
 
 			} else {
-				mobileAction.verifyElementTextIsDisplayed(quote_FundDetails_header,
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
+				mobileAction.verifyElementIsDisplayed(quote_FundDetails_header,"Fund Detail");
 			}
 
 		} catch (NoSuchElementException | IOException e) {
