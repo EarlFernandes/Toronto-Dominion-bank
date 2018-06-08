@@ -755,13 +755,8 @@ public class ScheduledPayments extends _CommonPage {
 		try {
 			String monthGroupText = mobileAction.getValue(month_grouping);
 
-			if (monthGroupText.matches(".*\\s{1}\\d{4}")) {
-				String monthInGroup = monthGroupText.split(" ")[0];
-				if (MyCalendar.get().monthSet.contains(monthInGroup.toLowerCase())) {
-					mobileAction.Report_Pass_Verified("Month grouped in " + monthInGroup);
-				} else {
-					mobileAction.Report_Fail("Failed to month group:" + monthInGroup);
-				}
+			if (monthGroupText.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_NORMAL_FORMAT))) {
+				mobileAction.Report_Pass_Verified("Month grouped in " + monthGroupText);
 			} else {
 				mobileAction.Report_Fail("Wrong format of month group:" + monthGroupText);
 			}

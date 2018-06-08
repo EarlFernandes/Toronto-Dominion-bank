@@ -2549,7 +2549,9 @@ public class Bill_PayCanada extends _CommonPage {
 				currentEndOfdate = mobileAction.getValue(dateText_List.get(1));
 			}
 
-			if (currentEndOfdate.equals(endDate_day)) {
+			//endDate_day is in English format, so need to convert to current language format
+			String endDate_day_currentLocale = MyCalendar.get().convertEnglishDateToOther(endDate_day);
+			if (currentEndOfdate.equals(endDate_day_currentLocale)) {
 				mobileAction.Report_Pass_Verified("End of date remains");
 			} else {
 				System.out.println("Current end of date:" + currentEndOfdate);

@@ -254,6 +254,7 @@ public final class StringArray {
 	public static final String[] ARRAY_PAYEE_DELETE = { "Delete", "Supprimer", "删除", "删除" };
 	public static final String[] ARRAY_EDIT_PAYEE_DONE = { "Done", "Terminé", "完成", "完成" };
 	public static final String[] ARRAY_PAYEE_COUNTRY = { "Payee Country", "Pays du preneur", "收款人所在国家", "收款人國家" };
+	public static final String[] ARRAY_PAY_THIS_PAYEE = { "Pay This Payee", "Payer Ce Preneur", "向该收款人付款", "支付此收款人" };
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
@@ -733,9 +734,10 @@ public final class StringArray {
 			"全部收款人" };
 	public static final String[] ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON = { "Cancel", "Annuler", "取消", "取消" };
 
-	public static final String[] ARRAY_RBP_END_DATE_PLACEHOLDER = { "Select an end date", "", "", "" };
+	public static final String[] ARRAY_RBP_END_DATE_PLACEHOLDER = { "Select an end date",
+			"Sélectionnez une date de fin", "选择结束日期", "選擇結束日期" };
 
-	public static final String[] ARRAY_BANKING_HEADER = { "Banking", "", "", "" };
+	public static final String[] ARRAY_BANKING_HEADER = { "Banking", "Services bancaires", "理财", "理財" };
 	public static final String[] ARRAY_BILL_DETAILS = { "Bill Details", "Paiement de facture", "账单详细信息", "賬單詳情" };
 	public static final String[] ARRAY_RBP_PAYMENTS_REMAINING = { "Payments Remaining", "Paiements restants", "尚余付款",
 			"尚餘付款" };
