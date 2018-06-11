@@ -362,7 +362,19 @@ public class OrderForeignCurrency extends _CommonPage {
 				email_text = mobileAction.verifyElementUsingXPath(phonexpath, emailText);
 
 			}
+			
+			mobileAction.FuncSendKeys(email_text, "abcd1234_new@td.com");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
 			emailtexe = mobileAction.getValue(email_text);
+			if(emailtexe.contentEquals("abcd1234_new@td.com")) {
+				mobileAction.Report_Pass_Verified("Email address can be edited");
+			} else {
+				mobileAction.Report_Fail("Failed to edit email address");
+			}
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -630,8 +642,9 @@ public class OrderForeignCurrency extends _CommonPage {
 		try {
 			String expectedCurrency = CL.getTestDataInstance().TCParameters.get("Description");
 			String capturedCurrency = mobileAction.getValue(dest_currency);
-			// mobileAction.verifyElementTextIsDisplayed(dest_currency,
-			// expectedCurrency);
+			if(capturedCurrency.contains(" ")) {
+				capturedCurrency = capturedCurrency.split(" ")[1].trim();
+			}
 			if (expectedCurrency.contains(capturedCurrency)) {
 				mobileAction.Report_Pass_Verified("Currency:" + capturedCurrency + " is the selected");
 			} else {
@@ -685,7 +698,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.FuncSendKeys(to_currency_amount, "3500");
+			mobileAction.FuncSendKeys(to_currency_amount, "3511.25");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
 			} else {
@@ -1043,7 +1056,7 @@ public class OrderForeignCurrency extends _CommonPage {
 
 			mobileAction.FuncClick(dest_currency, "Currency Selection Button");
 			Currency.get().randomSelectCurrency();
-
+			mobileAction.FuncSwipeOnce("down");
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 
 		} catch (Exception e) {
@@ -1062,7 +1075,6 @@ public class OrderForeignCurrency extends _CommonPage {
 		try {
 
 			String capturedCurrency = mobileAction.getValue(exchange_rate);
-			capturedCurrency = "1 CAD = 0.770 USD";
 			if (capturedCurrency.matches(".*\\.\\d+.*")) {
 				String ratedecimal = mobileAction.FuncGetValByRegx(capturedCurrency, "\\.\\d+");
 				if (ratedecimal.matches("\\.\\d*0+")) {

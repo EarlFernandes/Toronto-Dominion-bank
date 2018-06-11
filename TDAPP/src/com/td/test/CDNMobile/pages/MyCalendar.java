@@ -1445,7 +1445,12 @@ public class MyCalendar extends _CommonPage {
 
 			if (currentLocale.equalsIgnoreCase("fr")) {
 				String frMonth = EN_MonthToFR_Month.get(capturedMonth);
-				return add0iflengthOfStrIs1(capturedDay) + " " + frMonth + " " + capturedYear;
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					return capturedDay + " " + frMonth + " " + capturedYear;
+				} else {
+					return add0iflengthOfStrIs1(capturedDay) + " " + frMonth + " " + capturedYear;
+				}
+
 			} else {
 				int digitMonth = stringToMonthMap.get(capturedMonth);
 				return capturedYear + "年" + digitMonth + "月" + capturedDay + "日";

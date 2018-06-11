@@ -1651,15 +1651,14 @@ public class Profile extends _CommonPage {
 
 		String mobilePhoneStr = get_mobile_phone_info();
 		if (mobilePhoneStr.isEmpty()) {
-			editMobilePhone("8190765135");
-			mobilePhoneStr = get_mobile_phone_info();
+			editMobilePhone("8190765135");		
 			isMobilePhoneNotEdited = false;
 		}
 
 		if (!isHomePhoneNotEdited || !isMobilePhoneNotEdited) {
 			pressSaveButton();
 		}
-
+		mobilePhoneStr = get_mobile_phone_info();
 		// save mobilePhone for OFX phone verification
 		CL.getTestDataInstance().TCParameters.put("PhoneProfile", mobilePhoneStr);
 		if (!isMobilePhoneNotEdited) {
