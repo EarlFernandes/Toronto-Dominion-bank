@@ -680,8 +680,14 @@ public class Receipt extends _CommonPage {
 		int expectedNumberOfpayments = 0;
 		String expectedEndOfDate = "";
 
-		String[] expectedInfo = { expectedPayee, "$" + expectedAmount, expectedAccount, expectedHowOften,
-				inputStartdate, expectedFrequency, Integer.toString(expectedNumberOfpayments), expectedEndOfDate };
+		if (currentLocale.equalsIgnoreCase("fr")) {
+			expectedAmount = expectedAmount.replace(".", ",") + " $";
+		} else {
+			expectedAmount = "$" + expectedAmount;
+		}
+
+		String[] expectedInfo = { expectedPayee, expectedAmount, expectedAccount, expectedHowOften, inputStartdate,
+				expectedFrequency, Integer.toString(expectedNumberOfpayments), expectedEndOfDate };
 
 		// Get frequencyIn English, since in MyCalendar, frequency is in English;
 		String frequencyInEnglish = StringArray.ARRAY_RBP_FREQUENCY_OPTION[0][0];

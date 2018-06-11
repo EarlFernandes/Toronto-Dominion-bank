@@ -1860,7 +1860,9 @@ public class Bill_PayCanada extends _CommonPage {
 			}
 
 			String capturedAmount = mobileAction.getValue(amount);
-			// capturedAmount = capturedAmount.replace("$", "");
+			if(currentLocale.equalsIgnoreCase("fr")) {
+				capturedAmount = capturedAmount.replace(",", ".");
+			}		
 			if (capturedAmount.contains(amount_num)) {
 				mobileAction.Report_Pass_Verified(capturedAmount);
 			} else {

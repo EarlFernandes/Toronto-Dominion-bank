@@ -178,7 +178,7 @@ public class MyCalendar extends _CommonPage {
 			put("Apr", "avr.");
 			put("May", "mai");
 			put("Jun", "juin");
-			put("Jul", "juil.");
+			put("Jul", "juill.");
 			put("Aug", "août");
 			put("Sep", "sept.");
 			put("Oct", "oct.");
