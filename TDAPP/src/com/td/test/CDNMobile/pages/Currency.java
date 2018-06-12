@@ -61,28 +61,29 @@ public class Currency extends _CommonPage {
 
 	private void init_currency_set() {
 		Currency_Set_En.addAll(Arrays.asList(new String[] { "Aruba Florin (AWG)", "Australian Dollar (AUD)",
-				"Bahraini Dinar (BHD)", "Barbados Dollar (BBD)", "Bermuda Dollar (BMD)", "Brazil Real (BRL)",
-				"Bruneian Dollar (BND)", "Bulgarian Lev (BGN)", "Caymanian Dollar (KYD)", "Chilean Peso (CLP)",
-				"Chinese Renminbi (CNY)", "Colombian Peso (COP)", "Costa Rican Colon (CRC)", "Croatian Kuna (HRK)",
-				"Czech Koruna (CZK)", "Danish Krone (DKK)", "Dominican Peso (DOP)", "Dutch Guilder (ANG)",
-				"East Caribbean Dollar (XCD)", "Euro (EUR)", "Fiji Dollar (FJD)", "Great Britain Pound (GBP)",
-				"Guatemala Quetzal (GTQ)", "Hong Kong Dollar (HKD)", "Hungarian Forint (HUF)", "Icelandic Krona (ISK)",
-				"Indonesian Rupiah (IDR)", "Jamaican Dollar (JMD)", "Japanese Yen (JPY)", "Jordanian Dinar (JOD)",
-				"Kuwaiti Dinar (KWD)", "Malaysian Ringgit (MYR)", "Mexican Peso (MXN)", "New Israeli Sheqel (ILS)",
-				"New Zealand Dollar (NZD)", "Nicaragua Cordoba (NIO)", "North Irish Pound (INP)",
-				"Norwegian Krone (NOK)", "Omani Rial (OMR)", "Peruvian Nuevo Sol (PEN)", "Philippine Peso (PHP)",
-				"Polish Zloty (PLN)", "Qatari Riyal (QAR)", "Romanian Leu (RON)", "Russian Ruble (RUB)",
-				"Saudi Riyal (SAR)", "Scottish Pound (SCO)", "Singapore Dollar (SGD)", "South African Rand (ZAR)",
-				"South Korean Won (KRW)", "Swedish Krona (SEK)", "Swiss Franc (CHF)", "Tahitian Franc (XPF)",
-				"Taiwan New Dollar (TWD)", "Thai Baht (THB)", "Turkish Lira (TRY)", "United Arab Emirates Dirham (AED)",
-				"United States Dollar (USD)", "Uruguayan Peso (UYU)", "Vietnamese Dong (VND)" }));
+				"Bahraini Dinar (BHD)", "Barbados Dollar (BBD)", "Belize Dollar (BZD)", "Bermuda Dollar (BMD)",
+				"Brazil Real (BRL)", "Bruneian Dollar (BND)", "Bulgarian Lev (BGN)", "Caymanian Dollar (KYD)",
+				"Chilean Peso (CLP)", "Chinese Renminbi (CNY)", "Colombian Peso (COP)", "Costa Rican Colon (CRC)",
+				"Croatian Kuna (HRK)", "Czech Koruna (CZK)", "Danish Krone (DKK)", "Dominican Peso (DOP)",
+				"Dutch Guilder (ANG)", "East Caribbean Dollar (XCD)", "Euro (EUR)", "Fiji Dollar (FJD)",
+				"Great Britain Pound (GBP)", "Guatemala Quetzal (GTQ)", "Hong Kong Dollar (HKD)",
+				"Hungarian Forint (HUF)", "Icelandic Krona (ISK)", "Indonesian Rupiah (IDR)", "Jamaican Dollar (JMD)",
+				"Japanese Yen (JPY)", "Jordanian Dinar (JOD)", "Kenya Shilling (KES)", "Kuwaiti Dinar (KWD)",
+				"Malaysian Ringgit (MYR)", "Mexican Peso (MXN)", "New Israeli Sheqel (ILS)", "New Zealand Dollar (NZD)",
+				"Nicaragua Cordoba (NIO)", "North Irish Pound (INP)", "Norwegian Krone (NOK)", "Omani Rial (OMR)",
+				"Peruvian Nuevo Sol (PEN)", "Philippine Peso (PHP)", "Polish Zloty (PLN)", "Romanian Leu (RON)",
+				"Russian Ruble (RUB)", "Saudi Riyal (SAR)", "Scottish Pound (SCO)", "Singapore Dollar (SGD)",
+				"South African Rand (ZAR)", "South Korean Won (KRW)", "Swedish Krona (SEK)", "Swiss Franc (CHF)",
+				"Tahitian Franc (XPF)", "Taiwan New Dollar (TWD)", "Thai Baht (THB)", "Turkish Lira (TRY)",
+				"United Arab Emirates Dirham (AED)", "United States Dollar (USD)", "Uruguayan Peso (UYU)",
+				"Vietnamese Dong (VND)" }));
 
 		Currency_Set_FR.addAll(Arrays.asList(new String[] { "Baht thaïlandais (THB)", "Colon costaricain (CRC)",
 				"Cordoba nicaraguayen (NIO)", "Couronne danoise (DKK)", "Couronne islandaise (ISK)",
 				"Couronne norvégienne (NOK)", "Couronne suédoise (SEK)", "Couronne tchèque (CZK)",
 				"Dinar bahreïni (BHD)", "Dinar jordanien (JOD)", "Dinar koweïtien (KWD)",
 				"Dirham des Émirats arabes unis (AED)", "Dollar américain (USD)", "Dollar australien (AUD)",
-				"Dollar barbadien (BBD)", "Dollar bermudien (BMD)", "Dollar brunéien (BND)",
+				"Dollar barbadien (BBD)", "Dollar bermudien (BMD)", "Dollar brunéien (BND)", "Dollar bélizien (BZD)",
 				"Dollar de Hong Kong (HKD)", "Dollar des îles Caïmans (KYD)", "Dollar est-caribéen (XCD)",
 				"Dollar fidjien (FJD)", "Dollar jamaïcain (JMD)", "Dollar néo-zélandais (NZD)",
 				"Dollar singapourien (SGD)", "Dong vietnamien (VND)", "Euro (EUR)", "Florin arubais (AWG)",
@@ -92,8 +93,8 @@ public class Currency extends _CommonPage {
 				"Nouveau dollar de Taïwan (TWD)", "Nouveau sol péruvien (PEN)", "Peso chilien (CLP)",
 				"Peso colombien (COP)", "Peso dominicain (DOP)", "Peso mexicain (MXN)", "Peso philippin (PHP)",
 				"Peso uruguayen (UYU)", "Quetzal guatémaltèque (GTQ)", "Rand sud-africain (ZAR)", "Rial omanais (OMR)",
-				"Ringgit malaisien (MYR)", "Riyal qatarien (QAR)", "Riyal saoudien (SAR)", "Rouble russe (RUB)",
-				"Roupie indonésienne (IDR)", "Réal brésilien (BRL)", "Shekel de l’État d’Israël (ILS)",
+				"Ringgit malaisien (MYR)", "Riyal saoudien (SAR)", "Rouble russe (RUB)", "Roupie indonésienne (IDR)",
+				"Réal brésilien (BRL)", "Shekel de l’État d’Israël (ILS)", "Shilling kényan (KES)",
 				"Won sud-coréen (KRW)", "Yen japonais (JPY)", "Yuan chinois (CNY)", "Zloty polonais (PLN)" }));
 	}
 
@@ -318,12 +319,24 @@ public class Currency extends _CommonPage {
 				if (captured_Currency_Set.equals(Currency_Set_FR)) {
 					mobileAction.Report_Pass_Verified("Currency Content verified");
 				} else {
+					int setSizeFR = Currency_Set_FR.size();
+					if(setSizeFR >= setSize) {
+						System.out.println(Currency_Set_FR.removeAll(captured_Currency_Set));
+					} else {
+						System.out.println(captured_Currency_Set.removeAll(Currency_Set_FR));
+					}					
 					mobileAction.Report_Fail("Failed to verify currency content");
 				}
 			} else {
 				if (captured_Currency_Set.equals(Currency_Set_En)) {
 					mobileAction.Report_Pass_Verified("Currency Content verified");
 				} else {
+					int setSizeEN = Currency_Set_En.size();
+					if(setSizeEN >= setSize) {
+						System.out.println(Currency_Set_En.removeAll(captured_Currency_Set));
+					} else {
+						System.out.println(captured_Currency_Set.removeAll(Currency_Set_En));
+					}
 					mobileAction.Report_Fail("Failed to verify currency content");
 				}
 			}

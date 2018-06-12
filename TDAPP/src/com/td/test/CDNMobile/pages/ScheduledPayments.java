@@ -754,8 +754,11 @@ public class ScheduledPayments extends _CommonPage {
 		Decorator();
 		try {
 			String monthGroupText = mobileAction.getValue(month_grouping);
-
-			if (monthGroupText.matches(getTextInCurrentLocale(StringArray.ARRAY_RBP_DATE_NORMAL_FORMAT))) {
+			String groupmonth = ".*\\d{4}";
+			if(currentLocale.toLowerCase().contains("zh")) {
+				groupmonth = "\\d{4}年\\d{1,2}\\月";
+			}
+			if (monthGroupText.matches(groupmonth)) {
 				mobileAction.Report_Pass_Verified("Month grouped in " + monthGroupText);
 			} else {
 				mobileAction.Report_Fail("Wrong format of month group:" + monthGroupText);

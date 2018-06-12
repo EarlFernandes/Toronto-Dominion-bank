@@ -93,15 +93,15 @@ public class OrderForeignCurrency extends _CommonPage {
 	private MobileElement select_branch_dropdown;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert//XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/oneBtnDialogTitle']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_title']")
 	private MobileElement rate_expired_text;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert//XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/oneBtnDialogDesc']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/dialog_message']")
 	private MobileElement rate_expired_copy;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert//XCUIElementTypeButton")
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
 	private MobileElement rate_expired_ok_btn;
 
 	public synchronized static OrderForeignCurrency get() {
@@ -553,7 +553,7 @@ public class OrderForeignCurrency extends _CommonPage {
 			} else {
 				mobileAction.FuncClickDone();
 			}
-
+			mobileAction.FuncSwipeOnce("up");
 			mobileAction.FuncSwipeOnce("down");
 			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_MIN_CAD_AMOUNT_ERROR);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
