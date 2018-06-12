@@ -47,10 +47,18 @@ public class Popupwindow extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel' or @label='Annuler' or @label='取消']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
 	private MobileElement bill_cancel_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Order' or @label='Annuler la commande' or @label='取消订单' or @label='取消訂單']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
+	private MobileElement ofx_cancel_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label=\"Don't Cancel\" or @label='Ne pas annuler' or @label='不取消']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/negative_button']")
 	private MobileElement bill_dont_cancel_button;
+	
+	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label=\"Don't Cancel\" or @label='Ne pas annuler' or @label='不要取消']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/negative_button']")
+	private MobileElement ofx_dont_cancel_button;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Cancel Order' or @label='Annuler la commande' or @label='取消订单' or @label='取消訂單']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/positive_button']")
@@ -175,6 +183,28 @@ public class Popupwindow extends _CommonPage {
 			mobileAction.verifyElementTextIsDisplayed(order_dont_cancel_button,
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_POPUP_DONT_CANCEL));
 
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
+	public void ClickOFXPopupCancelButton() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(ofx_cancel_button, "Cancel Order");
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			return;
+		}
+	}
+	
+	public void ClickOFXPopupDontCancelButton() {
+		Decorator();
+		try {
+			mobileAction.FuncClick(ofx_dont_cancel_button, "Don't Cancel Order");
 		} catch (Exception e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

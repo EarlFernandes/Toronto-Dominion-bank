@@ -23,7 +23,7 @@ public class CreditBankingServices extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/landing_row_title']")
 	private MobileElement order_foreign_currency_link;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeImage[@name='icon_OrderFX']/following-sibling::XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/landing_row_description']")
 	private MobileElement order_foreign_currency_copy;
 
@@ -75,6 +75,7 @@ public class CreditBankingServices extends _CommonPage {
 			init_Order_foreign_currency_link();
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_link,
 					getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY));
+
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_copy,
 					getTextInCurrentLocale(StringArray.ARRAY_OFX_COPY_TEXT));
 
@@ -94,8 +95,12 @@ public class CreditBankingServices extends _CommonPage {
 		Decorator();
 		try {
 			init_Order_foreign_currency_link();
-			mobileAction.FuncClick(order_foreign_currency_link,
-					getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY));
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				order_foreign_currency_link.click();
+			} else {
+				mobileAction.FuncClick(order_foreign_currency_link,
+						getTextInCurrentLocale(StringArray.ARRAY_ORDER_FOREIGN_CURRENCY));
+			}
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
