@@ -909,7 +909,7 @@ public final class StringArray {
 	public static final String[] ARRAY_OFX_PICKUP_LOCATION = { "Pickup Location", "Lieu de ramassage", "提取地点", "領取地點" };
 	public static final String[] ARRAY_OFX_PICKUP_DEFAULT = { "Select a branch", "Sélectionnez une succursale", "选择分行",
 			"選擇分行" };
-	public static final String[] ARRAY_OFX_RATE_FORMAT = { "1 CAD =.*", "1 CA =.*", "1 CAD =.*", "1 CAD =.*" };
+	public static final String[] ARRAY_OFX_RATE_FORMAT = { "1 CAD =.*", "1 CAD =.*", "1 CAD =.*", "1 CAD =.*" };
 	public static final String[] ARRAY_OFX_MIN_MAX_FORMAT = { "Min\\s*:.*Max\\s*:.*", "Min\\.\\s*:.*Max\\.\\s*:.*",
 			"最少\\s*:.*最多\\s*:.*", "最少\\s*:.*最多\\s*:.*" };
 	public static final String[] ARRAY_OFX_INVALID_EMAIL_ERROR = { "Please type in a valid email address.",
