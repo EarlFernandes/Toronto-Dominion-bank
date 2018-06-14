@@ -180,12 +180,14 @@ public class Currency extends _CommonPage {
 
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				String usdLabel = mobileAction.getValue(usdItem);
-				String expectedUSD = "";
-				if (currentLocale.equalsIgnoreCase("fr")) {
-					expectedUSD = "Sélectionnée\\s*Dollar\\s*américain";
-				} else {
-					expectedUSD = "Selected\\s*United\\s*States\\s*Dollar";
-				}
+				String [] expectedUSD_Array = {
+						"Selected\\s*United\\s*States\\s*Dollar",
+						"Sélectionnée\\s*Dollar\\s*américain",
+						"已选\\s*United\\s*States\\s*Dollar",
+						"已選\\s*United\\s*States\\s*Dollar"
+				};
+				String expectedUSD = getTextInCurrentLocale(expectedUSD_Array);
+
 				if (usdLabel.matches(expectedUSD)) {
 					mobileAction.Report_Pass_Verified("Default Currency is USD");
 				} else {
