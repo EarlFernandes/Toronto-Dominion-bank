@@ -26,8 +26,8 @@ public class Profile extends _CommonPage {
 	String androidphoneReg = "\\(\\•{3}\\)\\•{3}-\\d{4}";
 	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
 	String extReg = "\\d+";
-	String emailPlaceHolder = "example@address.com | exemple@adresse.com";
-	String phonePlaceHolder = "Enter number | Entrer le numéro";
+	String emailPlaceHolder = getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL_PLACEHOLDER);
+	String phonePlaceHolder = getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE_PLACEHOLDER);
 	String extPlaceHolder = "Enter extension | Entrer n° de poste";
 	int MAX_EMAIL_LENGTH = 60;
 	int MAX_NAME_LENGTH = 40;
@@ -196,8 +196,8 @@ public class Profile extends _CommonPage {
 	}
 
 	/**
-	 * This method will get all profile info Address, phone, email, etc then go
-	 * to personal profile details page
+	 * This method will get all profile info Address, phone, email, etc then go to
+	 * personal profile details page
 	 * 
 	 * @return initial name or null
 	 * 
@@ -595,8 +595,8 @@ public class Profile extends _CommonPage {
 	}
 
 	/**
-	 * This method will get all profile info Address, phone, email, etc then go
-	 * to personal profile details page
+	 * This method will get all profile info Address, phone, email, etc then go to
+	 * personal profile details page
 	 * 
 	 * @return void
 	 * 
@@ -1651,7 +1651,7 @@ public class Profile extends _CommonPage {
 
 		String mobilePhoneStr = get_mobile_phone_info();
 		if (mobilePhoneStr.isEmpty()) {
-			editMobilePhone("8190765135");		
+			editMobilePhone("8190765135");
 			isMobilePhoneNotEdited = false;
 		}
 
@@ -1737,12 +1737,12 @@ public class Profile extends _CommonPage {
 			mobileAction.Report_Pass_Verified("Home phone and Mobile phone were empty");
 		}
 	}
-	
+
 	public void updateEmailifNotExist() {
 		String emailInfo = get_email_info();
-		
+
 		boolean isEmailEdited = false;
-		if(emailInfo.isEmpty()) {
+		if (emailInfo.isEmpty()) {
 			EditEmailAddress("test@testOFX.com");
 			emailInfo = "test@testOFX.com";
 			isEmailEdited = true;
@@ -1755,5 +1755,5 @@ public class Profile extends _CommonPage {
 		}
 
 	}
-	
+
 }

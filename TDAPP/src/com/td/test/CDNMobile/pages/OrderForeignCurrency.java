@@ -24,6 +24,9 @@ public class OrderForeignCurrency extends _CommonPage {
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/banner_info']")
 	private MobileElement order_foreign_currency_Banner_Info;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell")
+	private List<MobileElement> ofx_form_cell;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell/XCUIElementTypeStaticText[@label='I have' or @label='J’ai' or @label='现有货币' or @label='現有貨幣']")
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.td:id/converter_container']/android.widget.LinearLayout[@index='0']/android.widget.TextView[@index='0']")
@@ -469,6 +472,7 @@ public class OrderForeignCurrency extends _CommonPage {
 		try {
 			Fill_OFX_Form();
 
+			mobileAction.FuncSwipeOnce("down");
 			String expectedError = getTextInCurrentLocale(StringArray.ARRAY_OFX_ERROR_AMOUNT_GREATER_BALANCE);
 			mobileAction.verifyElementTextIsDisplayed(order_foreign_currency_Banner_Info, expectedError);
 		} catch (Exception e) {
@@ -486,13 +490,13 @@ public class OrderForeignCurrency extends _CommonPage {
 		Decorator();
 		try {
 			String emailtexe = "";
-
+			int defaultCellSize = 5;
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
 
 				mobileAction.FuncSwipeOnce("up");
 
 			} else {
-
+				defaultCellSize = ofx_form_cell.size();
 				String emailText = getTextInCurrentLocale(StringArray.ARRAY_OFX_EMAIL);
 				String emailxpath = "//XCUIElementTypeStaticText[@label='" + emailText
 						+ "']/../XCUIElementTypeTextField";
@@ -508,15 +512,18 @@ public class OrderForeignCurrency extends _CommonPage {
 			}
 
 			mobileAction.FuncSwipeOnce("down");
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				int currentCellSize = ofx_form_cell.size();
+				if(currentCellSize <= defaultCellSize) {
+					mobileAction.Report_Pass_Verified("No error message found for empty email");
+					return;
+				}
+			}
 
 			if (mobileAction.verifyElementIsPresent(order_foreign_currency_Banner_Info)) {
 				String errorMsg = mobileAction.getValue(order_foreign_currency_Banner_Info);
-				if (errorMsg.equalsIgnoreCase("canadian_dollar") || errorMsg.equalsIgnoreCase("Dollars Canadiens")) {
-					mobileAction.Report_Pass_Verified("No error message found for empty email");
-				} else {
-					mobileAction.Report_Fail(
-							"Error message found:" + mobileAction.getValue(order_foreign_currency_Banner_Info));
-				}
+	
+				mobileAction.Report_Fail("Error message found:" + errorMsg);			
 
 			} else {
 				mobileAction.Report_Pass_Verified("No error message found for empty email");
@@ -908,7 +915,7 @@ public class OrderForeignCurrency extends _CommonPage {
 					mobileAction.FuncSwipeOnce("up");
 
 			} else {
-
+				mobileAction.FuncSwipeOnce("up");
 				String emailText = getTextInCurrentLocale(StringArray.ARRAY_OFX_EMAIL);
 				String phonexpath = "//XCUIElementTypeStaticText[@label='" + emailText
 						+ "']/../XCUIElementTypeTextField";
