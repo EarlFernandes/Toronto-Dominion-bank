@@ -872,8 +872,8 @@ public final class StringArray {
 	// End of Product page
 
 	// Start of OFX
-	public static final String[] ARRAY_OFX_TITLE = { "Credit and Banking Services", "Crédit et services bancaires",
-			"信贷与银行服务", "信貸與銀行服務" };
+	public static final String[] ARRAY_OFX_TITLE = { "Banking Services", "Services bancaires",
+			"银行服务", "銀行服務" };
 
 	public static final String[] ARRAY_ORDER_FOREIGN_CURRENCY = { "Order Foreign Currency", "Commander des devises",
 			"订购外币", "訂購外幣" };
@@ -917,9 +917,9 @@ public final class StringArray {
 	public static final String[] ARRAY_OFX_INVALID_PHONE_ERROR = { "Please enter a 10-digit phone number.",
 			"Veuillez entrer un numéro de téléphone à 10 chiffres.", "请输入 10 位数电话号码。", "請輸入 10 位數電話號碼。" };
 	public static final String[] ARRAY_OFX_MIN_CAD_AMOUNT_ERROR = {
-			"We need a minimum of CAD 100 for a currency exchange. Please try a higher amount.",
-			"Il faut échanger au moins 100 CAD. Veuillez entrer un montant plus élevé.", "外币兑换必须至少CAD 100起。请输入较高的金额。",
-			"外幣兌換必須至少CAD 100起。請輸入較高的金額。" };
+			"We need a minimum of CAD\\s+100 for a currency exchange. Please try a higher amount.",
+			"Il faut échanger au moins 100\\s+CAD. Veuillez entrer un montant plus élevé.", "外币兑换必须至少CAD\\s+100起。请输入较高的金额。",
+			"外幣兌換必須至少CAD\\s+100起。請輸入較高的金額。" };
 	public static final String[] ARRAY_OFX_MAX_CAD_AMOUNT_ERROR = {
 			"Sorry, we can't process more than CAD \\d+(,\\d{3})*(\\.\\d+)*.* for this currency exchange. Please try a lower amount.",
 			"Désolés, nous ne pouvons pas traiter plus de \\d+(\\s\\d{3})*(,\\d+)*\\s*CAD.\\s*Veuillez entrer un montant moins élevé.",
