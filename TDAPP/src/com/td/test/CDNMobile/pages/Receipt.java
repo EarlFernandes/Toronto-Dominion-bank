@@ -203,11 +203,11 @@ public class Receipt extends _CommonPage {
 	private MobileElement bannerImage;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[1]")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you' or @resource-id='com.td:id/primary_header']")
 	private MobileElement rbp_thankyou;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[2] | //XCUIElementTypeStaticText[@name='-Message']")
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' or @resource-id='com.td:id/sub_header']")
 	private MobileElement receipt_message;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[3]")
@@ -606,6 +606,17 @@ public class Receipt extends _CommonPage {
 			mobileAction.FuncSwipeOnce("up");
 		}
 		caption_size = rbp_receipt_caption_list.size();
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			if(isPaymentOnce) {
+				caption_size =5;
+			} else {
+				if(caption_size == 7 || caption_size == 9) {
+					//R18.6 last one is "Bannel Image", remove it
+					caption_size --; 
+				}
+			}
+
+		}
 
 		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
 			System.out.println("Something wrong..., receipt caption_size:" + caption_size + " not 5, or 6, or 8");
