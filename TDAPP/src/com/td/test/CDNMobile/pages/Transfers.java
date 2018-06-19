@@ -435,9 +435,11 @@ public class Transfers extends _CommonPage {
 				mobileAction.verifyElementUsingXPath(
 						"//android.widget.TextView[@text='" + mobileAction.getAppString("transfer_faq_question") + "']",
 						"Transfer faq");
-				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
-						+ mobileAction.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
-						"Add, edit or delete");
+				mobileAction
+						.verifyElementUsingXPath(
+								"//android.widget.TextView[@text='" + mobileAction
+										.getAppString("imtHintTextManageRecipients").replaceAll("\\<.*?>", "") + "']",
+								"Add, edit or delete");
 				mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='" + mobileAction
 						.getAppString("transfersTransfersHintTextPendingInteracETransfer").replaceAll("\\<.*?>", "")
 						+ "']", "View pending");

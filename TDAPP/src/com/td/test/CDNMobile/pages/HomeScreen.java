@@ -142,6 +142,10 @@ public class HomeScreen extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[(@resource-id='com.td:id/text_view' and @text='TRADE') or @resource-id='com.td:id/trade_dashboard']")
 	private MobileElement tradeQuickLink;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeCell[@name='QuickLink 3']")
+	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/recycler_view_quick_link']/android.widget.LinearLayout[@index='3']")
+	private MobileElement PayBill_Dashboard;
+
 	@iOSXCUITFindBy(accessibility = "QuickLink 7")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/text_view' and @text='WATCHLISTS']")
 	private MobileElement watchlistQuickLinkPerf;
@@ -1134,9 +1138,8 @@ public class HomeScreen extends _CommonPage {
 			 * (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase(
 			 * "android")) {
 			 * 
-			 * mobileAction.FuncScrollIntoView(pay_now_button,
-			 * "Pay Now button");
-			 * mobileAction.verifyElementIsDisplayed(pay_now_button,
+			 * mobileAction.FuncScrollIntoView(pay_now_button, "Pay Now button"
+			 * ); mobileAction.verifyElementIsDisplayed(pay_now_button,
 			 * "Pay Now button");
 			 * mobileAction.verifyElementTextContains(pay_now_button,
 			 * getTextInCurrentLocale(StringArray.
@@ -1150,9 +1153,9 @@ public class HomeScreen extends _CommonPage {
 			 */
 
 			if (mobileAction.verifyElementIsPresent(home_bar)) {
-				mobileAction.Report_Pass_Verified("Home View");
+				mobileAction.Report_Pass_Verified("Home Dashboard");
 			} else {
-				mobileAction.Report_Fail("Home View not verified");
+				mobileAction.Report_Fail("Home Dashboard not verified");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
 		} catch (Exception e) {
@@ -1581,5 +1584,23 @@ public class HomeScreen extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void clickPayBillDashboard() {
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(PayBill_Dashboard, "Pay Bill Dashboard");
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		} finally {
+		}
 	}
 }

@@ -26,8 +26,8 @@ public class Profile extends _CommonPage {
 	String androidphoneReg = "\\(\\•{3}\\)\\•{3}-\\d{4}";
 	String iosphoneReg = "\\(\\•{3}\\) \\•{3} - \\d{4}";
 	String extReg = "\\d+";
-	String emailPlaceHolder = "example@address.com | exemple@adresse.com";
-	String phonePlaceHolder = "Enter number | Entrer le numéro";
+	String emailPlaceHolder = getTextInCurrentLocale(StringArray.ARRAY_MF_EMAIL_PLACEHOLDER);
+	String phonePlaceHolder = getTextInCurrentLocale(StringArray.ARRAY_MF_PHONE_PLACEHOLDER);
 	String extPlaceHolder = "Enter extension | Entrer n° de poste";
 	int MAX_EMAIL_LENGTH = 60;
 	int MAX_NAME_LENGTH = 40;
@@ -196,8 +196,8 @@ public class Profile extends _CommonPage {
 	}
 
 	/**
-	 * This method will get all profile info Address, phone, email, etc then go
-	 * to personal profile details page
+	 * This method will get all profile info Address, phone, email, etc then go to
+	 * personal profile details page
 	 * 
 	 * @return initial name or null
 	 * 
@@ -595,8 +595,8 @@ public class Profile extends _CommonPage {
 	}
 
 	/**
-	 * This method will get all profile info Address, phone, email, etc then go
-	 * to personal profile details page
+	 * This method will get all profile info Address, phone, email, etc then go to
+	 * personal profile details page
 	 * 
 	 * @return void
 	 * 
@@ -1578,4 +1578,182 @@ public class Profile extends _CommonPage {
 			mobileAction.Report_Fail_Not_Verified("email:" + email_after + " changed");
 		}
 	}
+
+	private void editHomePhone(String phoneNum) {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				home_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_HOME_PHONE) + "']/../XCUIElementTypeTextField",
+						"home_phone");
+			}
+
+			if (!phoneNum.isEmpty()) {
+				mobileAction.FuncSendKeys(home_phone_info, phoneNum);
+			} else {
+				mobileAction.FuncClick(home_phone_info, "Home phone");
+				ClickClearText();
+			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+			// pressSaveButton();
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
+	private void editMobilePhone(String phoneNum) {
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+				mobile_phone_info = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ getTextInCurrentLocale(StringArray.ARRAY_MOBILE_PHONE) + "']/../XCUIElementTypeTextField",
+						"Mobile_phone");
+			}
+
+			if (!phoneNum.isEmpty()) {
+				mobileAction.FuncSendKeys(mobile_phone_info, phoneNum);
+			} else {
+				mobileAction.FuncClick(mobile_phone_info, "Mobile phone");
+				ClickClearText();
+			}
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncHideKeyboard();
+			} else {
+				mobileAction.FuncClickDone();
+			}
+			// pressSaveButton();
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
+	public void updateHomeAndMobilePhoneIfNotexist() {
+		Decorator();
+		if (!isPersonalUser) {
+			mobileAction.Report_Fail("This is not a personal user.");
+			System.err.println("This is not a personal user.");
+			return;
+		}
+		boolean isHomePhoneNotEdited = true;
+		boolean isMobilePhoneNotEdited = true;
+
+		String homePhoneStr = get_home_phone_info();
+		if (homePhoneStr.isEmpty()) {
+			editHomePhone("7689012918");
+			isHomePhoneNotEdited = false;
+		}
+
+		String mobilePhoneStr = get_mobile_phone_info();
+		if (mobilePhoneStr.isEmpty()) {
+			editMobilePhone("8190765135");
+			isMobilePhoneNotEdited = false;
+		}
+
+		if (!isHomePhoneNotEdited || !isMobilePhoneNotEdited) {
+			pressSaveButton();
+		}
+		mobilePhoneStr = get_mobile_phone_info();
+		// save mobilePhone for OFX phone verification
+		CL.getTestDataInstance().TCParameters.put("PhoneProfile", mobilePhoneStr);
+		if (!isMobilePhoneNotEdited) {
+			mobileAction.Report_Pass_Verified("Mobile phone is updated");
+		} else {
+			mobileAction.Report_Pass_Verified("Mobile phone existed");
+		}
+	}
+
+	public void updateHomeAndEmptyMobilePhone() {
+		Decorator();
+		if (!isPersonalUser) {
+			mobileAction.Report_Fail("This is not a personal user.");
+			System.err.println("This is not a personal user.");
+			return;
+		}
+		boolean isHomePhoneNotEdited = true;
+		boolean isMobilePhoneEmptied = false;
+
+		String homePhoneStr = get_home_phone_info();
+		if (homePhoneStr.isEmpty()) {
+			editHomePhone("7689012918");
+			homePhoneStr = get_home_phone_info();
+			isHomePhoneNotEdited = false;
+		}
+
+		String mobilePhoneStr = get_mobile_phone_info();
+		if (!mobilePhoneStr.isEmpty()) {
+			editMobilePhone("");
+			isMobilePhoneEmptied = true;
+		}
+
+		if (!isHomePhoneNotEdited || isMobilePhoneEmptied) {
+			pressSaveButton();
+		}
+
+		// save mobilePhone for OFX phone verification
+		CL.getTestDataInstance().TCParameters.put("PhoneProfile", homePhoneStr);
+		if (!isHomePhoneNotEdited) {
+			mobileAction.Report_Pass_Verified("Home phone is updated and Mobile phone is cleared");
+		} else {
+			mobileAction.Report_Pass_Verified("Home phone existed and Mobile phone is cleared");
+		}
+	}
+
+	public void emptyHomeAndEmptyMobilePhone() {
+		Decorator();
+		if (!isPersonalUser) {
+			mobileAction.Report_Fail("This is not a personal user.");
+			System.err.println("This is not a personal user.");
+			return;
+		}
+		boolean isHomePhoneEmptied = false;
+		boolean isMobilePhoneEmptied = false;
+
+		String homePhoneStr = get_home_phone_info();
+		if (!homePhoneStr.isEmpty()) {
+			editHomePhone("");
+			isHomePhoneEmptied = true;
+		}
+
+		String mobilePhoneStr = get_mobile_phone_info();
+		if (!mobilePhoneStr.isEmpty()) {
+			editMobilePhone("");
+			isMobilePhoneEmptied = true;
+		}
+
+		if (isHomePhoneEmptied || isMobilePhoneEmptied) {
+			pressSaveButton();
+		}
+
+		// save mobilePhone for OFX phone verification
+		if (isHomePhoneEmptied || isMobilePhoneEmptied) {
+			mobileAction.Report_Pass_Verified("Home phone and Mobile phone were cleared");
+		} else {
+			mobileAction.Report_Pass_Verified("Home phone and Mobile phone were empty");
+		}
+	}
+
+	public void updateEmailifNotExist() {
+		String emailInfo = get_email_info();
+
+		boolean isEmailEdited = false;
+		if (emailInfo.isEmpty()) {
+			EditEmailAddress("test@testOFX.com");
+			emailInfo = "test@testOFX.com";
+			isEmailEdited = true;
+		}
+		CL.getTestDataInstance().TCParameters.put("EmailProfile", emailInfo);
+		if (isEmailEdited) {
+			mobileAction.Report_Pass_Verified("Email is updated");
+		} else {
+			mobileAction.Report_Pass_Verified("Email does exist");
+		}
+
+	}
+
 }

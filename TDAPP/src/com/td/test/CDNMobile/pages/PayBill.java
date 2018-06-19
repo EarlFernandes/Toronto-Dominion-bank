@@ -343,13 +343,13 @@ public class PayBill extends _CommonPage {
 			mobileAction.FuncClick(toAccountUS, "Select Payee field");
 			mobileAction.sleep(2000);
 
-			String firstCellText = mobileAction.FuncGetText(firstUSAcctText);
-			String firstCellName = firstCellText.substring(0, firstCellText.lastIndexOf(" ")).trim();
-			String firstCellNum = firstCellText.substring(firstCellText.lastIndexOf(" ")).trim();
+//			String firstCellText = mobileAction.FuncGetText(firstUSAcctText);
+//			String firstCellName = firstCellText.substring(0, firstCellText.lastIndexOf(" ")).trim();
+//			String firstCellNum = firstCellText.substring(firstCellText.lastIndexOf(" ")).trim();
 
 			mobileAction.FuncClick(firstUSAcct, "1st Account in List");
-			mobileAction.verifyElementTextContains(payeeUSSelected, firstCellName);
-			mobileAction.verifyElementTextContains(payeeUSNumSelected, firstCellNum);
+//			mobileAction.verifyElementTextContains(payeeUSSelected, firstCellName);
+//			mobileAction.verifyElementTextContains(payeeUSNumSelected, firstCellNum);
 
 			String amt = getTestdata("Amount");
 			mobileAction.FuncClick(amountUS, "Amount button clicked");

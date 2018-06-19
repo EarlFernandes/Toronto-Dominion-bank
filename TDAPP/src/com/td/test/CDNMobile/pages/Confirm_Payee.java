@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -13,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class Confirm_Payee extends _CommonPage {
 
@@ -28,12 +30,12 @@ public class Confirm_Payee extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@label='Access Card']")
 	private MobileElement access_Card;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Add Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Add Payee']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@index='0']")
 	private MobileElement addPayee_Btn;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Pay This Payee']")
-	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[3]")
+	@AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Pay This Payee' or @text='Pay This Payee']")
 	private MobileElement payThisPayee;
 
 	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Thank You!')]")
@@ -78,6 +80,17 @@ public class Confirm_Payee extends _CommonPage {
 
 	}
 
+	private void init_pay_this_payee() {
+		String paythispayeeText = getTextInCurrentLocale(StringArray.ARRAY_PAY_THIS_PAYEE);
+		String paythispayeeXpath = "//android.widget.Button[@content-desc='" + paythispayeeText + "' or @text='"
+				+ paythispayeeText + "']";
+		try {
+			payThisPayee = mobileAction.verifyElementUsingXPath(paythispayeeXpath, "Pay This Payee");
+		} catch (Exception e) {
+
+		}
+	}
+
 	/**
 	 * This method will confirms the canadian payee is added
 	 * 
@@ -99,7 +112,7 @@ public class Confirm_Payee extends _CommonPage {
 		Decorator();
 		try {
 
-			mobileAction.verifyElementIsDisplayed(confirm_Header, "Confirm");
+			mobileAction.verifyElementIsDisplayed(PageHeader.get().getHeaderTextElement(), "Confirm");
 			// mobileAction.verifyElementIsDisplayed(payee_Name, "Payee Name");
 			// mobileAction.verifyElementIsDisplayed(access_card, "Access
 			// Card");
@@ -107,10 +120,12 @@ public class Confirm_Payee extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 
 			// mobileAction.verifyElementIsDisplayed(successMsg, "Thank You!");
-
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				init_pay_this_payee();
+			}
 			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
 			mobileAction.waitProgressBarVanish();
-			if (mobileAction.verifyElementIsPresent(payBill_Header)) {
+			if (mobileAction.verifyElementIsPresent(PageHeader.get().getHeaderTextElement())) {
 				String addedPayee;
 				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 					addedPayee = mobileAction.getValue(ios_payee_Table_name);
@@ -169,6 +184,39 @@ public class Confirm_Payee extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 			String err = mobileAction.getValue(errorMsg);
 			mobileAction.verifyElementIsDisplayed(errorMsg, err);
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void confirmAddPayeeAndPayThisPayee() {
+		Decorator();
+		try {
+
+			mobileAction.verifyElementIsDisplayed(PageHeader.get().getHeaderTextElement(), "Confirm");
+			// mobileAction.verifyElementIsDisplayed(payee_Name, "Payee Name");
+			// mobileAction.verifyElementIsDisplayed(access_card, "Access
+			// Card");
+			mobileAction.FuncClick(addPayee_Btn, "AddPayee");
+			mobileAction.waitProgressBarVanish();
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("android")) {
+				init_pay_this_payee();
+			}
+			mobileAction.FuncSwipeWhileElementNotFound(payThisPayee, true, 5, "up");
+			mobileAction.waitProgressBarVanish();
 
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;

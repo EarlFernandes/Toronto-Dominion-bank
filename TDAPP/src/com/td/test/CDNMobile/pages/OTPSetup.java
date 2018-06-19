@@ -179,7 +179,7 @@ public class OTPSetup extends _CommonPage {
 	@FindBy(id = "enter")
 	private WebElement submitCodeButton;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[contains(@label,'Verified') or contains(@label,'Validé') or contains(@label,'验证成功') or contains(@label,'驗證成功') ]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[contains(@label,'Verified') or contains(@label,'Validé') or contains(@label,'验证成功') or contains(@label,'驗證成功') ]")
 	@FindBy(xpath = "//div[@id='phone_0']//span[@ng-if='!!phone.verified'][2]")
 	private WebElement securityCodeVerifedField;
 

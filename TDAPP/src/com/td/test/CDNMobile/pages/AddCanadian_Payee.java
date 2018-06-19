@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.td.StringArray;
 import com.td._CommonPage;
 
 import io.appium.java_client.MobileElement;
@@ -13,6 +14,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.TimeOutDuration;
 import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
 public class AddCanadian_Payee extends _CommonPage {
 
@@ -21,26 +23,28 @@ public class AddCanadian_Payee extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@label='Add Canadian Payee']")
 	private MobileElement addCanadianPayee_Header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Payee Account']")
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[5]/XCUIElementTypeTextField[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[6]/XCUIElementTypeTextField[1]")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='accountNumber']")
-
 	private MobileElement payee_AccountNum;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeTextField[@label='Description']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Description']")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[8]/XCUIElementTypeTextField[1] | "
+			+ "//XCUIElementTypeWebView[1]//XCUIElementTypeOther[9]/XCUIElementTypeTextField[1]")
+	@AndroidFindBy(xpath = "//android.view.View[@resource-id='description_label']/../android.widget.EditText")
 
 	private MobileElement description;
+	
 
 	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Done']")
 	private MobileElement done;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeButton[@label='Continue']")
+	@iOSXCUITFindBy(iOSClassChain = "**/XCUIElementTypeWebView[1]/**/XCUIElementTypeButton[1]")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='btn']")
-
 	private MobileElement continue_Button;
 
 	@iOSFindBy(xpath = "//*[@label='Search for Canadian payees']")
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Search for Canadian payees']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@text,'Search for Canadian payees')]")
 	private MobileElement search_payee_editbox;
 
 	public synchronized static AddCanadian_Payee get() {
@@ -55,6 +59,24 @@ public class AddCanadian_Payee extends _CommonPage {
 
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(20, TimeUnit.SECONDS)), this);
 
+	}
+	
+	private boolean init_search_payee() {
+
+		String searchForText = getTextInCurrentLocale(StringArray.ARRAY_SEARCH_FOR);
+		String searchforxpath = "//android.widget.EditText[contains(@text,'" + searchForText
+				+ "') or contains(@content-desc,'" + searchForText + "') or @index='0']";
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			searchforxpath = "//*[contains(@label,'"+searchForText+"')]";
+		}
+
+		try {
+			mobileAction.sleep(5000);
+			search_payee_editbox =(MobileElement) mobileAction.verifyWebElementUsingXPath(searchforxpath, "Search payee field");
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -95,6 +117,11 @@ public class AddCanadian_Payee extends _CommonPage {
 			CL.getTestDataInstance().TCParameters.put("Payee", newPayeeNumber);
 
 			String firstThreeChars = payee_name.substring(0, 3);
+			if(!init_search_payee()) {
+				mobileAction.Report_Fail("Init Search Payee Element");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				return;
+			}
 			mobileAction.FuncSendKeys(search_payee_editbox, firstThreeChars);
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				mobileAction.FuncClickDone();
@@ -106,7 +133,8 @@ public class AddCanadian_Payee extends _CommonPage {
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
 				selectedPayee = "//*[@label='" + payee_name + "']";
 			} else {
-				selectedPayee = "//android.widget.Button[@content-desc='" + payee_name + "']";
+				selectedPayee = "//android.widget.Button[@content-desc='" + payee_name + "' or @text='" + payee_name
+						+ "']";
 			}
 			mobileAction.FuncSwipeWhileElementNotFoundByxpath(selectedPayee, true, 10, "up");
 

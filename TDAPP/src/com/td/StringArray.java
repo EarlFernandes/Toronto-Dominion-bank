@@ -176,7 +176,7 @@ public final class StringArray {
 	public static final String[] ARRAY_CUSTOMER_FEEDBACK = { "Give Feedback", "Fournir des commentaires", "发送意见回馈",
 			"發送意見" };
 	public static final String[] ARRAY_QUICK_ACCESS_SETTINGS = { "Quick Access Settings", "Paramètres Accès rapide",
-			"特快结余查询设置", "特快結餘查詢設定" };
+			"特快结余查询设", "特快結餘查詢設定" };
 	public static final String[] ARRAY_QUICK_ACCESS_SWITCH_AND = { "Quick Access", "Accès rapide", "特快结余查询", "特快結餘查詢" };
 
 	public static final String[] ARRAY_OTP_CHALLENGE_UNABLE_TO_VERIFY_CODE = {
@@ -245,6 +245,16 @@ public final class StringArray {
 
 	// Buttons
 	public static final String[] ARRAY_BUTTON_CONTINUE = { "Continue", "Continuer", "继续", "繼續" };
+	public static final String[] ARRAY_BUTTON_CONTINUE_AND = { "Continue", "Continuer", "继续", "下一步" };
+	public static final String[] ARRAY_SEARCH_FOR = { "Search for", "Rechercher un", "搜索", "搜尋" };
+	public static final String[] ARRAY_US_TAB = { "U.S.", "États-Unis", "美国", "美國" };
+	public static final String[] ARRAY_CAD_TAB = { "Canada", "Canada", "加拿大", "加拿大" };
+	public static final String[] ARRAY_RECEIPT_GOHOME = { "Go Back Home", "Retour À L'Accueil", "返回主页", "返回首頁" };
+	public static final String[] ARRAY_PAYEE_EDIT = { "Edit", "Modifier", "编辑", "編輯" };
+	public static final String[] ARRAY_PAYEE_DELETE = { "Delete", "Supprimer", "删除", "删除" };
+	public static final String[] ARRAY_EDIT_PAYEE_DONE = { "Done", "Terminé", "完成", "完成" };
+	public static final String[] ARRAY_PAYEE_COUNTRY = { "Payee Country", "Pays du preneur", "收款人所在国家", "收款人國家" };
+	public static final String[] ARRAY_PAY_THIS_PAYEE = { "Pay This Payee", "Payer Ce Preneur", "向该收款人付款", "支付此收款人" };
 
 	// Between My Accounts
 	public static final String[] ARRAY_BETWEEN_MY_ACCOUNTS_HEADER = { "Between My Accounts", "Entre mes comptes",
@@ -566,7 +576,7 @@ public final class StringArray {
 			"You must be the Primary cardholder on the card to make a credit limit increase request. Requests take only a few minutes to complete.",
 			"Vous n’aurez besoin que de quelques minutes pour remplir une demande et vous recevrez une réponse peu de temps après.",
 			"申请只需几分钟即可完成，很快您将收到答复。", "申請只需幾分鐘即可完成，您很快會收到回覆。" };
-	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项", "信貸" };
+	public static final String[] ARRAY_CREDIT_HEADER = { "Credit", "Crédit", "贷项|信用", "信貸|信用" };
 	public static final String[] ARRAY_CLIP_FORM_TITLE = { "TD Credit Card Limit Increase Request",
 			"Demande d’augmentation de la limite d’une carte de crédit TD", "TD Credit Card Limit Increase Request",
 			"TD Credit Card Limit Increase Request" };
@@ -611,6 +621,385 @@ public final class StringArray {
 	public static final String[] ARRAY_FORM_INFORMATION = { "Personal Information", "", "", "" };
 	// End of CLIP
 
+	// RBP
+	public static final String[] ARRAY_RBP_ACESS_CARD = { "Access Card", "Carte Accès", "易通卡", "易通卡" };
+	public static final String[] ARRAY_RBP_HOWOFTEN = { "How Often", "Type de paiement", "次数", "次數" };
+	public static final String[] ARRAY_RBP_HOWOFTEN_ONCE = { "Once", "Unique", "一次", "一次" };
+	public static final String[] ARRAY_RBP_HOWOFTEN_ONGOING = { "Ongoing", "Récurrent", "持续", "持續" };
+	public static final String[] ARRAY_RBP_FREQUENCY = { "Frequency", "Fréquence", "频次", "頻次" };
+	public static final String[] ARRAY_RBP_PAYMENT_END = { "Payment Will End", "Arrêter les paiements…", "付款结束於",
+			"付款結束於" };
+	public static final String[] ARRAY_RBP_START_DATE = { "Start Date", "Date de début", "起始日期", "開始日期" };
+	public static final String[] ARRAY_RBP_ONCE_DATE = { "Date", "Date", "日期", "日期" };
+	public static final String[] ARRAY_RBP_VIEW_ALL = { "View All", "Tout afficher", "查看全部", "查看全部" };
+	public static final String[] ARRAY_RBP_END_DATE = { "End Date", "Date de fin", "结束日期", "結束日期" };
+	public static final String[] ARRAY_RBP_NUMBER_OF_PAYMENTS = { "Number of Payments", "Nombre de paiements", "付款次数",
+			"付款次數" };
+	public static final String[] ARRAY_RBP_SPECIFIC_DATE = { "On a specific date", "À une date précise", "特定日期",
+			"特定日期" };
+	public static final String[] ARRAY_RBP_AFTER_NEMBER_PAYMENT = { "After a number of payments",
+			"Après plusieurs paiements", "付款一定次数后", "付款一定次數後" };
+	public static final String[] ARRAY_RBP_DECIDE_CANCEL = { "When I decide to cancel", "Lorsque je le déciderai",
+			"我决定取消时", "我決定取消時" };
+
+	public static final String[] ARRAY_REVIEW_HEADER = { "Review", "Vérification", "检查", "檢查" };
+	public static final String[][] ARRAY_RBP_FREQUENCY_OPTION = { { "Weekly", "Hebdomadaire", "每周", "每週" },
+			{ "Bi-weekly", "Aux deux semaines", "每两周", "每兩星期" }, { "Month-end", "À la fin du mois", "月尾", "月底" },
+			{ "Monthly", "Mensuel", "每月", "每月" }, { "Semi-monthly", "Bimensuel", "每半月", "每半月" },
+			{ "Quarterly", "Trimestriel", "每季度", "每季" } };
+	public static final String[] ARRAY_RBP_PAYBILL_BTN = { "Pay Bill", "Payer", "支付账单", "支付賬單" };
+	public static final String[] ARRAY_RBP_FROM_ACCOUNT = { "From Account", "Du compte", "转出账户", "轉出賬戶" };
+	public static final String[] ARRAY_RBP_POPUP_CANCEL_PAYMENT = { "Are you sure you want to cancel this payment?",
+			"Voulez-vous vraiment annuler ce paiement?", "您确定要取消该付款？", "確定要取消此付款？" };
+	public static final String[] ARRAY_RBP_POPUP_DONT_CANCEL = { "Don't Cancel", "Ne pas annuler", "不取消", "不取消" };
+	public static final String[] ARRAY_RBP_RECEIPT_MESSAGE = { "Bill payment to be processed",
+			"Le paiement de facture sera traité", "待处理的账单付款", "待處理的賬單付款" };
+	public static final String[] ARRAY_RBP_THANKYOU = { "Thank you!", "Merci!", "谢谢！", "謝謝！" };
+	public static final String[] ARRAY_RBP_RECEIPT_CONFIRMATION = { "Confirmation # :", "Nᵒ de confirmation :", "确认号：",
+			"確認號碼：" };
+	public static final String[] ARRAY_RBP_RECEIPT_COPY = {
+			"Please make sure your account has enough funds to cover this bill, otherwise you may be charged a non-sufficient funds (NSF) fee.",
+			"Pour éviter de devoir payer des frais d’insuffisance de fonds, assurez-vous que le compte contient le montant nécessaire.",
+			"请确保您的账户拥有付清此账单的足够资金，否则我们将向您收取资金不足 (NSF) 费。", "請確保您的賬戶擁有付清此賬單的足夠資金，否則我們將向您收取資金不足 (NSF) 手續費。" };
+
+	public static final String[] ARRAY_RBP_ON_SPECIFIC_DATE_FOOTNOTE = {
+			"Payments scheduled for a weekend or statutory holiday are withdrawn immediately, and then sent to the payee the next business day. It may take a few days for the payment to appear on your bill.",
+			"Tout paiement prévu durant la fin de semaine ou lors d’un jour férié est immédiatement retiré. Il est envoyé au preneur le jour ouvrable suivant. Il pourrait s’écouler quelques jours avant que le paiement figure sur votre facture.",
+			"如付款设定在周末或国定假日，付款会立即取消，改在下一个工作日传送给收款人。\\s*付款可能需要数天才会显示在账单上。",
+			"如付款設置在週末或國定假日，付款會立即取消，改在下一個工作日傳送給收款人。\\s*付款可能要幾日後才會顯示在賬單上。" };
+
+	public static final String[] ARRAY_RBP_DECIDE_TO_CANCEL_FOOTNOTE = {
+			"Payments continue until you go to the bill details screen for this payment and select cancel.",
+			"Les paiements continueront jusqu'au moment où vous les annulez à l'écran des détails de la facture.",
+			"付款会一直持续，直到您在账单详情页面中选择取消该账单付款。", "付款會一直持續，直至您在賬單詳情畫面中選擇取消此賬單付款。" };
+
+	public static final String[] ARRAY_RBP_REWARDS_CONTENT = {
+			"Redeem up to $197 in TD Rewards Points to pay down your credit card balance", "", "", "" };
+	public static final String[] ARRAY_RBP_REVIEW_BANNER = { "Please review the details and confirm your bill payment.",
+			"Veuillez vérifier les détails et confirmer le paiement de votre facture", "请检查详情并确认账单付款。",
+			"請檢查詳情並確認賬單付款。" };
+	public static final String[] ARRAY_SCHEDULED_PAYMENTS_TITLE = { "Scheduled Payments", "Paiements prévus", "定期付款",
+			"定期付款" };
+
+	public static final String[] ARRAY_RBP_MAX_AMOUNT_ERROR = { "Please enter an amount that is less than $500,000.",
+			"Veuillez inscrire un montant inférieur à 500 000 $.", "请输入 $500,000 以下的金额。", "請輸入 $500,000 以下的金額。" };
+
+	public static final String[] ARRAY_RBP_ERROR_AMOUNT_GREATER_BALANCE = {
+			"You don't have enough funds in the account you selected. Please try a lower amount or use a different account.",
+			"Le compte sélectionné ne contient pas les fonds requis. Entrez un montant inférieur ou utilisez un autre compte.",
+			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選的賬戶中沒有足夠的資金。請輸入較低的金額或使用不同的賬戶。" };
+	public static final String[] ARRAY_RBP_ERROR_DATE_RANGE_NOT_PASS_ONE_PAYMENT = {
+			"Please select an end date that is after your first scheduled payment.",
+			"Veuillez sélectionner une date de fin ultérieure à la date du premier paiement prévu.",
+			"结束日期必须是在首次预定付款之后。", "結束日期必須是在首次預定付款之後。" };
+
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_WEEKLY = {
+			"You're not able to schedule more than 260 payments within a 5-year period. Please type in a lower number of payments.",
+			"Vous ne pouvez pas planifier plus de 260 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
+			"不允许在 5 年内安排超过\\s*260\\s* 次付款。请输入较少付款次数。", "不允許在 5 年內安排超過 \\s*260\\s* 次付款。請輸入較少付款次數。" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_BI_WEEKLY = {
+			"You're not able to schedule more than 130 payments within a 5-year period. Please type in a lower number of payments.",
+			"Vous ne pouvez pas planifier plus de 130 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
+			"不允许在 5 年内安排超过\\s*130\\s*次付款。请输入较少付款次数。", "不允許在 5 年內安排超過\\s* 130\\s* 次付款。請輸入較少付款次數。" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_MONTHLY_ = {
+			"You're not able to schedule more than 60 payments within a 5-year period. Please type in a lower number of payments.",
+			"Vous ne pouvez pas planifier plus de 60 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
+			"不允许在 5 年内安排超过\\s*60\\s* 次付款。请输入较少付款次数。", "不允許在 5 年內安排超過\\s*60\\s*次付款。請輸入較少付款次數。" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_SEMIMONTHLY = {
+			"You're not able to schedule more than 120 payments within a 5-year period. Please type in a lower number of payments.",
+			"Vous ne pouvez pas planifier plus de 120 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
+			"不允许在 5 年内安排超过\\s*120\\s* 次付款。请输入较少付款次数。", "不允許在 5 年內安排超過\\s*120 \\s*次付款。請輸入較少付款次數。" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_MONTHEND = {
+			"You're not able to schedule more than 60 payments within a 5-year period. Please type in a lower number of payments.",
+			"Vous ne pouvez pas planifier plus de 60 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
+			"不允许在 5 年内安排超过\\s*60\\s* 次付款。请输入较少付款次数。", "不允許在 5 年內安排超過 \\s*60\\s*次付款。請輸入較少付款次數。" };
+	public static final String[] ARRAY_RBP_PAY_BILL_ERROR_MSG_QUARTERLY = {
+			"You're not able to schedule more than 20 payments within a 5-year period. Please type in a lower number of payments.",
+			"Vous ne pouvez pas planifier plus de 20 paiements sur une période de 5 ans. Veuillez entrer un nombre moins élevé de paiements.",
+			"不允许在 5 年内安排超过\\s*20\\s* 次付款。请输入较少付款次数。", "不允許在 5 年內安排超過 \\s*20\\s*次付款。請輸入較少付款次數。" };
+
+	public static final String[] ARRAY_RBP_1_NUM_PAYMENT_ERROR_MSG = { "Please select a number higher than 1.",
+			"Entrez un nombre supérieur à 1.", "请选择一个高于1的数字。", "請選擇一個高於1的數字。" };
+	public static final String[] ARRAY_RBP_PAYEE_FILTER_VIEW_PAYMENT_FOR = { "View Payments For",
+			"Afficher les paiements pour", "查看针对下列收款人的付款：", "查看對以下收款人的付款：" };
+	public static final String[] ARRAY_RBP_DATE_TODYA = { "Today", "Aujourd'hui", "今天", "今日" };
+	public static final String[] ARRAY_RBP_DATE_TOMORROW = { "Tomorrow", "Demain", "明日", "明天" };
+	public static final String[] ARRAY_RBP_DATE_DUE_IN_X_DAYS = { "Due in \\d+ days", "Échéance dans \\d+ jours",
+			"\\d+天后到期", "\\d+天內到期" };
+	public static final String[] ARRAY_RBP_DATE_NORMAL_FORMAT = { ".*\\s{1}\\d{1,2},\\s{1}\\d{4}", "\\d{1,2}.*\\d{4}",
+			"\\d{4}年\\d{1,2}月\\d{1,2}日", "\\d{4}年\\d{1,2}月\\d{1,2}日" };
+	public static final String[] ARRAY_RBP_PAYMENT_CANCELLED = { "Cancelled", "Annulé", "已取消", "已取消" };
+
+	public static final String[] ARRAY_RBP_PAYEE_FILTER_ALL_PAYEE = { "All Payees", "Tous les preneurs", "全部收款人",
+			"全部收款人" };
+	public static final String[] ARRAY_RBP_PAYEE_FILTER_CANCEL_BUTTON = { "Cancel", "Annuler", "取消", "取消" };
+
+	public static final String[] ARRAY_RBP_END_DATE_PLACEHOLDER = { "Select an end date",
+			"Sélectionnez une date de fin", "选择结束日期", "選擇結束日期" };
+
+	public static final String[] ARRAY_BANKING_HEADER = { "Banking", "Services bancaires", "理财", "理財" };
+	public static final String[] ARRAY_BILL_DETAILS = { "Bill Details", "Paiement de facture", "账单详细信息", "賬單詳情" };
+	public static final String[] ARRAY_RBP_PAYMENTS_REMAINING = { "Payments Remaining", "Paiements restants", "尚余付款",
+			"尚餘付款" };
+	public static final String[] ARRAY_RBP_CANCEL_BILL_PAYMENT = { "Cancel Bill Payment", "Annuler paiement de facture",
+			"取消账单付款", "取消賬單付款" };
+	public static final String[] ARRAY_RBP_SCHEDULED_PAYMENT_COPY_NOTE = {
+			"Any pre-authorized credit card payments you may have setup are not included in the scheduled payments list.",
+			"Tout paiement préautorisé sur votre carte de crédit n’est pas inclus dans la liste des paiements prévus.",
+			"定期付款列表不包括任何您可能已设定的预先授权信用卡付款。", "定期付款列表不包括任何您可能已設置的預先授權信用卡付款。" };
+	public static final String[][] ARRAY_PAYBILL_DEFAULT = {
+			{ "Select payee", "Sélectionnez le preneur", "选择收款人", "選擇收款人" },
+			{ "Select from account", "Sélectionnez le compte de provenance", "选择付款账户", "選擇付款賬戶" },
+			{ "Select a date after today", "Sélectionnez une date future", "选择今天之后的日期", "選擇今日之後的日期" },
+			{ "Select frequency", "Sélectionnez la fréquence", "选择频次", "選擇頻次" } };
+
+	public static final String[] ARRAY_RBP_CONTINUE_BUTTON = { "Continue", "Continuer", "继续", "繼續" };
+	public static final String[] ARRAY_RBP_CANCELLED_BILL = { "Cancelled", "Annulé", "已取消", "已取消" };
+	public static final String[] ARRAY_RBP_BILL_CANCELLED_DONE = { "All done!", "C’est fait!", "全部完成！", "全部完成！" };
+	public static final String[] ARRAY_PRODUCT_LANDING_PAGE_HEADER = { "Get An Account", "Obtenir un compte", "开立账户",
+			"開設賬戶" };
+	public static final String[] ARRAY_RBP_CCRA_ERROR_MESSAGE = {
+			"This payee is currently not available for bill payments on the TD app. Please make your payments through EasyWeb.",
+			"Il n’est pas possible d’envoyer des paiements à ce preneur avec l’appli TD pour le moment. Veuillez utiliser BanqueNet.",
+			"目前无法使用道明应用程序向此收款人付款。请使用EasyWeb付款。", "目前無法使用道明應用程式向此收款人付款。請使用EasyWeb付款。" };
+	// End of RBP
+
+	// Start of Product page
+	public static final String[] ARRAY_EXPLORE_BANK_ACCOUNT = { "Bank Accounts", "Comptes bancaires", "银行账户", "銀行賬戶" };
+	public static final String[] ARRAY_EXPLORE_CREDIT_CARD = { "Credit Cards", "Cartes de crédit", "信用卡", "信用卡" };
+	public static final String[] ARRAY_EXPLORE_MORTGAGES = { "Mortgages", "Prêts hypothécaires", "房屋贷款", "房屋貸款" };
+	public static final String[] ARRAY_EXPLORE_BORROWING = { "Borrowing", "Emprunts", "借贷", "借貸" };
+	public static final String[] ARRAY_EXPLORE_PERSONAL_INVESTING = { "Personal Investing", "Placements personnels",
+			"个人投资", "個人投資" };
+	public static final String[] ARRAY_EXPLORE_TRAVEL_INSURANCET = { "Travel Medical Insurance",
+			"Assurance médicale de voyage", "旅行医疗保险", "旅行醫療保險" };
+
+	public static final String[] ARRAY_PRODUCT_PERSONAL_BANK_SYS_URL = {
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.new.sys.td.com/ca/fr/services-bancaires-personnels/produits/comptes-bancaires/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/bank-accounts/" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_BANK_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/comptes-bancaires/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/bank-accounts/" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_BANK_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/comptes-bancaires/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/bank-accounts/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/bank-accounts/" };
+
+	public static final String[] ARRAY_PRODUCT_CREDIT_CARDS_SYS_URL = {
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.new.sys.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.new.sys.td.com/ca/en/personal-banking/products/credit-cards/" };
+	public static final String[] ARRAY_PRODUCT_CREDIT_CARDS_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/credit-cards/" };
+	public static final String[] ARRAY_PRODUCT_CREDIT_CARDS_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/credit-cards/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/credit-cards/" };
+
+	public static final String[] ARRAY_PRODUCT_MORTGAGES_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/mortgages/td-mortgages-resl.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/operations-bancaires/prets-hypothecaires/td-prets-hypothecaires-resl.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/mortgages/td-mortgages-resl.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/mortgages/td-mortgages-resl.jsp" };
+	public static final String[] ARRAY_PRODUCT_MORTGAGES_PAT_URL = {
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://stg1.pat.td.com/ca/fr/services-bancaires-personnels/produits/prets-hypothecaires/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/mortgages/" };
+	public static final String[] ARRAY_PRODUCT_MORTGAGES_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/prets-hypothecaires/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/mortgages/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/mortgages/" };
+
+	public static final String[] ARRAY_PRODUCT_BORROWING_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/products-services/borrowing/loans-lines-of-credit/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/emprunt/prets-et-lignes-de-credit/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/borrowing/loans-lines-of-credit/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/borrowing/loans-lines-of-credit/index.jsp" };
+	public static final String[] ARRAY_PRODUCT_BORROWING_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/borrowing/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/borrowing/" };
+	public static final String[] ARRAY_PRODUCT_BORROWING_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/emprunts/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/borrowing/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/borrowing/" };
+
+	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/m/produits-et-services/investissements/objectif_depargne_main.jsp",
+			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp",
+			"https://www1.sys.tdcanadatrust.com/m/products-services/investing/goal_main.jsp" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_PAT_URL = {
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/",
+			"https://stg1.pat.td.com/ca/fr/services-bancaires-personnels/produits/epargne-placements/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/",
+			"https://stg1.pat.td.com/ca/en/personal-banking/products/savings-investing/" };
+	public static final String[] ARRAY_PRODUCT_PERSONAL_INVESTING_PROD_URL = {
+			"https://staging.td.com/ca/en/personal-banking/products/saving-investing/",
+			"https://staging.td.com/ca/fr/services-bancaires-personnels/produits/epargne-placements/",
+			"https://zh.staging.td.com/ca/en/personal-banking/products/saving-investing/",
+			"https://zt.staging.td.com/ca/en/personal-banking/products/saving-investing/" };
+
+	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_SYS_URL = {
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/francais/produits-et-services/operations-bancaires/assurance-medicale-de-voyage/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp",
+			"https://www1.sys.tdcanadatrust.com/products-services/banking/travel-medical-insurance/index.jsp" };
+	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_PAT_URL = {
+			"https://www1.pat.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www1.pat.td.com/ca/fr/services-bancaires-personnels/produits/insurance/travel-medical-insurance/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www1.pat.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/" };
+	public static final String[] ARRAY_PRODUCT_TRAVEL_INSURANCE_PROD_URL = {
+			"https://www.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www.td.com/ca/fr/services-bancaires-personnels/produits/assurance/assurance-medicale-de-voyage/",
+			"https://www.zh.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/",
+			"https://www.zt.td.com/ca/en/personal-banking/products/insurance/travel-medical-insurance/" };
+	// End of Product page
+
+	// Start of OFX
+	public static final String[] ARRAY_OFX_TITLE = { "Banking Services", "Services bancaires",
+			"银行服务", "銀行服務" };
+
+	public static final String[] ARRAY_ORDER_FOREIGN_CURRENCY = { "Order Foreign Currency", "Commander des devises",
+			"订购外币", "訂購外幣" };
+
+	public static final String[] ARRAY_OFX_COPY_TEXT = {
+			"Order cash in over 50 foreign currencies. Ready for in-branch pickup within 3-5 business days.",
+			"Vous avez le choix de plus de 50 devises. Votre commande sera prête pour le ramassage dans un délai de 3 à 5 jours ouvrables.",
+			"订购 50 多种外币现钞。3 至 5 个工作日内即可在分行提取。", "訂購 50 多種外幣現鈔。3 至 5 個工作日內即可在分行領取。" };
+	public static final String[] ARRAY_OFX_WARNING_MSG = {
+			"Need foreign currency in less than 5 days? We suggest you visit a branch. Call first to make sure the currency you need is available.",
+			"Il vous faut les devises dans moins de cinq jours? Vous pouvez passer à une succursale. Appelez à l’avance pour vous assurer que la devise voulue est bien disponible.",
+			"需要在 5 天内获得外币？我们建议您亲临分行。请提前致电，确认分行备有您需要的货币。", "需要在 5 天內領取外幣？建議您親臨分行購買。請提前致電，確認分行備有您需要的貨幣。" };
+	// public static final String[] ARRAY_OFX_CONTACT_INFO = { "CONTACT
+	// INFORMATION", "COORDONNÉES", "联系信息", "聯絡資料" };
+	public static final String[] ARRAY_OFX_EMAIL = { "Email (optional)", "Courriel (facultatif)", "电子邮箱(选填)",
+			"電子郵件(選填)" };
+	public static final String[] ARRAY_OFX_PHONE = { "Phone Number", "Numéro de téléphone", "电话号码", "電話號碼" };
+	public static final String[] ARRAY_OFX_CONTACT_COPY_TEXT = {
+			"We only use your information to contact you about your request.",
+			"Vos renseignements seront uniquement utilisés pour communiquer avec vous au sujet de votre demande.",
+			"我们仅会使用您的联系信息向您查询订单。", "我們只會使用您的聯絡資料來向您查詢訂單。" };
+	public static final String[] ARRAY_OFX_PREVIEW_CURRENCY_ORDER = { "Preview Currency Order",
+			"Visualiser la commande de devises", "预览货币订单", "預覽貨幣訂單" };
+	public static final String[] ARRAY_OFX_CONTINUE = { "Continue", "Continuer", "继续", "繼續" };
+	// public static final String[] ARRAY_OFX_CURRENCY_TITLE = { "Currency",
+	// "Devise", "货币", "貨幣" };
+	public static final String[] ARRAY_OFX_CURRENCY_TITLE = { "Select a currency", "Sélectionnez une devise", "选择货币",
+			"選擇貨幣" };
+	public static final String[] ARRAY_OFX_CURRENCY_DROPDOWN_SEARCH = { "Search currencies", "Rerchercher des devises",
+			"搜索货币", "搜尋貨幣" };
+	public static final String[] ARRAY_OFX_FORM_I_HAVE = { "I have", "J’ai", "现有货币", "現有貨幣" };
+	public static final String[] ARRAY_OFX_FORM_I_WANT = { "I want", "Je veux", "我要兑换", "我要兌換" };
+	public static final String[] ARRAY_OFX_PICKUP_LOCATION = { "Pickup Location", "Lieu de ramassage", "提取地点", "領取地點" };
+	public static final String[] ARRAY_OFX_PICKUP_DEFAULT = { "Select a branch", "Sélectionnez une succursale", "选择分行",
+			"選擇分行" };
+	public static final String[] ARRAY_OFX_RATE_FORMAT = { "1 CAD =.*", "1 CAD =.*", "1 CAD =.*", "1 CAD =.*" };
+	public static final String[] ARRAY_OFX_MIN_MAX_FORMAT = { "Min\\s*:.*Max\\s*:.*", "Min\\.\\s*:.*Max\\.\\s*:.*",
+			"最少\\s*:.*最多\\s*:.*", "最少\\s*:.*最多\\s*:.*" };
+	public static final String[] ARRAY_OFX_INVALID_EMAIL_ERROR = { "Please type in a valid email address.",
+			"Veuillez entrer une adresse courriel valide.", "请输入有效的电子邮箱地址。", "請輸入有效的電子郵箱地址。" };
+	public static final String[] ARRAY_OFX_INVALID_PHONE_ERROR = { "Please enter a 10-digit phone number.",
+			"Veuillez entrer un numéro de téléphone à 10 chiffres.", "请输入 10 位数电话号码。", "請輸入 10 位數電話號碼。" };
+	public static final String[] ARRAY_OFX_MIN_CAD_AMOUNT_ERROR = {
+			"We need a minimum of CAD\\s+100 for a currency exchange. Please try a higher amount.",
+			"Il faut échanger au moins 100\\s+CAD. Veuillez entrer un montant plus élevé.", "外币兑换必须至少CAD\\s+100起。请输入较高的金额。",
+			"外幣兌換必須至少CAD\\s+100起。請輸入較高的金額。" };
+	public static final String[] ARRAY_OFX_MAX_CAD_AMOUNT_ERROR = {
+			"Sorry, we can't process more than CAD \\d+(,\\d{3})*(\\.\\d+)*.* for this currency exchange. Please try a lower amount.",
+			"Désolés, nous ne pouvons pas traiter plus de \\d+(\\s\\d{3})*(,\\d+)*\\s*CAD.\\s*Veuillez entrer un montant moins élevé.",
+			"很抱歉，我们暂时无法为此货币兑换超过CAD\\s*\\d+(,\\d{3})*(\\.\\d+)*。请输入较低的金额。",
+			"很抱歉，我們暫時無法為此貨幣兌換超過CAD\\s*\\d+(,\\d{3})*(\\.\\d+)*.*。請輸入較低的金額。" };
+	public static final String[] ARRAY_OFX_MIN_DES_AMOUNT_ERROR = {
+			"We need a minimum [A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*.Please try a higher amount.",
+			"Il faut un montant d’au moins  \\d+(\\s\\d{3})*(,\\d+)*\\s*[A-Z]{3}\\s*.\\s*Veuillez entrer un montant plus élevé.",
+			"金额必须至少\\s*[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*起。请输入较高的金额。",
+			"金額必須至少\\s*[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*起。請輸入較高的金額。" };
+	public static final String[] ARRAY_OFX_MAX_DES_AMOUNT_ERROR = {
+			"Sorry, we can't process more than [A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*.*. Please try a lower amount.",
+			"Désolés, nous ne pouvons pas traiter plus de \\d+(\\s\\d{3})*(,\\d+)*\\s*[A-Z]{3}.\\s*Veuillez entrer un montant moins élevé.",
+			"很抱歉，我们暂时无法为此货币兑换超过[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*。请输入较低的金额。",
+			"很抱歉，我們暫時無法為此貨幣兌換超過[A-Z]{3}\\s*\\d+(,\\d{3})*(\\.\\d+)*。請輸入較低的金額。" };
+	public static final String[] ARRAY_OFX_PREVIEW_WARNING = {
+			"All online currency orders are final and cannot be cancelled once the order is placed.",
+			"Toutes les commandes de devises en ligne sont finales et ne peuvent pas être annulées une fois soumises.",
+			"所有在线货币订单均为最终交易，下单之后便无法取消。", "所有網上貨幣訂單均為最終交易，下單之後即無法取消。" };
+	public static final String[] ARRAY_OFX_PREVIEW_CURRENCY = { "Foreign Currency", "Devises", "货币", "貨幣" };
+	public static final String[] ARRAY_OFX_PREVIEW_EXCHANGE_RATE = { "Foreign Exchange Rate", "Taux de change", "汇率",
+			"匯率" };
+	public static final String[] ARRAY_OFX_PREVIEW_AMOUNT = { "Amount I want", "Montant désiré", "我要兌換", "我要兌換" };
+	public static final String[] ARRAY_OFX_PREVIEW_DEBIT_AMOUNT = { "Amount I have", "Montant désiré", "现有金额", "現有金額" };
+	public static final String[] ARRAY_OFX_PREVIEW_PICKUP_LOCATION = { "Pickup Location", "Lieu de ramassage", "提取地点",
+			"領取地點" };
+	public static final String[] ARRAY_OFX_RECEIPT_CONFIRM_COPY = { "We've started to work on your currency request.",
+			"Le traitement de votre commande de devises a commencé.", "我们已经开始处理您的货币订购请求。", "我們已經開始處理您的貨幣訂購請求。" };
+
+	public static final String[] ARRAY_OFX_RECEIPT_COPY = {
+			"Orders are ready in 3-5 business days\\.*\\s*We'll call you when it's ready for pick up\\.*\\s*Allow up to 6 hours for the withdrawal of funds to be reflected in your account\\.*\\s*Currency not picked up after 4 weeks will be exchanged back to Canadian dollars at the latest exchange rate\\.* and deposited to your account",
+			"Les commandes sont prêtes pour le ramassage dans un délai de 3 à 5 jours ouvrables.\\s*Nous vous appellerons pour vous informer que votre commande est prête.\\s*Veuillez noter que le retrait des fonds peut prendre 6 heures avant d'être porté à votre compte.\\s*Si la commande n’est pas ramassée dans un délai de 4 semaines, les devises seront converties en dollars canadiens au taux de change en vigueur et le tout sera déposé dans votre compte.",
+			"您订购的外币将在 3 至 5 个工作日内备妥\\s*我们会打电话通知您何时可以提取\\s*取款将在 6 个小时内显示在您的账户中\\s*如果外币在四周后尚未提取，将按照最新汇率重新兑换成加元并存入您的账户",
+			"所訂外幣將在 3 至 5 個工作日內備妥\\s*我們會打電話通知您何時可以領取\\s*取款將在 6 個小時內顯示在您的賬戶中\\s*如外幣在四個星期後仍未領取，將按照最新匯率重新兌換成加元存入您的賬戶" };
+	public static final String[] ARRAY_OFX_RECEIPT_REQUEST = { "Requested", "Date de la demande", "申请时间", "申購時間" };
+	public static final String[] ARRAY_OFX_POPUP_CANCEL_ORDER = {
+			"Are you sure you want to cancel this currency order?",
+			"Voulez-vous vraiment annuler cette commande de devises?", "您确定要取消该货币订单吗？", "您確定要取消此貨幣訂單嗎？" };
+	public static final String[] ARRAY_OFX_POPUP_CANCEL_TITLE = { "Cancel Currency Order",
+			"Annulation de la commande de devises", "取消货币订单", "取消貨幣訂單" };
+	public static final String[] ARRAY_OFX_ORDER_NOW = { "Order Now", "Commander", "立即订购", "立即訂購" };
+	public static final String[] ARRAY_OFX_RATE_EXPIRED = { "Foreign Exchange Rate Expired",
+			"Le taux de change a expiré.", "汇率已失效", "匯率已失效" };
+	public static final String[] ARRAY_OFX_RATE_EXPIRED_COPY = {
+			"Please continue to see the updated foreign exchange rate and continue with your order.",
+			"Veuillez continuer pour consulter le nouveau taux de change et poursuivre votre commande.",
+			"请继续查看更新后的汇率，并继续订购。", "請繼續查看更新後的匯率，並繼續訂購。" };
+	public static final String[] ARRAY_OFX_RATE_EXPIRED_OK = { "Continue", "Continuer", "继续", "繼續" };
+	public static final String[] ARRAY_OFX_SELECT_ACCOUNT_DEFAULT = { "Select account", "Sélectionnez un compte",
+			"选择账户", "選擇賬戶" };
+	public static final String[] ARRAY_OFX_PREVIEW_PICKUP_LOCATION_DEFAULT = { "Select a branch",
+			"Sélectionnez une succursale", "选择分行", "選擇分行" };
+	public static final String[] ARRAY_OFX_PREVIEW_EMAIL = { "Email", "Courriel", "电子邮箱", "電子邮箱" };
+	public static final String[] ARRAY_OFX_POPUP_DONT_CANCEL = { "Don't Cancel", "Ne pas annuler", "不要取消", "不要取消" };
+	public static final String[] ARRAY_OFX_POPUP_CANCEL = { "Cancel Order", "Annuler la commande", "取消订单", "取消訂單" };
+	public static final String[] ARRAY_OFX_CURRENCY_ADJUST_WARNING = {
+			"The foreign currency amount has been rounded and your original currency amount adjusted.",
+			"Le montant de la devise étrangère a été arrondi et celui de votre devise a été ajusté.",
+			"货币金额已四舍五入，原来的金额已调整。", "貨幣金額已四捨五入，原來的金額已調整。" };
+	public static final String[] ARRAY_OFX_NO_SEARCH_ERROR = {
+			"We couldn't find the currency you entered. Please check the spelling and try again.",
+			"Nous n'avons pas trouvé la devise entrée. Veuillez vérifier que l’orthographe est correcte, puis réessayez.",
+			"找不到您输入的货币。请检查拼写，然后重试。", "找不到您輸入的貨幣。請檢查拼字，然後再試。" };
+	public static final String[] ARRAY_OFX_ERROR_AMOUNT_GREATER_BALANCE = {
+			"You don't have enough funds in the account you selected.\\s*Please try a lower amount or use a different account.",
+			"Le compte sélectionné ne contient pas les fonds requis.\\s*Entrez un montant inférieur ou utilisez un autre compte.",
+			"您所选账户中没有足够的资金。请尝试较低的金额或者使用其他账户。", "您所選賬戶中沒有足夠的資金。請輸入較低金額或使用其他賬戶。" };
+	public static final String[] ARRAY_OFX_SEARCH_DISCLAIMER = {
+			"We couldn't find the currency you entered. Please check the spelling and try again.",
+			"Nous n'avons pas trouvé la devise entrée. Veuillez vérifier que l’orthographe est correcte, puis réessayez.",
+			"找不到您输入的货币。请检查拼写，然后重试。", "找不到您輸入的貨幣。請檢查拼字，然後再試。" };
+	public static final String[] ARRAY_OFX_SEND_CURRENCY_TOBRANCH = { "Send My Currency Here", "Choisir cette adresse",
+			"递送货币到此分行", "遞送貨幣到此分行" };
+	public static final String[] ARRAY_OFX_DATE_NORMAL_FORMAT = {
+			"[A-Z,a-z]{3}\\s{1}\\d{1,2},\\s{1}\\d{4}\\s{1}at\\s{1}\\d{1,2}:\\d{2}:\\d{2}\\s{1}\\s{1}[A-Z]{3}",
+			"\\d{1,2}.*\\d{4}\\s{1}a\\s{1}\\d{1,2}:\\d{2}:\\d{2}\\s{1}[A-Z]{3}",
+			"\\d{4}年\\d{1,2}月\\d{1,2}日.*（上午）*（下午）*\\s*\\d{1,2}:\\d{2}:\\d{2}",
+			"\\d{4}年\\d{1,2}月\\d{1,2}日.*（上午）*（下午）*\\s*\\d{1,2}:\\d{2}:\\d{2}" };
+	// End of OFX
+
 	public static final String[] ARRAY_LOGIN_SECURITY_QUESTION = { "Security Question", "Question de sécurité", "安全问题",
 			"安全問題" };
 	public static final String[] ARRAY_SECURITY_LOGIN = { "Login", "Ouvrir une session", "登录", "登入" };
@@ -625,6 +1014,9 @@ public final class StringArray {
 			"新增美國收款人" };
 	public static final String[] ARRAY_PAY_US_BILL_TITLE = { "Pay U.S. Bill", "Payer des factures américaines",
 			"支付美国账单", "支付美國賬單" };
+	public static final String[] ARRAY_PAYEE_CAPTION = { "Payee", "Preneur", "收款人", "收款人" };
+	public static final String[] ARRAY_PAY_CANDIAN_BILL_TITLE = { "Pay Bill", "Paiement de factures", "支付账单", "支付賬單" };
+	public static final String[] ARRAY_REVIEW_PAY_BILL_BTN = { "Pay Bill", "Paiement De Factures", "支付账单", "支付賬單" };
 	public static final String[] ARRAY_INVESTING_OPEN_ACCOUNT = { "Open a TD Direct Investing Account",
 			"Ouvrir un compte Placements directs TD", "开设道明自管投资账户", "開設道明自管投資賬戶" };
 	public static final String[] ARRAY_INVESTING_CROSS_MSG = {
@@ -689,7 +1081,8 @@ public final class StringArray {
 	public static final String[] CANCEL_MONEY_RECEIPT_HEADER = { "Request Cancelled", "Demande annulée", "", "" };
 	public static final String[] SETUP_AUTODEPOSIT_STR = { "Set up Autodeposit", "Établir Autodépôt", "", "" };
 
-//TDI
-	public static final String[] LOGIN_ERROR_MSG = { "select the Forgot your Username or Password? link below to reset",	};
+	// TDI
+	public static final String[] LOGIN_ERROR_MSG = {
+			"select the Forgot your Username or Password? link below to reset", };
 
 }

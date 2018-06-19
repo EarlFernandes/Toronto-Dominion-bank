@@ -26,7 +26,7 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement FundDetails_header;
 
-	@iOSFindBy(xpath = "//XCUIElementTypeWebView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
+	@iOSFindBy(xpath = "//XCUIElementTypeWebView[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/action_bar_title']")
 	private MobileElement quote_FundDetails_header;
 
@@ -55,7 +55,7 @@ public class FundDetails extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/fund_category']")
 	private MobileElement fund_category;
 
-	@iOSFindBy(xpath = "//*[@name='conversion_rate_label']")
+	@iOSFindBy(xpath = "//XCUIElementTypeStaticText[@name='conversion_rate_label'] | //XCUIElementTypeOther[@name='conversion_rate_label']")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/conversion_rate_used']")
 	private MobileElement usd_conversion_rate;
 
@@ -161,8 +161,7 @@ public class FundDetails extends _CommonPage {
 				}
 
 			} else {
-				mobileAction.verifyElementTextIsDisplayed(quote_FundDetails_header,
-						getTextInCurrentLocale(StringArray.ARRAY_MF_FUND_DETAIL_HEADER));
+				mobileAction.verifyElementIsDisplayed(quote_FundDetails_header,"Fund Detail");
 			}
 
 		} catch (NoSuchElementException | IOException e) {
@@ -319,12 +318,13 @@ public class FundDetails extends _CommonPage {
 	public void VerifyUSDConversionRatePresent() {
 		try {
 			Decorator();
-			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
-				mobileAction.FuncSwipeOnce("up");
-				mobileAction.Report_Pass_Verified("IOS usd conversion rate, need to check manually");
-				return;
-			}
-			mobileAction.FuncSwipeWhileElementNotFound(usd_conversion_rate, false, 10, "up");
+//			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
+//				mobileAction.FuncSwipeOnce("up");
+//				mobileAction.Report_Pass_Verified("IOS usd conversion rate, need to check manually");
+//				return;
+//			}
+//			mobileAction.FuncSwipeWhileElementNotFound(usd_conversion_rate, false, 10, "up");
+			mobileAction.FuncSwipeOnce("up");
 			String conversionText = mobileAction.getValue(usd_conversion_rate);
 			String expectedTextReg = getTextInCurrentLocale(StringArray.ARRAY_MF_USD_CONVERSION_RATE);
 			String expectedText = mobileAction.FuncGetValByRegx(conversionText, expectedTextReg);

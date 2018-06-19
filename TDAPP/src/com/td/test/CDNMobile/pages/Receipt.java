@@ -26,7 +26,7 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(id = "android:id/action_bar_title")
 	private MobileElement receiptHeader;
 
-	@iOSFindBy(accessibility = "QUICKACCESS_CELL_MENU_ICON_HOME")
+	@iOSXCUITFindBy(xpath = "//*[@name='QUICKACCESS_CELL_MENU_ICON_HOME' or @name='QUICKACCESS_CELL_QUICKLINKS_BACKHOME_ON']")
 	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button' and @text='GO BACK HOME']")
 	private MobileElement homeBtn;
 
@@ -69,6 +69,34 @@ public class Receipt extends _CommonPage {
 	@iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell[12]/XCUIElementTypeStaticText")
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/footer_txt_note']")
 	private MobileElement foot_note;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/review_row_label']")
+	private List<MobileElement> rbp_receipt_caption_list;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/review_row_primary_text']")
+	private List<MobileElement> rbp_receipt_info_list;
+
+	private MobileElement payee_account_number;
+	private MobileElement frome_account_number;
+
+	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_PAYANOTHERBILL_ICON")
+	private MobileElement quickLink_payAnotherBillBtn;
+
+	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_UPCOMINGBILLS_OFF")
+	private MobileElement quickLink_scheduledPaymentsBtn;
+
+	@iOSXCUITFindBy(accessibility = "QUICKACCESS_CELL_QUICKLINKS_PAYBILLS")
+	private MobileElement quickLink_BillsBtn;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button']")
+	private List<MobileElement> quickLink_Btn_List;
+
+	@AndroidFindBy(xpath = "//android.widget.HorizontalScrollView[@resource-id='com.td:id/quick_links']")
+	private MobileElement quickLinks_view;
+
+	String accountReg = "\\•{4}\\s?\\d{4}";
 
 	@AndroidFindBy(id = "com.td:id/thank_you")
 	private MobileElement thankYouTitle;
@@ -137,8 +165,12 @@ public class Receipt extends _CommonPage {
 	private MobileElement fromAccountValueUS;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
-	@AndroidFindBy(id = "com.td:id/from_account_bal")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_bal' or @resource-id='com.td:id/review_row_tertiary_text']")
 	private MobileElement fromBankAccountValueUS;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[4]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/from_account_bal' or @resource-id='com.td:id/review_row_tertiary_text']")
+	private MobileElement fromAccountValue_Receipt;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]")
 	@AndroidFindBy(id = "com.td:id/payee_details")
@@ -170,9 +202,41 @@ public class Receipt extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.webkit.WebView/android.view.View/android.view.View")
 	private MobileElement bannerImage;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you' or @resource-id='com.td:id/primary_header']")
+	private MobileElement rbp_thankyou;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[2] | //XCUIElementTypeStaticText[@name='-Message']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/message' or @resource-id='com.td:id/sub_header']")
+	private MobileElement receipt_message;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[3]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/confirmation']")
+	private MobileElement confirmation_label;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[2]//XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/custom_text']")
+	private MobileElement rbp_copy_text;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='How Often' or @label='Type de paiement' or @label='次数' or @label='次數']/following-sibling::XCUIElementTypeStaticText")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='How Often' or @text='Type de paiement' or @text='次数' or @text='次數']/following-sibling::android.widget.RelativeLayout/android.widget.TextView")
+	private MobileElement rbp_howoften_selection;
+
 	@iOSXCUITFindBy(accessibility = "RECEIPTHEADER_CONFIRM")
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
 	private MobileElement cnfrDetailRewards;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeOther[1]//XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/sub_header']")
+	private MobileElement ofx_copy_text;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/static_label_row_label']")
+	private MobileElement ofx_what_happen_next;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/static_label_row_description']")
+	private MobileElement ofx_what_happen_next_text;
 
 	public synchronized static Receipt get() {
 		if (Receipt == null) {
@@ -284,13 +348,12 @@ public class Receipt extends _CommonPage {
 	public void clickGoBackHomeBtn() {
 		Decorator();
 		try {
-
+			// mobileAction.FuncSwipeOnce("up");
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
-				String homeBtnxpath = "//android.widget.Button[@text='"
-						+ mobileAction.getAppString("quick_links_go_back_home") + "']";
-				System.out.println("Go back home:" + homeBtnxpath);
-				mobileAction.FuncSwipeWhileElementNotFoundByxpath(homeBtnxpath, true, 10, "up");
-
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 10, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(0), "GO BACK HOME");
+				// mobileAction.FuncSwipeWhileElementNotFound(quickLink_Btn_List.get(0), true,
+				// 10, "up");
 			} else {
 				mobileAction.FuncSwipeWhileElementNotFound(homeBtn, true, 10, "up");
 			}
@@ -346,6 +409,31 @@ public class Receipt extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(thankYouTitle, "Thank You title");
 			mobileAction.verifyElementTextIsDisplayed(thankYouTitle,
 					getTextInCurrentLocale(StringArray.ARRAY_MF_THANKYOU));
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void verifyBillCancelledReceipt() {
+		Decorator();
+		try {
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("iOS")) {
+				String labelText = getTextInCurrentLocale(StringArray.ARRAY_RBP_BILL_CANCELLED_DONE);
+				thankYouTitle = mobileAction.verifyElementUsingXPath("//*[@label='" + labelText + "']", "All Done!");
+			}
+			mobileAction.verifyElementIsDisplayed(thankYouTitle, "All Done!");
+			mobileAction.verifyElementTextIsDisplayed(thankYouTitle,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_BILL_CANCELLED_DONE));
 
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -439,12 +527,7 @@ public class Receipt extends _CommonPage {
 				int size = detailList.size();
 				System.out.println("size of data:" + size);
 				for (int i = 0; i < size; i++) {
-					// if(i>=15 ) {
-					// String capturedText =
-					// mobileAction.getValue(detailList.get(i));
-					// System.out.println("Captured text "+ i+
-					// ":"+capturedText);
-					// }
+
 					if (detailInfomation[i].equalsIgnoreCase("ignore")) {
 						continue;
 					} else {
@@ -493,6 +576,264 @@ public class Receipt extends _CommonPage {
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void verifyRBPReceiptContent() {
+		Decorator();
+		boolean isPaymentOnce = false;
+
+		// check payment is once or ongoing
+		String paymentType = mobileAction.getValue(rbp_howoften_selection);
+		if (paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
+			isPaymentOnce = true;
+		}
+		// Verify Thank you message
+		mobileAction.verifyElementTextContains(rbp_thankyou, getTextInCurrentLocale(StringArray.ARRAY_RBP_THANKYOU));
+		mobileAction.verifyElementTextContains(receipt_message,
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_MESSAGE));
+		mobileAction.verifyElementTextContains(confirmation_label,
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_CONFIRMATION));
+
+		if (!isPaymentOnce) {
+			mobileAction.verifyElementTextContains(rbp_copy_text,
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_RECEIPT_COPY));
+		}
+		int caption_size = rbp_receipt_caption_list.size();
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce
+				&& caption_size < 6) {
+
+			mobileAction.FuncSwipeOnce("up");
+		}
+		caption_size = rbp_receipt_caption_list.size();
+		if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+			if(isPaymentOnce) {
+				caption_size =5;
+			} else {
+				if(caption_size == 7 || caption_size == 9) {
+					//R18.6 last one is "Bannel Image", remove it
+					caption_size --; 
+				}
+			}
+
+		}
+
+		if (caption_size != 5 && caption_size != 6 && caption_size != 8) {
+			System.out.println("Something wrong..., receipt caption_size:" + caption_size + " not 5, or 6, or 8");
+			return;
+		}
+		String[] expectedInfo = { getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION),
+				getTextInCurrentLocale(StringArray.ARRAY_MF_AMOUNT),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_START_DATE),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_FREQUENCY),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_NUMBER_OF_PAYMENTS),
+				getTextInCurrentLocale(StringArray.ARRAY_RBP_END_DATE) };
+
+		// check payment is once or ongoing
+
+		if (isPaymentOnce) {
+			expectedInfo[4] = getTextInCurrentLocale(StringArray.ARRAY_RBP_ONCE_DATE);
+		}
+
+		for (int i = 0; i < caption_size; i++) {
+			try {
+				if (!mobileAction.verifyElementIsPresent(rbp_receipt_caption_list.get(i))) {
+					mobileAction.FuncSwipeOnce("up");
+				}
+				mobileAction.verifyElementTextIsDisplayed(rbp_receipt_caption_list.get(i), expectedInfo[i]);
+			} catch (Exception e) {
+				System.err.println("TestCase has failed.");
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			}
+		}
+	}
+
+	public void VerifyRBPReceipt() {
+		Decorator();
+		boolean isPaymentOnce = false;
+
+		// check payment is once or ongoing
+		String paymentType = mobileAction.getValue(rbp_howoften_selection);
+		if (paymentType.equals(getTextInCurrentLocale(StringArray.ARRAY_RBP_HOWOFTEN_ONCE))) {
+			isPaymentOnce = true;
+		}
+		int info_size = rbp_receipt_info_list.size();
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android") && !isPaymentOnce
+					&& info_size < 6) {
+				mobileAction.FuncSwipeOnce("up");
+			}
+
+		} catch (Exception e) {
+
+		}
+		int caption_size = rbp_receipt_caption_list.size();
+		info_size = rbp_receipt_info_list.size();
+
+		if (info_size != caption_size) {
+			System.out.println("Something wrong..., caption_size:" + caption_size + ",info_size:" + info_size);
+			return;
+		}
+		if (info_size != 5 && info_size != 6 && info_size != 8) {
+			System.out.println("Something wrong..., info_size:" + info_size + " not 5, or 6, or 8");
+			return;
+		}
+		String expectedPayee = CL.getTestDataInstance().TCParameters.get("Payee");
+		String expectedAmount = CL.getTestDataInstance().TCParameters.get("Amount");
+		String expectedAccount = CL.getTestDataInstance().TCParameters.get("FromAccount");
+		String expectedHowOften = CL.getTestDataInstance().TCParameters.get("Price");
+		String inputStartdate = CL.getTestDataInstance().TCParameters.get("Timeout");
+		String expectedFrequency = CL.getTestDataInstance().TCParameters.get("MerchantName");
+		String secondTimeout = CL.getTestDataInstance().TCParameters.get("SecondTimeout");
+		String expectedStartOfDate = "";
+		int expectedNumberOfpayments = 0;
+		String expectedEndOfDate = "";
+
+		if (currentLocale.equalsIgnoreCase("fr")) {
+			expectedAmount = expectedAmount.replace(".", ",") + " $";
+		} else {
+			expectedAmount = "$" + expectedAmount;
+		}
+
+		String[] expectedInfo = { expectedPayee, expectedAmount, expectedAccount, expectedHowOften, inputStartdate,
+				expectedFrequency, Integer.toString(expectedNumberOfpayments), expectedEndOfDate };
+
+		// Get frequencyIn English, since in MyCalendar, frequency is in English;
+		String frequencyInEnglish = StringArray.ARRAY_RBP_FREQUENCY_OPTION[0][0];
+		boolean isFoundOfFrequency = false;
+		for (int i = 0; i < StringArray.ARRAY_RBP_FREQUENCY_OPTION.length; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (expectedFrequency.contentEquals(StringArray.ARRAY_RBP_FREQUENCY_OPTION[i][j])) {
+					frequencyInEnglish = StringArray.ARRAY_RBP_FREQUENCY_OPTION[i][0];
+					isFoundOfFrequency = true;
+					break;
+				}
+			}
+			if (isFoundOfFrequency) {
+				break;
+			}
+		}
+
+		if (!isFoundOfFrequency) {
+			System.out.println("Failed to get transferred frequency");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Failed to get transferred frequency");
+			return;
+		}
+
+		// How often is Once
+		if (info_size == 5) {
+
+			for (int i = 0; i < info_size; i++) {
+				try {
+					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+						mobileAction.FuncSwipeOnce("up");
+					}
+					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
+				} catch (Exception e) {
+
+				}
+			}
+			return;
+		}
+
+		// How often is Ongoing and "When I decide to cancel" is selected
+		if (info_size == 6) {
+			expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, frequencyInEnglish);
+			expectedInfo[4] = MyCalendar.get().convertEnglishDateToOther(expectedStartOfDate);
+			for (int i = 0; i < info_size; i++) {
+				try {
+					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+						mobileAction.FuncSwipeOnce("up");
+					}
+					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
+				} catch (Exception e) {
+
+				}
+			}
+			return;
+		}
+
+		if (info_size == 8) {
+			// Need to calculate number of payments and end date,
+			if (secondTimeout.matches("\\d+")) {
+				// End of payment is select: number of payments
+				expectedNumberOfpayments = Integer.parseInt(secondTimeout);
+				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, frequencyInEnglish);
+				expectedEndOfDate = MyCalendar.get().getEndOfDateWhenNumberOfPaymentSelected(expectedStartOfDate,
+						expectedNumberOfpayments, frequencyInEnglish);
+			} else {
+				// End of payment is select: On a specific day
+				String inputEndOfDate = secondTimeout;
+
+				expectedStartOfDate = MyCalendar.get().getStartDateInAnyCase(inputStartdate, frequencyInEnglish);
+				expectedNumberOfpayments = MyCalendar.get().getNumberOfpaymentsWhenOnSpecificDayClicked(inputStartdate,
+						inputEndOfDate, frequencyInEnglish);
+				expectedEndOfDate = MyCalendar.get().geEndOfDateWhenOnSpecificDayClicked(expectedStartOfDate,
+						inputEndOfDate, frequencyInEnglish);
+			}
+
+			// update expected Info array
+			expectedInfo[4] = MyCalendar.get().convertEnglishDateToOther(expectedStartOfDate);
+			expectedInfo[6] = Integer.toString(expectedNumberOfpayments);
+			expectedInfo[7] = MyCalendar.get().convertEnglishDateToOther(expectedEndOfDate);
+			for (int i = 0; i < info_size; i++) {
+				try {
+					if (!mobileAction.verifyElementIsPresent(rbp_receipt_info_list.get(i))) {
+						mobileAction.FuncSwipeOnce("up");
+					}
+					mobileAction.verifyElementTextIsDisplayed(rbp_receipt_info_list.get(i), expectedInfo[i]);
+				} catch (Exception e) {
+					System.err.println("TestCase has failed.");
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				}
+			}
+			return;
+		}
+	}
+
+	public void verifyPayee_FromAccountMaskedInReceipt() {
+		Decorator();
+
+		String payeeCaption = getTextInCurrentLocale(StringArray.ARRAY_PAYEE_CAPTION);
+		String from_account = getTextInCurrentLocale(StringArray.ARRAY_MF_FROM_ACCOUNT);
+		try {
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				payee_account_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ payeeCaption
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_secondary_text']",
+						"Payee number");
+				frome_account_number = mobileAction.verifyElementUsingXPath("//android.widget.TextView[@text='"
+						+ from_account
+						+ "']/following-sibling::android.widget.RelativeLayout/android.widget.TextView[@resource-id='com.td:id/review_row_secondary_text']",
+						"From Account number");
+			} else {
+				payee_account_number = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ payeeCaption + "']/following-sibling::XCUIElementTypeStaticText[2]", "Payee number");
+				frome_account_number = mobileAction.verifyElementUsingXPath("//XCUIElementTypeStaticText[@label='"
+						+ from_account + "']/following-sibling::XCUIElementTypeStaticText[2]", "From Account number");
+			}
+			String capturedPayeeNumber = mobileAction.getValue(payee_account_number);
+			String capturedFromAccount = mobileAction.getValue(frome_account_number);
+
+			System.out.println("capturedPayeeNumber:" + capturedPayeeNumber);
+			System.out.println("capturedFromAccount:" + capturedFromAccount);
+			if (capturedPayeeNumber.matches(accountReg)) {
+				mobileAction.Report_Pass_Verified("Masked Payee account:" + capturedPayeeNumber);
+			} else {
+				mobileAction.Report_Fail_Not_Verified("Masked Payee account:" + capturedPayeeNumber);
+			}
+
+			if (capturedFromAccount.matches(accountReg)) {
+				mobileAction.Report_Pass_Verified("Masked From account:" + capturedFromAccount);
+			} else {
+				mobileAction.Report_Fail_Not_Verified("Masked From account:" + capturedFromAccount);
+			}
+
+		} catch (Exception e) {
+
 		}
 	}
 
@@ -665,6 +1006,25 @@ public class Receipt extends _CommonPage {
 
 	}
 
+	public void ClickPayAnotherBillBtn() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 3, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(1), "Quick Link Pay another Bill");
+
+			} else {
+				mobileAction.FuncSwipeWhileElementNotFound(quickLink_payAnotherBillBtn, true, 3, "up");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 	public void clickGoBackHome() {
 		Decorator();
 		try {
@@ -735,6 +1095,24 @@ public class Receipt extends _CommonPage {
 
 	}
 
+	public void ClickSchedulePaymentsBtn() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 3, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(2), "Quick Link Schedule Payments");
+
+			} else {
+				mobileAction.FuncSwipeWhileElementNotFound(quickLink_scheduledPaymentsBtn, true, 3, "up");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
 	public void verifyReceiptBanner() {
 		Decorator();
 		try {
@@ -759,6 +1137,24 @@ public class Receipt extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void ClickQuickLinkBillsBtn() {
+		Decorator();
+		try {
+
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				mobileAction.FuncSwipeWhileElementNotFound(quickLinks_view, false, 3, "up");
+				mobileAction.FuncClick(quickLink_Btn_List.get(3), "Quick Link Bills");
+
+			} else {
+				mobileAction.FuncSwipeWhileElementNotFound(quickLink_BillsBtn, true, 3, "up");
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 
 	public void verifyPayWithRewardsReceipt() {
@@ -821,6 +1217,140 @@ public class Receipt extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 
+	}
+
+	public void verifyBalanceInReceipt() {
+		Decorator();
+		try {
+			Boolean isTransfer = false;
+			String receiptMsg = mobileAction.getValue(receipt_message);
+			System.out.println("Receipt message:" + receiptMsg);
+			if (receiptMsg.contains("Transfer")) {
+				System.out.println("Transfer receipt");
+				isTransfer = true;
+			} else {
+				System.out.println("Pay bill receipt");
+				isTransfer = false;
+			}
+
+			if (!isTransfer) {
+				String fromBalance = mobileAction.getValue(fromAccountValue_Receipt);
+				System.out.println(fromBalance);
+				double fromaccountCaptured = mobileAction.convertStringAmountTodouble(fromBalance);
+				double fromAccountExpected = Double.parseDouble(CL.getTestDataInstance().TCParameters.get("Dividend"));
+				if (fromaccountCaptured == fromAccountExpected) {
+					mobileAction.Report_Pass_Verified("From Account balance");
+				} else {
+					mobileAction.Report_Fail("Failed to verify from account balance");
+				}
+				clickGoBackHome();
+				return;
+			}
+
+			String fromBalance = mobileAction.getValue(fromBankAccountValueUS);
+			String toBalance = mobileAction.getValue(ToAccountValue);
+			String fxamt = mobileAction.getValue(amountValue);
+
+			fromBalance = fromBalance.substring(fromBalance.lastIndexOf(" ") + 1);
+			toBalance = toBalance.substring(toBalance.lastIndexOf(" ") + 1);
+			fxamt = fxamt.substring(fxamt.lastIndexOf(" ") + 1);
+
+			System.out.println(fromBalance + " " + toBalance + " " + fxamt);
+
+			double fromaccountCaptured = mobileAction.convertStringAmountTodouble(fromBalance);
+			double toAccountCaptured = mobileAction.convertStringAmountTodouble(toBalance);
+
+			double fromAccountExpected = Double.parseDouble(CL.getTestDataInstance().TCParameters.get("Dividend"));
+			double toAccountExpected = Double.parseDouble(CL.getTestDataInstance().TCParameters.get("Quantity"));
+
+			if (fromaccountCaptured == fromAccountExpected) {
+				mobileAction.Report_Pass_Verified("From Account balance");
+			} else {
+				mobileAction.Report_Fail("Failed to verify from account balance");
+			}
+
+			if (toAccountCaptured == toAccountExpected) {
+				mobileAction.Report_Pass_Verified("To Account balance");
+			} else {
+				mobileAction.Report_Fail("Failed to verify to account balance");
+			}
+
+			clickGoBackHome();
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
+	}
+
+	public void VerifyOFXReceiptContent() {
+		Decorator();
+		try {
+			mobileAction.verifyElementTextIsDisplayed(PageHeader.get().getHeaderTextElement(),
+					getTextInCurrentLocale(StringArray.ARRAY_MF_RECEIPT_HEADER));
+			mobileAction.verifyElementTextIsDisplayed(ofx_copy_text,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_CONFIRM_COPY));
+			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next,
+					getTextInCurrentLocale(StringArray.ARRAY_MF_NEXT_HAPPEN));
+			mobileAction.verifyElementTextIsDisplayed(ofx_what_happen_next_text,
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_COPY));
+
+			String[] expectedTextArray = { getTextInCurrentLocale(StringArray.ARRAY_OFX_RECEIPT_REQUEST),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_CURRENCY),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_EXCHANGE_RATE),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_AMOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_DEBIT_AMOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_RBP_FROM_ACCOUNT),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_PICKUP_LOCATION),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PHONE),
+					getTextInCurrentLocale(StringArray.ARRAY_OFX_PREVIEW_EMAIL)
+
+			};
+			String elementXpath = "";
+			for (int i = 0; i < expectedTextArray.length; i++) {
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+
+					elementXpath = "//android.widget.TextView[@text='" + expectedTextArray[i] + "']";
+				} else {
+					elementXpath = "//XCUIElementTypeStaticText[@label='" + expectedTextArray[i] + "']";
+				}
+
+				if (mobileAction.verifyElementIsPresentByXpath(elementXpath)) {
+					mobileAction.Report_Pass_Verified(expectedTextArray[i]);
+				} else {
+					mobileAction.FuncSwipeOnce("up");
+					mobileAction.verifyElementUsingXPath(elementXpath, expectedTextArray[i]);
+				}
+				if (i == 0) {
+					if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+						elementXpath = "//android.widget.TextView[@text='" + expectedTextArray[i]
+								+ "']/../android.widget.RelativeLayout/android.widget.TextView";
+					} else {
+						elementXpath = "//XCUIElementTypeStaticText[@label='" + expectedTextArray[i]
+								+ "']/following-sibling::XCUIElementTypeStaticText";
+					}
+					MobileElement requestedTimeDate = mobileAction.verifyElementUsingXPath(elementXpath,
+							"Requested Data and Time");
+					String dateTime = mobileAction.getValue(requestedTimeDate);
+					if (dateTime.matches(getTextInCurrentLocale(StringArray.ARRAY_OFX_DATE_NORMAL_FORMAT))) {
+						mobileAction.Report_Pass_Verified(dateTime);
+					} else {
+						mobileAction.Report_Fail("Failed to verify date and time format:" + dateTime);
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			System.err.println("TestCase has failed.");
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.td;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -1177,6 +1178,10 @@ public class MobileAction2 extends CommonLib {
 																				// Modified
 		try {
 			String sEleText = FuncGetElementText(objElement);
+			// for French, sometimes the captured text contains french space,
+			// need to replace it to English space
+			sEleText = sEleText.replace(" ", " "); // they looks like the same,
+													// but they are different
 			if (sEleText != null) {
 				if (sEleText.contains(text))
 					GetReporting().FuncReport("Pass",
@@ -1781,15 +1786,19 @@ public class MobileAction2 extends CommonLib {
 			String capturedText = getValue(mobileElement);
 			capturedText = capturedText.trim().replaceAll("\n ", "");
 			capturedText = capturedText.trim().replaceAll("\n", "");
+			capturedText = capturedText.replaceAll(" ", " "); // replace any
+																// french space
+																// with english
+																// space
 			for (int i = 0; i < expectedHeadertext.length; i++) {
-				if (capturedText.equalsIgnoreCase(expectedHeadertext[i].trim())) {
+				if (capturedText.contentEquals(expectedHeadertext[i].trim())) {
 					System.out.println("Expected matched:" + capturedText);
 					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
 					verified = true;
 					break;
 				} else if (capturedText.matches(expectedHeadertext[i].trim())) {
 					System.out.println("Expected matched:" + capturedText);
-					GetReporting().FuncReport("Pass", "The '" + expectedHeadertext[i].trim() + "' is verified");
+					GetReporting().FuncReport("Pass", "The '" + capturedText + "' is verified");
 					verified = true;
 					break;
 				}
@@ -3051,7 +3060,7 @@ public class MobileAction2 extends CommonLib {
 				GetReporting().FuncReport("Pass", "The Key board was hidden");
 			} else {
 
-				String donePath = "//*[@name='Go' or @label='Done' or @label='OK' or @name='Toolbar Done Button' or @label='Toolbar Done Button' or @label='"
+				String donePath = "//*[@name='Go' or @label='Done' or @name='Done' or @label='OK' or @name='Toolbar Done Button' or @label='Toolbar Done Button' or @label='"
 						+ getAppString("secureLoginEditButtonDone") + "']";
 				MobileElement Done = (MobileElement) GetAppiumDriver().findElement(By.xpath(donePath));
 				Done.click();
@@ -3461,7 +3470,7 @@ public class MobileAction2 extends CommonLib {
 		System.out.println("Waiting for progress vanishing");
 		waitForElementToVanish(progressBar);
 	}
-	
+
 	public void clickMenuButton() {
 
 		// Not clear why it failed to click menu on iPad, so let's try max 5
@@ -3729,6 +3738,62 @@ public class MobileAction2 extends CommonLib {
 
 	}
 
+	public void FuncSwipeOneScreenWithInElement(MobileElement swipeWithinElement, String sDirection) {
+
+		Point elementWithinLocation = swipeWithinElement.getLocation();
+		Dimension elementWithinDimension = swipeWithinElement.getSize();
+		int locationX = elementWithinLocation.getX();
+		int locationY = elementWithinLocation.getY();
+		int dimensionX = elementWithinDimension.width;
+		int dimensionY = elementWithinDimension.height;
+
+		int startx, starty, endx, endy;
+		if (sDirection.equalsIgnoreCase("up")) {
+			startx = locationX + dimensionX / 2;
+			endx = startx;
+			starty = locationY + (int) (dimensionY * 0.95);
+			endy = locationY + (int) (dimensionY * 0.083);
+		} else {
+			startx = locationX + dimensionX / 2;
+			endx = startx;
+			starty = locationY + (int) (dimensionY * 0.08);
+			endy = locationY + (int) (dimensionY * 0.95);
+		}
+		try {
+
+			((AppiumDriver<WebElement>) ((AppiumDriver) GetDriver())).swipe(startx, starty, endx, endy, 2000);
+		} catch (Exception e) {
+			try {
+				GetReporting().FuncReport("Fail", "Exception occurred.Swiped failed.");
+				e.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+
+	}
+
+	public double RoundTo2Decimals(double val) {
+		DecimalFormat df2 = new DecimalFormat("###.##");
+		return Double.valueOf(df2.format(val));
+	}
+
+	public void javaScriptClick(WebDriver driver, WebElement item) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", item);
+
+	}
+
+	public void FuncClickCoordinatesInElement(MobileElement ElementToBeClicked) throws Exception {
+		Point elementWithinLocation = ElementToBeClicked.getLocation();
+		Dimension elementWithinDimension = ElementToBeClicked.getSize();
+		int locationX = elementWithinLocation.getX();
+		int locationY = elementWithinLocation.getY();
+		int dimensionX = elementWithinDimension.width;
+		int dimensionY = elementWithinDimension.height;
+
+		FuncClickCoordinates(locationX + dimensionX / 2, locationY + dimensionY / 2, 1);
+
+	}
 
 }
-

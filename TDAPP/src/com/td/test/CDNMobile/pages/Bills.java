@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -51,6 +52,14 @@ public class Bills extends _CommonPage {
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE")
 	@AndroidFindBy(xpath = "//*[@text='Scheduled Payments']")
 	private MobileElement scheduledPayments;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton[1]")
+	@AndroidFindBy(id = "com.td:id/payments_card_header")
+	private MobileElement scheduledPayments_link;
+
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell[4]/XCUIElementTypeButton[2]")
+	@AndroidFindBy(id = "com.td:id/payments_card_action")
+	private MobileElement view_all_link;
 
 	@iOSFindBy(accessibility = "BILLVIEW_SCHEDULE_DES")
 	private MobileElement scheduledPaymentsDes;
@@ -101,6 +110,10 @@ public class Bills extends _CommonPage {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/headerDate']")
 	private List<MobileElement> dateHeaders;
+
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable//XCUIElementTypeTable/XCUIElementTypeCell")
+	@AndroidFindBy(xpath = "//android.support.v7.widget.RecyclerView[@resource-id='com.td:id/scheduledPaymentsListView']/android.widget.RelativeLayout")
+	private List<MobileElement> scheduled_Payments_List;
 
 	@iOSFindBy(accessibility = "PAYBILL_VIEW_PAYEE")
 	@AndroidFindBy(id = "com.td:id/payeeLabel")
@@ -262,7 +275,6 @@ public class Bills extends _CommonPage {
 	public void verifyBillHeader() {
 		Decorator();
 		try {
-
 			MobileElement pageHeader = PageHeader.get().getHeaderTextElement();
 
 			mobileAction.verifyElementIsDisplayed(pageHeader, "Bills Header");
@@ -347,7 +359,7 @@ public class Bills extends _CommonPage {
 						"Scheduled Payments");
 			}
 
-			mobileAction.FuncClick(scheduledPayments, "Scheduled Payments");
+			mobileAction.FuncClick(scheduledPayments_link, "Scheduled Payments");
 			mobileAction.waitProgressBarVanish();
 
 		} catch (Exception e) {
@@ -362,8 +374,8 @@ public class Bills extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify Bill Payment landing page is accessed from menu
-	 * Bill Payment
+	 * This method will verify Bill Payment landing page is accessed from menu Bill
+	 * Payment
 	 * 
 	 * @return void
 	 * 
@@ -686,8 +698,8 @@ public class Bills extends _CommonPage {
 	}
 
 	/**
-	 * This method will verify text within elements when there are no payees
-	 * when attempting to pay a bill
+	 * This method will verify text within elements when there are no payees when
+	 * attempting to pay a bill
 	 * 
 	 * @return void
 	 * 
@@ -915,6 +927,100 @@ public class Bills extends _CommonPage {
 			}
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+		}
+	}
+
+	public void clickScheduledPayment_Link() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncClick(scheduledPayments_link, "'Scheduled Payments Link' is clicked");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void clickViewAll_Link() {
+
+		Decorator();
+		try {
+
+			mobileAction.FuncSwipeWhileElementNotFound(view_all_link, false, 5, "up");
+			mobileAction.FuncClick(view_all_link, "'View All' is clicked");
+			mobileAction.waitProgressBarVanish();
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void selectFirstActivePayment() {
+
+		Decorator();
+		boolean isActivePaymentFound = false;
+		try {
+			int listSize = scheduled_Payments_List.size();
+			if (listSize == 0) {
+				mobileAction.Report_Fail("No scheduled payments");
+			} else {
+
+				if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("ios")) {
+					for (int i = 0; i < listSize; i++) {
+						List<MobileElement> textViewList = scheduled_Payments_List.get(i)
+								.findElements(By.xpath("//XCUIElementTypeStaticText"));
+						if (textViewList.size() >= 4) {
+							System.out.println("Found Active Scheduled payments");
+							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
+							isActivePaymentFound = true;
+							break;
+						} else {
+							textViewList = scheduled_Payments_List.get(i)
+									.findElements(By.xpath("//XCUIElementTypeOther"));
+							if (textViewList.size() != 0) {
+								System.out.println("Found Active Scheduled payments");
+								mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
+								isActivePaymentFound = true;
+								break;
+							}
+						}
+					}
+				} else {
+					for (int i = 0; i < listSize; i++) {
+						List<MobileElement> textViewList = scheduled_Payments_List.get(i)
+								.findElements(By.xpath("//android.widget.TextView"));
+						if (textViewList.size() >= 4) {
+							System.out.println("Found Active Scheduled payments");
+							mobileAction.FuncClick(scheduled_Payments_List.get(i), "First Active Payment clicked");
+							isActivePaymentFound = true;
+							break;
+						}
+					}
+				}
+				if (!isActivePaymentFound) {
+					mobileAction.Report_Fail("No Active scheduled payments");
+				}
+
+			}
+
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 

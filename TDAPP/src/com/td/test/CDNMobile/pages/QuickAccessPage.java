@@ -326,6 +326,10 @@ public class QuickAccessPage extends _CommonPage {
 
 			String visibility = getTestdata("AccessCard");
 			String account = getTestdata("ToAccount");
+			if(currentLocale.equalsIgnoreCase("fr")) {
+				// Acct names translated in FR
+				account = getTestdata("FromAccount");
+			}
 			String xpath = "";
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("IOS")) {
 				xpath = "//XCUIElementTypeCell/XCUIElementTypeStaticText[contains(@label,'" + account + "')]";

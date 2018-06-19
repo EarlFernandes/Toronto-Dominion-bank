@@ -226,6 +226,9 @@ public class EventCase {
 		// Trade
 		Trade_VerifyTradePage,
 
+		// balance regression
+		Transfer_in_between_account, verifyConfirmPageAndTransfer, verifyBalanceInReceipt, selectFromAccount, verifyFromAccountBankingBalance, verifyFromAccountSummaryBalance, verifyToAccountBankingBalance, verifyToAccountSummaryBalance, GoBackToAccountPage, payMoneyAndSaveBalance, verifyBalanceInConfirmationPage, payUS_Bill, verifyReviewAndPayBill, verifyPayUsBillBalance,
+
 		// CLIP
 		VerifyMoreLinkPresent, ClickMoreLink, verifyMoreOptionHeader, ClickCardlimitIncreaseBtn, verifyCreditLimitIncreaseHeader, verifyMoreOptionsDirectionalCopy, verifyCreditCardContent, Click_GetStarted, verifyLimitIncreaseForm,
 
@@ -234,6 +237,18 @@ public class EventCase {
 
 		// Damaged Card
 		verifyReplaceDamagedCardHeader, ClickReplaceDamagedCardBtn, verifyReplaceDamagedCardDirectionalCopy, verifyDamagedCardForm,
+
+		// RBP
+		clickStartDate, selectDate, verifyPayCanadianBillContent, verifyHowOftenDropdownDefault, verifyStartDateDefaultToToday, verifyFieldsArePrefilledAfterBackFromAddPayee, verifyFrequencyOptions, verifyRBPFootNoteContent, selectOngoingFromHowOftenDropDown, verifyAndClickRewardBanner, FillPayBillWithOnce, continuePayBill, verifyReviewContent, FillPayBillWithOngoing, verifyAndClickCancelButton, verifyAndClickPayBillButton, verifyRBPReceiptContent, verifyPayee_FromAccountMaskedInReceipt, verifyPayBillHeader, ClickPayAnotherBillBtn, ClickSchedulePaymentsBtn, ClickQuickLinkBillsBtn, verifyScheduledPaymentsHeader, VerifyRBPReceipt, VerifyRBPErrorMessage, VerifyRBP1NumberOfPaymentErrorMessage, verifyPayeeFilterContents, clickViewpaymentFor, clickScheduledPayment_Link, selectStartdateAgain, VerifyEndOfDateIsBlank, VerifyEndOfDateReamins, FillPayBillWithOngoingWithoutStartDate, clickPayBillDashboard, verifyRBPScreen, verifyBankingHeader, clickPayBillQuickLink, confirmAddPayeeAndPayThisPayee, verifyPayeeOrder, verifyDefaultPayeeFilter, verifyListOfPaymentsAreWithSamePayee, clickViewpaymentForSelectPayee, verifyPaymentListByDate, clickViewAll_Link, verifyScheduledPaymentsContent, verifyMonthGrouping, verifyPaymentDue7Date, verifyBillDetailsPageHeader, selectFirstPayment, verifyBillDetailsContent, verifyCancelButtonDisplayed, selectFirstActivePayment, verifyCancelButtonNotDisplayed, selectFirstCancelledPayment, clickRBPCancelButton, ClickRBPPopupCancelButton, ClickRBPPopupDontCancelButton, verifyPopupCancelPayment, VerifyRBPErrorMessageInReviewPage, verifypayeeFilterContainsMultiAccessCardPayees, verifyBillCancelledReceipt, SelectCCRAPayee,
+
+		// Deeplink
+		verifyCreditLimitIncreaseAndCancel, confirmCancel, openChromeBrowser, verifyDamageCardWebpageAndCancel, verifyReturnToApp, verifyCancelPromptYesorNo, VerifyGetStartButton, ClickNoForCancelPrompt, waitSessionExpiredAndCancel,
+
+		// Product page
+		clickMenuExploreProducts, VerifyProductlandingPageHeader, verifyProductPagePlacement, VerifyProductlandingPageContent, verifyBankAccountsSysURL, clickCreditCardslink, clickMortgageslink, clickBorrowinglink, clickPersonalInvestinglink, clickTravelMedicalInsurancelink, clickBankAccountslink, verifyBankAccountsPatURL, verifyBankAccountsProdURL, verifyCreditCardsSysURL, verifyCreditCardsPatURL, verifyCreditCardsProdURL, verifyMortgagesSysURL, verifyMortgagesPatURL, verifyMortgagesProdURL, verifyBorrowingSysURL, verifyBorrowingPatURL, verifyBorrowingProdURL, verifyPersonalInvestingSysURL, verifyPersonalInvestingPatURL, verifyPersonalInvestingProdURL, verifyTravelInsuranceSysURL, verifyTravelInsurancePatURL, verifyTravelInsuranceProdURL,
+
+		// OFX
+		clickFlyout_CreditBankingServices, verifyCreditBankingServicesContent, clickOrderForeignCurrency, verifyOrderForeignCurrencyContent, updateHomeAndMobilePhoneIfNotexist, VerifyCreditBankingServicePageHeader, verifyPhoneIsPrefilledWithProfileMobile, VerifyOrderForeignCurrencyPageHeader, updateHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithProfileHome, emptyHomeAndEmptyMobilePhone, verifyPhoneIsPrefilledWithNothing, verifyemailIsPrefilledWithProfileEmail, updateEmailifNotExist, verifyErrorWithInvalidEmail, verifyErrorWithInvalidPhone, verifyNoErrorWithEmptyEmail, verifyMinErrorWithCADAmount, verifyMaxErrorWithCADAmount, verifyMaxErrorWithForignAmount, clickCurrencySelection, VerifyCurrencyPageHeader, randomSelectCurrency, verifyCurrencyUpdatedAsSelected, cancelSelection, verifycurrencyRateUpdatedtoSelectedCurrency, verifyIncrementBannerforCADUpdate, verifyIncrementBannerforCurrencyUpdate, VerifyRateAndMinMaxValueFormat, Fill_OFX_Form, ClickPreviewCurrencyOrder, VerifyPreviewCurrencyOrderContent, VerifyOFXReceiptContent, clickOrderNow, VerifyOFXPhoneisMasked, verifyPopupCancelCurrencyOrder, clickOFXCancelButton, VerifyPreviewCurrencyOrderPageHeader, waitForRateTimerExpired, verifyRateExpiredContent, verifyInsufficientFundError, VerifyDefaultCurrenyUSD, VerifySearchDisclaimer, VerifySearchEntryFunctional, verifyMinErrorWhileUpdateCurrency, VerifyCurrencyContent, verifyConversionRateWithoutTrailing0, verifyEmailCanBeEdited, ClickOFXPopupCancelButton,ClickOFXPopupDontCancelButton,
 
 		// myspend
 		DailyDigest_verifyHeader, DailyDigest_verifyHomePage, DailyDigest_verifyBackButton, DailyDigest_verifySpending, DailyDigest_verifyCategorySpike, DailyDigest_clickCategoryTab, DailyDigest_changeCategory, DailyDigest_verifyCategoryMessage, Logout_logout, MySpend_RegistrationFlow, MoneyPath_moneyPathFunctionality, MySpendPreferences_clickActiveAccounts, MySpendTransfers_clickBetweenMyAccounts, MySpendTransfers_PerformTransfer, MySpendPrefernces_disableAccounts, Preferences_verifyPreferenceTabs, Preferences_verifyRealTimeNotifications, Preferences_verifyDailyDigestNotifications, Preferences_verifyHomePage, TourPage_clickConnectTDApp, TourPage_mySpendLogin, Spending_Insight_verifyPageHeader, Spending_Insight_clickMenuButton, SideMenu_clickPreferences, SideMenu_clickSpendingByCategory, SideMenu_verifyDeepLinks, SideMenu_clickSideMenu, SideMenu_verifyNavigationWithinMySpend, SpendingSpike_verifySpikesCategories, SpendingByCategory_verifySpikes, SpendingInsight_clickDailyDigest, SpendingInsight_verifyAccountsSelected, TransactionHistory_verifySelectedAccounts, SideMenu_clickDailyDigest, SpendingSpike_pageMessages, Preferences_verifyPageHeader, Preferences_enableAccounts, Preferences_EnableAllAccounts, Preferences_DisableAllAccounts, Spending_Insight_verifyPreferencesDisabled, Spending_Insight_verifyPreferencesEnabled, SideMenu_clickSpendingHistory, SideMenu_clickSpendingSpikes, SideMenu_clickSpendingInsights, SideMenu_clickTransactionHistory, SpendingHistory_verifyNoSpendingHistory, SpendingHistory_verifySpendingHistory, SpendingHistory_clickMonthIcon, SpendingHistory_verifyTabs, SpendingHistory_clickHomeButton, SpendingHistory_verifySpendingHistoryHeader, spendingByCategory_verifyPageHeader, Spending_Insight_logoutTDMySpend, Spending_Insight_clickAndVerifyLogout, Spending_Insight_clickMoneyPathButton, SpendingInsights_verifySpendingInsightsPage, SpendingHistory_clickSpendingHistory, spendingByCategory_verifyCategories, spendingByCategory_changeCategoryForAllTabs, SpendingByCategory_clickHistoricalInsightBtn, SpendingSpike_verifyCurrentMonthSpending, spendingByCategory_changeCategory, TransactionHistory_verifyNoTransactionsFound, TransactionHistory_verifyTransactions, TransactionHistory_verifyPageHeader, TransactionHistory_transacHistoryFunctionality, TDAppHomePage_verifyPageHeader, TDAppHomePage_clickTDMySpend, SideMenu_clickMyAccounts, SideMenu_clickTransfers, SideMenu_clickGetTDAppButton, click_PreferencesLink,
@@ -1077,8 +1092,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_clickChangeorder:
-		 * OrderDetails.get().performChangeorder(); break;
+		 * case OrderDetails_clickChangeorder: OrderDetails.get().performChangeorder();
+		 * break;
 		 */
 
 		case OrderDetailsLimitPrice:
@@ -1119,6 +1134,10 @@ public class EventCase {
 
 		case ConfirmPayee:
 			Confirm_Payee.get().verifyConfirmPage();
+			break;
+
+		case confirmAddPayeeAndPayThisPayee:
+			Confirm_Payee.get().confirmAddPayeeAndPayThisPayee();
 			break;
 
 		case PayCanadaBill_Post_Dated:
@@ -1502,8 +1521,8 @@ public class EventCase {
 			break;
 
 		/*
-		 * case OrderDetails_CancelOrder:
-		 * OrderDetails.get().performCancelOrder(); break;
+		 * case OrderDetails_CancelOrder: OrderDetails.get().performCancelOrder();
+		 * break;
 		 */
 
 		case ConfirmOrderReciept:
@@ -2093,8 +2112,7 @@ public class EventCase {
 			break;
 
 		/*
-		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists();
-		 * break;
+		 * case verifyEmptyWatchList: Investing.get().verifyEmptyWatchLists(); break;
 		 */
 
 		case stocksVerifyWatchlists:
@@ -3424,6 +3442,50 @@ public class EventCase {
 
 		// end of profile and preference
 
+		// for balance
+		case Transfer_in_between_account:
+			Between_My_accounts.get().Transfer_in_between_account();
+			break;
+
+		case verifyConfirmPageAndTransfer:
+			Confirm.get().verifyConfirmPageAndTransfer();
+			break;
+
+		case verifyBalanceInReceipt:
+			Receipt.get().verifyBalanceInReceipt();
+			break;
+
+		case selectFromAccount:
+			Accounts.get().selectFromAccount();
+			break;
+
+		case verifyFromAccountBankingBalance:
+			Banking.get().verifyFromAccountBankingBalance();
+			break;
+
+		case verifyFromAccountSummaryBalance:
+			Banking.get().verifyFromAccountSummaryBalance();
+			break;
+
+		case verifyToAccountBankingBalance:
+			Banking.get().verifyToAccountBankingBalance();
+			break;
+
+		case verifyToAccountSummaryBalance:
+			Banking.get().verifyToAccountSummaryBalance();
+			break;
+
+		case GoBackToAccountPage:
+			Banking.get().GoBackToAccountPage();
+			break;
+
+		case payMoneyAndSaveBalance:
+			Interac_Send_Money.get().payMoneyAndSaveBalance();
+			break;
+
+		case verifyBalanceInConfirmationPage:
+			Interac_Send_Money.get().verifyBalanceInConfirmationPage();
+			break;
 		// Start of Purchase Mutual funds
 		case VerifyPurchaseMFPageHeader:
 			PurchaseMutualFunds.get().VerifyPurchaseMFPageHeader();
@@ -3738,6 +3800,14 @@ public class EventCase {
 			WebViewPage.get().verifyCreditLimitIncreaseFormTitle();
 			break;
 
+		case verifyCreditLimitIncreaseAndCancel:
+			WebViewPage.get().verifyCreditLimitIncreaseWebpageAndCancel();
+			break;
+
+		case confirmCancel:
+			WebViewPage.get().confirmCancel();
+			break;
+
 		case Click_GetStarted:
 			WebViewPage.get().Click_GetStarted();
 			break;
@@ -3822,7 +3892,601 @@ public class EventCase {
 		case clickManageAppointmentLink:
 			AppointmentBooking.get().clickManageAppointmentLink();
 			break;
+
+		case verifyDamageCardWebpageAndCancel:
+			WebViewPage.get().verifyDamageCardWebpageAndCancel();
+			break;
 		// End of Damaged card
+
+		// RBP
+
+		case clickStartDate:
+			Bill_PayCanada.get().clickStartDate();
+			break;
+
+		case VerifyRBPErrorMessage:
+			Bill_PayCanada.get().VerifyRBPErrorMessage();
+			break;
+
+		case VerifyRBPErrorMessageInReviewPage:
+			Review.get().VerifyRBPErrorMessageInReviewPage();
+			break;
+
+		case verifyScheduledPaymentsHeader:
+			ScheduledPayments.get().verifyScheduledPaymentsHeader();
+			break;
+
+		case clickScheduledPayment_Link:
+			Bills.get().clickScheduledPayment_Link();
+			break;
+
+		case clickViewpaymentFor:
+			ScheduledPayments.get().clickViewpaymentFor();
+			break;
+
+		case verifyPayeeFilterContents:
+			ScheduledPayments.get().verifyPayeeFilterContents();
+			break;
+
+		case verifyPayBillHeader:
+			Bill_PayCanada.get().verifyPayBillHeader();
+			break;
+
+		case verifyPayCanadianBillContent:
+			Bill_PayCanada.get().verifyPayCanadianBillContent();
+			break;
+
+		case VerifyRBP1NumberOfPaymentErrorMessage:
+			Bill_PayCanada.get().VerifyRBP1NumberOfPaymentErrorMessage();
+			break;
+
+		case verifyHowOftenDropdownDefault:
+			Bill_PayCanada.get().verifyHowOftenDropdownDefault();
+			break;
+
+		case verifyStartDateDefaultToToday:
+			Bill_PayCanada.get().verifyStartDateDefaultToToday();
+			break;
+
+		case verifyFieldsArePrefilledAfterBackFromAddPayee:
+			Bill_PayCanada.get().verifyFieldsArePrefilledAfterBackFromAddPayee();
+			break;
+
+		case verifyFrequencyOptions:
+			Bill_PayCanada.get().verifyFrequencyOptions();
+			break;
+
+		case verifyRBPFootNoteContent:
+			Bill_PayCanada.get().verifyRBPFootNoteContent();
+			break;
+
+		case selectOngoingFromHowOftenDropDown:
+			Bill_PayCanada.get().selectOngoingFromHowOftenDropDown();
+			break;
+
+		case verifyAndClickRewardBanner:
+			Bill_PayCanada.get().verifyAndClickRewardBanner();
+			break;
+
+		case FillPayBillWithOnce:
+			Bill_PayCanada.get().FillPayBillWithOnce();
+			break;
+
+		case continuePayBill:
+			Bill_PayCanada.get().continuePayBill();
+			break;
+
+		case verifyReviewContent:
+			Review.get().verifyReviewContent();
+			break;
+
+		case verifyAndClickCancelButton:
+			Review.get().verifyAndClickCancelButton();
+			break;
+
+		case FillPayBillWithOngoing:
+			Bill_PayCanada.get().FillPayBillWithOngoing();
+			break;
+
+		case verifyAndClickPayBillButton:
+			Review.get().verifyAndClickPayBillButton();
+			break;
+
+		case verifyRBPReceiptContent:
+			Receipt.get().verifyRBPReceiptContent();
+			break;
+
+		case verifyBillCancelledReceipt:
+			Receipt.get().verifyBillCancelledReceipt();
+			break;
+
+		case VerifyRBPReceipt:
+			Receipt.get().VerifyRBPReceipt();
+			break;
+
+		case verifyPayee_FromAccountMaskedInReceipt:
+			Receipt.get().verifyPayee_FromAccountMaskedInReceipt();
+			break;
+
+		case ClickPayAnotherBillBtn:
+			Receipt.get().ClickPayAnotherBillBtn();
+			break;
+
+		case ClickSchedulePaymentsBtn:
+			Receipt.get().ClickSchedulePaymentsBtn();
+			break;
+
+		case FillPayBillWithOngoingWithoutStartDate:
+			Bill_PayCanada.get().FillPayBillWithOngoingWithoutStartDate();
+			break;
+
+		case verifypayeeFilterContainsMultiAccessCardPayees:
+			ScheduledPayments.get().verifypayeeFilterContainsMultiAccessCardPayees();
+			break;
+
+		case ClickQuickLinkBillsBtn:
+			Receipt.get().ClickQuickLinkBillsBtn();
+			break;
+
+		case selectStartdateAgain:
+			Bill_PayCanada.get().selectStartdateAgain();
+			break;
+
+		case VerifyEndOfDateIsBlank:
+			Bill_PayCanada.get().VerifyEndOfDateIsBlank();
+			break;
+
+		case VerifyEndOfDateReamins:
+			Bill_PayCanada.get().VerifyEndOfDateReamins();
+			break;
+
+		case clickPayBillDashboard:
+			HomeScreen.get().clickPayBillDashboard();
+			break;
+
+		case verifyRBPScreen:
+			Bill_PayCanada.get().verifyRBPScreen();
+			break;
+
+		case verifyBankingHeader:
+			Banking.get().verifyBankingHeader();
+			break;
+
+		case clickPayBillQuickLink:
+			Banking.get().clickPayBillQuickLink();
+			break;
+
+		case verifyPayeeOrder:
+			ScheduledPayments.get().verifyPayeeOrder();
+			break;
+
+		case verifyDefaultPayeeFilter:
+			ScheduledPayments.get().verifyDefaultPayeeFilter();
+			break;
+
+		case verifyListOfPaymentsAreWithSamePayee:
+			ScheduledPayments.get().verifyListOfPaymentsAreWithSamePayee();
+			break;
+
+		case clickViewpaymentForSelectPayee:
+			ScheduledPayments.get().clickViewpaymentForSelectPayee();
+			break;
+
+		case verifyPaymentListByDate:
+			ScheduledPayments.get().verifyPaymentListByDate();
+			break;
+
+		case clickViewAll_Link:
+			Bills.get().clickViewAll_Link();
+			break;
+
+		case verifyScheduledPaymentsContent:
+			ScheduledPayments.get().verifyScheduledPaymentsContent();
+			break;
+
+		case verifyMonthGrouping:
+			ScheduledPayments.get().verifyMonthGrouping();
+			break;
+
+		case verifyPaymentDue7Date:
+			ScheduledPayments.get().verifyPaymentDue7Date();
+			break;
+
+		case selectFirstPayment:
+			ScheduledPayments.get().selectFirstPayment();
+			break;
+
+		case verifyBillDetailsPageHeader:
+			BillDetails.get().verifyBillDetailsPageHeader();
+			break;
+
+		case verifyBillDetailsContent:
+			BillDetails.get().verifyBillDetailsContent();
+			break;
+
+		case verifyCancelButtonDisplayed:
+			BillDetails.get().verifyCancelButtonDisplayed();
+			break;
+
+		case selectFirstActivePayment:
+			Bills.get().selectFirstActivePayment();
+			break;
+
+		case verifyCancelButtonNotDisplayed:
+			BillDetails.get().verifyCancelButtonNotDisplayed();
+			break;
+
+		case selectFirstCancelledPayment:
+			ScheduledPayments.get().selectFirstCancelledPayment();
+			break;
+
+		case clickRBPCancelButton:
+			BillDetails.get().clickRBPCancelButton();
+			break;
+
+		case ClickRBPPopupCancelButton:
+			Popupwindow.get().ClickRBPPopupCancelButton();
+			break;
+
+		case ClickOFXPopupCancelButton:
+			Popupwindow.get().ClickOFXPopupCancelButton();
+			break;
+			
+		case ClickOFXPopupDontCancelButton:
+			Popupwindow.get().ClickOFXPopupDontCancelButton();
+			break;
+			
+		case ClickRBPPopupDontCancelButton:
+			Popupwindow.get().ClickRBPPopupDontCancelButton();
+			break;
+
+		case verifyPopupCancelPayment:
+			Popupwindow.get().verifyPopupCancelPayment();
+			break;
+
+		case payUS_Bill:
+			Pay_US_Bill.get().payUS_Bill();
+			break;
+
+		case verifyReviewAndPayBill:
+			Pay_US_Bill.get().verifyReviewAndPayBill();
+			break;
+
+		case verifyPayUsBillBalance:
+			Pay_US_Bill.get().verifyPayUsBillBalance();
+			break;
+
+		case verifyReturnToApp:
+			MoreOptions.get().verifyReturnToApp();
+			break;
+
+		case verifyCancelPromptYesorNo:
+			WebViewPage.get().verifyCancelPromptYesorNo();
+			break;
+
+		case ClickNoForCancelPrompt:
+			WebViewPage.get().ClickNoForCancelPrompt();
+			break;
+
+		case VerifyGetStartButton:
+			WebViewPage.get().VerifyGetStartButton();
+			break;
+
+		case waitSessionExpiredAndCancel:
+			WebViewPage.get().waitSessionExpiredAndCancel();
+			break;
+
+		case clickMenuExploreProducts:
+			MenuPage.get().clickMenuExploreProducts();
+			break;
+
+		case VerifyProductlandingPageHeader:
+			GetAnAccount.get().VerifyProductlandingPageHeader();
+			break;
+
+		case verifyProductPagePlacement:
+			MenuPage.get().verifyProductPagePlacement();
+			break;
+
+		case VerifyProductlandingPageContent:
+			GetAnAccount.get().VerifyProductlandingPageContent();
+			break;
+
+		case verifyBankAccountsSysURL:
+			WebViewPage.get().verifyBankAccountsSysURL();
+			break;
+
+		case verifyBankAccountsPatURL:
+			WebViewPage.get().verifyBankAccountsPatURL();
+			break;
+
+		case verifyBankAccountsProdURL:
+			WebViewPage.get().verifyBankAccountsProdURL();
+			break;
+
+		case verifyCreditCardsSysURL:
+			WebViewPage.get().verifyCreditCardsSysURL();
+			break;
+
+		case verifyCreditCardsPatURL:
+			WebViewPage.get().verifyCreditCardsPatURL();
+			break;
+
+		case verifyCreditCardsProdURL:
+			WebViewPage.get().verifyCreditCardsProdURL();
+			break;
+
+		case verifyMortgagesSysURL:
+			WebViewPage.get().verifyMortgagesSysURL();
+			break;
+
+		case verifyMortgagesPatURL:
+			WebViewPage.get().verifyMortgagesPatURL();
+			break;
+
+		case verifyMortgagesProdURL:
+			WebViewPage.get().verifyMortgagesProdURL();
+			break;
+
+		case verifyBorrowingSysURL:
+			WebViewPage.get().verifyBorrowingSysURL();
+			break;
+
+		case verifyBorrowingPatURL:
+			WebViewPage.get().verifyBorrowingPatURL();
+			break;
+
+		case verifyBorrowingProdURL:
+			WebViewPage.get().verifyBorrowingProdURL();
+			break;
+
+		case verifyPersonalInvestingSysURL:
+			WebViewPage.get().verifyPersonalInvestingSysURL();
+			break;
+
+		case verifyPersonalInvestingPatURL:
+			WebViewPage.get().verifyPersonalInvestingPatURL();
+			break;
+
+		case verifyPersonalInvestingProdURL:
+			WebViewPage.get().verifyPersonalInvestingProdURL();
+			break;
+
+		case verifyTravelInsuranceSysURL:
+			WebViewPage.get().verifyTravelInsuranceSysURL();
+			break;
+
+		case verifyTravelInsurancePatURL:
+			WebViewPage.get().verifyTravelInsurancePatURL();
+			break;
+
+		case verifyTravelInsuranceProdURL:
+			WebViewPage.get().verifyTravelInsuranceProdURL();
+			break;
+
+		case clickCreditCardslink:
+			GetAnAccount.get().clickCreditCardslink();
+			break;
+
+		case clickMortgageslink:
+			GetAnAccount.get().clickMortgageslink();
+			break;
+
+		case clickBorrowinglink:
+			GetAnAccount.get().clickBorrowinglink();
+			break;
+
+		case clickPersonalInvestinglink:
+			GetAnAccount.get().clickPersonalInvestinglink();
+			break;
+
+		case clickTravelMedicalInsurancelink:
+			GetAnAccount.get().clickTravelMedicalInsurancelink();
+			break;
+
+		case clickBankAccountslink:
+			GetAnAccount.get().clickBankAccountslink();
+			break;
+
+		case SelectCCRAPayee:
+			Bill_PayCanada.get().SelectCCRAPayee();
+			break;
+		// End of RBP
+
+		// start of OFX
+
+		case clickFlyout_CreditBankingServices:
+			MenuPage.get().clickFlyout_CreditBankingServices();
+			break;
+
+		case verifyCreditBankingServicesContent:
+			CreditBankingServices.get().verifyCreditBankingServicesContent();
+			break;
+
+		case clickOrderForeignCurrency:
+			CreditBankingServices.get().clickOrderForeignCurrency();
+			break;
+
+		case verifyOrderForeignCurrencyContent:
+			OrderForeignCurrency.get().verifyOrderForeignCurrencyContent();
+			break;
+
+		case updateHomeAndMobilePhoneIfNotexist:
+			Profile.get().updateHomeAndMobilePhoneIfNotexist();
+			break;
+
+		case VerifyCreditBankingServicePageHeader:
+			CreditBankingServices.get().VerifyCreditBankingServicePageHeader();
+			break;
+
+		case verifyPhoneIsPrefilledWithProfileMobile:
+			OrderForeignCurrency.get().verifyPhoneIsPrefilledWithProfileMobile();
+			break;
+
+		case VerifyOrderForeignCurrencyPageHeader:
+			OrderForeignCurrency.get().VerifyOrderForeignCurrencyPageHeader();
+			break;
+
+		case verifyEmailCanBeEdited:
+			OrderForeignCurrency.get().verifyEmailCanBeEdited();
+			break;
+
+		case updateHomeAndEmptyMobilePhone:
+			Profile.get().updateHomeAndEmptyMobilePhone();
+			break;
+
+		case verifyPhoneIsPrefilledWithProfileHome:
+			OrderForeignCurrency.get().verifyPhoneIsPrefilledWithProfileHome();
+			break;
+
+		case emptyHomeAndEmptyMobilePhone:
+			Profile.get().emptyHomeAndEmptyMobilePhone();
+			break;
+
+		case verifyPhoneIsPrefilledWithNothing:
+			OrderForeignCurrency.get().verifyPhoneIsPrefilledWithNothing();
+			break;
+
+		case updateEmailifNotExist:
+			Profile.get().updateEmailifNotExist();
+			break;
+
+		case verifyemailIsPrefilledWithProfileEmail:
+			OrderForeignCurrency.get().verifyemailIsPrefilledWithProfileEmail();
+			break;
+
+		case verifyErrorWithInvalidEmail:
+			OrderForeignCurrency.get().verifyErrorWithInvalidEmail();
+			break;
+
+		case verifyErrorWithInvalidPhone:
+			OrderForeignCurrency.get().verifyErrorWithInvalidPhone();
+			break;
+
+		case verifyNoErrorWithEmptyEmail:
+			OrderForeignCurrency.get().verifyNoErrorWithEmptyEmail();
+			break;
+
+		case verifyMinErrorWithCADAmount:
+			OrderForeignCurrency.get().verifyMinErrorWithCADAmount();
+			break;
+
+		case verifyMaxErrorWithCADAmount:
+			OrderForeignCurrency.get().verifyMaxErrorWithCADAmount();
+			break;
+
+		case verifyMaxErrorWithForignAmount:
+			OrderForeignCurrency.get().verifyMaxErrorWithForignAmount();
+			break;
+
+		case clickCurrencySelection:
+			OrderForeignCurrency.get().clickCurrencySelection();
+			break;
+
+		case verifyCurrencyUpdatedAsSelected:
+			OrderForeignCurrency.get().verifyCurrencyUpdatedAsSelected();
+			break;
+
+		case VerifyCurrencyPageHeader:
+			Currency.get().VerifyCurrencyPageHeader();
+			break;
+
+		case randomSelectCurrency:
+			Currency.get().randomSelectCurrency();
+			break;
+
+		case cancelSelection:
+			Currency.get().cancelSelection();
+			break;
+
+		case verifycurrencyRateUpdatedtoSelectedCurrency:
+			OrderForeignCurrency.get().verifycurrencyRateUpdatedtoSelectedCurrency();
+			break;
+
+		case verifyIncrementBannerforCADUpdate:
+			OrderForeignCurrency.get().verifyIncrementBannerforCADUpdate();
+			break;
+
+		case verifyIncrementBannerforCurrencyUpdate:
+			OrderForeignCurrency.get().verifyIncrementBannerforCurrencyUpdate();
+			break;
+
+		case VerifyRateAndMinMaxValueFormat:
+			OrderForeignCurrency.get().VerifyRateAndMinMaxValueFormat();
+			break;
+
+		case Fill_OFX_Form:
+			OrderForeignCurrency.get().Fill_OFX_Form();
+			break;
+
+		case ClickPreviewCurrencyOrder:
+			OrderForeignCurrency.get().ClickPreviewCurrencyOrder();
+			break;
+
+		case VerifyPreviewCurrencyOrderContent:
+			PreviewCurrencyOrder.get().VerifyPreviewCurrencyOrderContent();
+			break;
+
+		case clickOrderNow:
+			PreviewCurrencyOrder.get().clickOrderNow();
+			break;
+
+		case VerifyOFXReceiptContent:
+			Receipt.get().VerifyOFXReceiptContent();
+			break;
+
+		case VerifyOFXPhoneisMasked:
+			PreviewCurrencyOrder.get().VerifyOFXPhoneisMasked();
+			break;
+
+		case clickOFXCancelButton:
+			PreviewCurrencyOrder.get().clickOFXCancelButton();
+			break;
+
+		case verifyPopupCancelCurrencyOrder:
+			Popupwindow.get().verifyPopupCancelCurrencyOrder();
+			break;
+
+		case VerifyPreviewCurrencyOrderPageHeader:
+			PreviewCurrencyOrder.get().VerifyPreviewCurrencyOrderPageHeader();
+			break;
+
+		case waitForRateTimerExpired:
+			OrderForeignCurrency.get().waitForRateTimerExpired();
+			break;
+
+		case verifyRateExpiredContent:
+			OrderForeignCurrency.get().verifyRateExpiredContent();
+			break;
+
+		case verifyInsufficientFundError:
+			OrderForeignCurrency.get().verifyInsufficientFundError();
+			break;
+
+		case VerifyDefaultCurrenyUSD:
+			Currency.get().VerifyDefaultCurrenyUSD();
+			break;
+
+		case VerifySearchDisclaimer:
+			Currency.get().VerifySearchDisclaimer();
+			break;
+
+		case VerifySearchEntryFunctional:
+			Currency.get().VerifySearchEntryFunctional();
+			break;
+
+		case verifyMinErrorWhileUpdateCurrency:
+			OrderForeignCurrency.get().verifyMinErrorWhileUpdateCurrency();
+			break;
+
+		case VerifyCurrencyContent:
+			Currency.get().VerifyCurrencyContent();
+			break;
+
+		case verifyConversionRateWithoutTrailing0:
+			OrderForeignCurrency.get().verifyConversionRateWithoutTrailing0();
+			break;
+		// End of OFX
 
 		case VerifyStatementBalanceHeader:
 			StatementBalance.get().verifyStatementBalanceHeader();
@@ -3999,7 +4663,6 @@ public class EventCase {
 
 		case OptionOrderChangeQuantity:
 			Options.get().changeQuantity();
-			;
 			break;
 
 		case Options_verifyOptionsForNewOrder:
@@ -4040,7 +4703,6 @@ public class EventCase {
 
 		case Options_VerifyCancelReceipt:
 			OptionsReceiptPage.get().verifyOptionCancelOrderReceipt();
-			;
 			break;
 
 		// Chinese on Mobile

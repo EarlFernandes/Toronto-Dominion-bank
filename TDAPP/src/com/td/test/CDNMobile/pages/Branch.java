@@ -41,6 +41,10 @@ public class Branch extends _CommonPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/text_branch_hours']")
 	private MobileElement brancn_working_hour;
 
+	@iOSFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeTable[1]/following-sibling::XCUIElementTypeOther[1]//XCUIElementTypeButton")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.td:id/action_button']")
+	private MobileElement send_My_Currency_Here;
+
 	public synchronized static Branch get() {
 		if (branch == null) {
 			branch = new Branch();
@@ -158,7 +162,7 @@ public class Branch extends _CommonPage {
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
-	
+
 	public void VerifyBookAppointmentIconNotDisplayed() {
 		Decorator();
 		String expectedText = "";
@@ -182,5 +186,24 @@ public class Branch extends _CommonPage {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
+	}
+
+	public void clickSendMyCurrencyHereButton() {
+		Decorator();
+		try {
+			String expectedText = getTextInCurrentLocale(StringArray.ARRAY_OFX_SEND_CURRENCY_TOBRANCH);
+			mobileAction.verifyElementTextIsDisplayed(send_My_Currency_Here, expectedText);
+			mobileAction.FuncClick(send_My_Currency_Here, expectedText);
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("NoSuchElementException:Failed to verify branch details");
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			mobileAction.Report_Fail("Exception:Failed to verify branch details");
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+
 	}
 }

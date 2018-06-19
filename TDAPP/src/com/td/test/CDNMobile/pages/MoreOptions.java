@@ -2,6 +2,7 @@ package com.td.test.CDNMobile.pages;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.support.PageFactory;
@@ -185,6 +186,26 @@ public class MoreOptions extends _CommonPage {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			return;
+		}
+	}
+
+	public void verifyReturnToApp() {
+		Decorator();
+		try {
+
+			if (mobileAction.verifyElementIsPresent(PageHeader.get().getHeaderTextElement())) {
+				String headerText = mobileAction.getValue(PageHeader.get().getHeaderTextElement());
+				mobileAction.Report_Pass_Verified("Return to Page:" + headerText);
+			} else {
+				HomeScreen.get().VerifyHomePageDashBoard();
+			}
+
+		} catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 }

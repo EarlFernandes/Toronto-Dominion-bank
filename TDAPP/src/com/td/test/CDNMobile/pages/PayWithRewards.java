@@ -44,7 +44,7 @@ public class PayWithRewards extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/minimum_payment_box_layout")
 	private MobileElement amountMinimum;
 
-	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[3]/XCUIElementTypeOther[2]/XCUIElementTypeButton[1]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]//XCUIElementTypeOther[3]//XCUIElementTypeButton[1]")
 	@AndroidFindBy(id = "com.td:id/btn_continue")
 	private MobileElement continueBtn;
 
@@ -96,8 +96,7 @@ public class PayWithRewards extends _CommonPage {
 	}
 
 	/**
-	 * This method will validate and enter the Amount in Pay With Regards
-	 * screen.
+	 * This method will validate and enter the Amount in Pay With Regards screen.
 	 * 
 	 * If the amount is not valid it will throws error text.
 	 * 
@@ -250,8 +249,7 @@ public class PayWithRewards extends _CommonPage {
 	}
 
 	/**
-	 * This method will validate and enter the Amount in Pay With Regards
-	 * screen.
+	 * This method will validate and enter the Amount in Pay With Regards screen.
 	 * 
 	 * If the amount is not valid it will throws error text.
 	 * 
