@@ -134,27 +134,48 @@ public class Profile extends _CommonPage {
 					getTextInCurrentLocale(StringArray.ARRAY_PROFILE_HEADER));
 
 			String initial_name = "";
+			String full_name = "";
 			String name_1 = get_name_initial_info();
 			String name_2 = get_name_detail_info();
 			if (name_1.length() <= 2) {
 				initial_name = name_1;
+				full_name = name_2;
 			} else {
 				initial_name = name_2;
+				full_name = name_1;
 			}
 
 			if (initial_name.length() == 1) {
 				isBusinessUser = true;
 				isPersonalUser = false;
 				System.out.println("Business User");
+				if (initial_name.contentEquals(full_name.substring(0, 1).toUpperCase())) {
+					mobileAction.Report_Pass_Verified("Init name:" + initial_name);
+				} else {
+					mobileAction.Report_Fail("Init_name doesn't match the first Char of full name");
+				}
 			} else if (initial_name.length() == 2) {
 				isPersonalUser = true;
 				isBusinessUser = false;
 				System.out.println("Personal User");
+				String[] full_name_array = full_name.split(" ");
+				if (full_name_array.length < 2) {
+					mobileAction.Report_Fail(full_name + " is not personal name");
+				} else {
+					String expectedInitName = full_name_array[0].substring(0, 1)
+							+ full_name_array[full_name_array.length - 1].substring(0, 1);
+					expectedInitName = expectedInitName.toUpperCase();
+					if (initial_name.contentEquals(expectedInitName)) {
+						mobileAction.Report_Pass_Verified("Init name:" + initial_name);
+					} else {
+						mobileAction.Report_Fail("Init_name doesn't match the first Char of first name plus last name");
+					}
+				}
+
 			} else {
 				System.err.println("TestCase has failed with unrecongnized initial name.");
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			}
-
 		} catch (NoSuchElementException | IOException e) {
 			System.err.println("TestCase has failed.");
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
