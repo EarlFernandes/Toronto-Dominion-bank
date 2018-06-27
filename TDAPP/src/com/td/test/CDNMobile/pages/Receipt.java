@@ -98,7 +98,7 @@ public class Receipt extends _CommonPage {
 
 	String accountReg = "\\•{4}\\s?\\d{4}";
 
-	@AndroidFindBy(id = "com.td:id/thank_you")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.td:id/thank_you' or @resource-id='com.td:id/primary_header']")
 	private MobileElement thankYouTitle;
 
 	@AndroidFindBy(id = "com.td:id/confirmation_val")
