@@ -57,6 +57,10 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 	@AndroidFindBy(id = "com.td:id/watchlist_empty_card_secondmessage")
 	MobileElement BT_WLLoginNow;
 
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar/XCUIElementTypeSearchField")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.td:id/search_edit_text']")
+	MobileElement BT_WLSearchField;
+
 	@iOSXCUITFindBy(accessibility = "LOGIN_PASSWORD")
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id= 'com.td:id/password_input' and @index='1']")
 	private MobileElement password;
@@ -227,9 +231,11 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 			verifyQL_PAY_BILL(false);
 
-			verifyQL_PAYNOW(false);
-
-			verifyQL_APPLEPAY(false);
+			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
+				verifyQL_PAYNOW(false);
+			} else {
+				verifyQL_APPLEPAY(false);
+			}
 
 			verifyQL_QUOTE(false);
 
@@ -598,7 +604,7 @@ public class MIT_DSHQuickLinks extends _CommonPage {
 
 				clickQuickLink(QL_WATCHLISTS, "WATCHLISTS");
 				if (!bIsAuthenticatedUser) {
-					mobileAction.verifyElementIsDisplayed(BT_WLLoginNow, "Watchlist Login Now");
+					mobileAction.verifyElementIsDisplayed(BT_WLSearchField, "search or add symbols");
 					mobileAction.FuncClick(BT_WLBack, "< Button");
 				} else {
 					if (mobileAction.isObjExists(HDR_Watchlists)) {
