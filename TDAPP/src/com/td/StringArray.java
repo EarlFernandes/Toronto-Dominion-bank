@@ -264,6 +264,17 @@ public final class StringArray {
 	public static final String[] ARRAY_CHATBOT_HEADER = { "TD ChatBot", "TBD", "TBD", "TBD" };
 	public static final String[] ARRAY_CHATBOT_ERROR_INELIGIBLE = { "You are not eligible to use TD Chat", "TBD", "TBD",
 			"TBD" };
+	
+	// IRM
+	public static final String[] ARRAY_IRM_ELIGIBILITY_iOS = { "Registration", "TBD", "TBD", "TBD"};
+	public static final String[] ARRAY_IRM_ELIGIBILITY_Android = { "Register", "TBD", "TBD", "TBD"};
+	public static final String[] ARRAY_IRM_PROFILE_SETTINGS = { "Profile & Settings", "TBD", "TBD", "TBD"};
+	public static final String[] ARRAY_IRM_SECURITY_SETTINGS = { "Success", "TBD", "TBD", "TBD"};
+
+
+
+	public static final String[] ARRAY_IRM_CUSTOMERPROFILE = { "Profile", "TBD", "TBD", "TBD"};
+
 
 	// Credit
 	public static final String[] ARRAY_TD_POINTS = { "TD Points", "Points TD", "TD Points", "TD Points" };

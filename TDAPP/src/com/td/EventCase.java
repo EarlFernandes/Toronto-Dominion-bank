@@ -25,11 +25,11 @@ public class EventCase {
 
 	private enum functionNames {
 
-		Account_Home_Button, Account_Prefer_Button, Accounts_EW_WB_Functionality, Accounts_Header, Accounts_sessionTimedOut,
+		Accept_click, Account_Home_Button, Account_Prefer_Button, Accounts_EW_WB_Functionality, Accounts_Header, Accounts_sessionTimedOut,
 
 		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity, AddVaildEmail, verifyCAD_USD_AccountsInTotal,
 
-		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
+		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, Address_check, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
 		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer,
 
@@ -37,9 +37,8 @@ public class EventCase {
 
 		BetweenMyAccounts_CADTFSA_TDCTTFSA, BetweenMyAccounts_MobileRateExpiryOnSmartphones, BetweenMyAccounts_NegativeTestingTransferFunds, BetweenMyAccounts_permissible_transfer_on_mobile, BetweenMyAccounts_TDCTTFSA_CADTFSA, BetweenMyAccounts_TDCTTFSAMessage, BetweenMyAccounts_TransferNotSupported, BetweenMyAccounts_TransferTDCTCADUSDVISA,
 
-		Bill_PayCanada_AmountSelection, Bill_PayCanada_BillPaymentCurrentDate, Bill_PayCanada_PayBillCancel, Bill_PayCanada_VerifyBackButton, Bill_PayCanada_VerifyQuickAccess, Bills_ScheduledPayments, BillsHeader, BetweenMyAccounts_TFSAUSD_TFSACAD(),
-
-		CanadianPayee_ConfirmPage, Cancel, VerifyAndEnableQuickAccess,
+		Bill_PayCanada_AmountSelection, Bill_PayCanada_BillPaymentCurrentDate, Bill_PayCanada_PayBillCancel, Bill_PayCanada_VerifyBackButton, Bill_PayCanada_VerifyQuickAccess, Bills_ScheduledPayments, BillsHeader, BetweenMyAccounts_TFSAUSD_TFSACAD(), 
+		CanadianPayee_ConfirmPage, Cancel, Checkbox_click, Continue_click, VerifyAndEnableQuickAccess,
 
 		CDNCash, CDNCash_Sell_StopMarket, CDNMargin_Buy, CDNMargin_Buy_TriggerDelta, CDNMargin_Sell_TrailingStopLimit, CDNMargin_Sell_TrailingStopMarket, CDNMarginLimit, CDNMarginLimitTradePreviewOrder,
 
@@ -47,7 +46,7 @@ public class EventCase {
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy, ClickSave, ClickPhoneNumber, ClickClearText, ClickAddressDetail, ClickPopupGoBackButton,
 
-		ConfirmOrderCancel, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, EditEmailAddressWithInvalidChar,
+		ConfirmOrderCancel, ContactInfoEdit, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, CustomerEligibility_verify_Android, CustomerEligibility_verify_iOS, EditEmailAddressWithInvalidChar,
 
 		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate, ClickQuoteButton, VerifyMaximumAmountError, clickManageAppointmentLink, VerifyBookAppointmentIconNotDisplayed, VerifyQuoteFundDetailsPageHeader,
 
@@ -55,13 +54,13 @@ public class EventCase {
 
 		Env_set, Env_EnableMobilePayment, EditEmailAddressWithNonAformat, EditEmailAddressWithlonger60Char, EditEmailAddressWithNolonger60Char, EditEmailAddressWithoutSave, EditPhoneNumber, Env_DeleteDefaultCard,
 
-		getProfileInformation, GetEmailAndPhoneNumber, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackButton, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
+		getProfileInformation, GetEmailAndPhoneNumber, GetStartedButton, ClickFeedback, ClickContactUs_CF, VerifyMoodSelectorScreen, VerifyEmotionsAnimateFromTopToBottom, ClickGreatLink, VerifyPostSurveyScreen, ClickCouldvebeenBetterLink, ClickItwasntWorkingLink, ClickBackButton, VerifyHomePageDashBoard, ClickContactUsFromHomePage, ClickSendFeedbackNow, VerifyRateUsOnGooglePlayButton, VerifyGooglePlayRatePage, ClickBackFromPostSurvey, VerifyContactUsPageHeader,
 
 		FlyOut_HOME, Flyout_Location, Fill_OptionOrder, HoldingDetails_click_BuyButton, HoldingDetails_Verify_Account_CADMargin, HoldingDetails_verify_Account_CADCash, HoldingDetails_verify_Account_US_MarginShort,
 
 		HomeScreen_ClickAccounts, HomeScreen_ClickBills, HomeScreen_ClickDeposit, HomeScreen_clickInvestingFromHamburger, HomeScreen_ClickMarkets, HomeScreen_ClickQuickAccess, HomeScreen_ClickTrade, HomeScreen_clickTradeDashboard, HomeScreen_ClickTransfers, HomeScreen_ClickTransfersFrench, HomeScreen_clickWatchLists, HomeScreen_Investing, HomeScreen_Location_Details, HomeScreen_Transfer_Button, HomeScreen_WatchLists, HomeScreen_PayNow, Homescreen_ApplePay, HomeScreen_ClickTDMobilePayment,
 
-		Interac_AddRecipient, Interac_e_Transfer_verify_interacTransfer, Interac_Header, InteracTransfer_Cancel, InteracTransfer_VerifyAmount,
+		Interac_AddRecipient, Interac_e_Transfer_verify_interacTransfer, Interac_Header, InteracTransfer_Cancel, InteracTransfer_VerifyAmount, InternationalMoneyTransfer, InternationalTab,
 
 		Investing_clickBackbtn, Investing_clickHoldings, Investing_clickInvestingAccount, Investing_clickInvestingAccounts,
 
@@ -178,6 +177,9 @@ public class EventCase {
 		// Homescreen
 		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists, HomeScreen_QuickLink_Trade,
 
+		//IRM
+		Agree_click, Notnow_btn, Continue_popupNotnow, Continue_decline, Confirm_btn, SecuritySetup_confim, Hamburger_btn, Profile_Settings_btn, New_Security, Continue_main, Decline_btn, ProfileSettings_Validation, SenderInfo_Validation, IneligibleMsg, 
+		
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
 
@@ -957,7 +959,104 @@ public class EventCase {
 		case Interac_Send_Money_sendMoneyVerifySuccessMsg:
 			Interac_Send_Money.get().sendMoneyVerifySuccessMsg();
 			break;
-
+			
+		case InternationalMoneyTransfer:
+			IRM.get().InternationalMoneyTransfer();
+			break;
+			
+		case InternationalTab:
+			IRM.get().internationalTab_click();
+			break;
+			
+		case GetStartedButton:
+			IRM.get().getStarted_click();
+			break;
+			
+		case CustomerEligibility_verify_iOS:
+			IRM.get().name_validate_iOS();
+			break;
+			
+		case CustomerEligibility_verify_Android:
+			IRM.get().name_validate_Android();
+			break;
+			
+		case Continue_click:
+			IRM.get().Continue_click();
+			break;
+			
+		case Checkbox_click:
+			IRM.get().checkbox_click();
+			break;
+			
+		case Accept_click:
+			IRM.get().accept_click();
+			break;
+			
+		case Agree_click:
+			IRM.get().Agree_click();
+			break;
+			
+		case ContactInfoEdit:
+			IRM.get().contact_info_edit_click();
+			break;
+			
+		case Address_check:
+			IRM.get().Customer_profile_validated();
+			break;
+			
+		case Notnow_btn:
+			IRM.get().Not_now_btn();
+			break;
+			
+		case Continue_popupNotnow:
+			IRM.get().Continue_popup_after_notnow();
+			break;
+			
+		case Continue_decline:
+			IRM.get().Continue_btn_popup_on_decline();
+			break;
+			
+		case Confirm_btn:
+			IRM.get().Confirm_btn();
+			break;
+			
+			
+		case Hamburger_btn:
+			IRM.get().Hamburger_button();
+			break;
+			
+		case Profile_Settings_btn:
+			IRM.get().Profile_Settings();
+			break;
+			
+		case New_Security:
+			IRM.get().New_Security_settings();
+			break;
+			
+		case Continue_main:
+			IRM.get().Continue_btn();
+			break;
+			
+		case Decline_btn:
+			IRM.get().Decline_btn();
+			break;
+			
+		case ProfileSettings_Validation:
+			IRM.get().Profile_Settings_Validate();
+			break;
+			
+		case SecuritySetup_confim:
+			IRM.get().Security_Setup_Validate();
+			break;
+			
+		case SenderInfo_Validation:
+			IRM.get().Verify_Sender_info();
+			break;
+			
+		case IneligibleMsg:
+			IRM.get().Verify_ineligible_msg();
+			break;
+			
 		case HomeScreen_ClickBills:
 			HomeScreen.get().clickBill();
 			break;
@@ -1208,7 +1307,7 @@ public class EventCase {
 			Transfers.get().clickManageContactsLink();
 			break;
 
-		case Interac_AddRecipient:
+		case Interac_AddRecipient:	
 			Interac_e_Transfer.get().addRecipient();
 			break;
 

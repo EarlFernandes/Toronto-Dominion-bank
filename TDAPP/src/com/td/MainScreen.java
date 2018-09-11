@@ -21,14 +21,14 @@ public class MainScreen extends _CommonPage {
 	// Change this parameter if doing local execution to point to your appium
 	// server instance
 
-	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://0.0.0.0:4723/wd/hub/";
+	private static final String LOCAL_EXECUTION_APPIUM_SERVER = "http://49.21.141.201:4764/wd/hub/"; 
 
 	// Change this parameter to point to the correct apk in Setup.xls for
 	// Android
 	private static final String APP_ANDROID = "APP_ANDROID";
 
 	private static final String APP_ANDROID_FR = "APP_ANDROID_FR";
-
+	
 	private static final String APP_ANDROID_ZH = "APP_ANDROID_ZH";
 
 	private static final String APP_ANDROID_ZH_TRAD = "APP_ANDROID_ZH_TRAD";
@@ -51,7 +51,7 @@ public class MainScreen extends _CommonPage {
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
 			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category",
 			"TransactionStatus", "Message", "Nickname", "AccountNumber", "SymbolImage", "NxtSymbol", "NxtSymbolImage",
-			"SymbolShortName", "Time", "AccountType","PIN" };
+			"SymbolShortName", "Time", "AccountType","PIN", "NameProfile", "AddressProfile", "PhoneProfile", "HomePhoneProfile", "EmailProfile", "IneligibleMsg" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();
