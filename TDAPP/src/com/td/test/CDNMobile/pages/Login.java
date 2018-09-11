@@ -598,7 +598,7 @@ public class Login extends _CommonPage {
 				}
 			} else {
 
-				mobileAction.FuncSendKeys(getTestdata("UserID"));
+				mobileAction.FuncSendKeys(username, getTestdata("UserID"));
 			}
 			if (CL.getTestDataInstance().getMobilePlatForm().equalsIgnoreCase("Android")) {
 				mobileAction.FuncHideKeyboard();
