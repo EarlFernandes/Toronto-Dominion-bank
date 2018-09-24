@@ -270,6 +270,8 @@ public final class StringArray {
 	public static final String[] ARRAY_IRM_ELIGIBILITY_Android = { "Register", "TBD", "TBD", "TBD"};
 	public static final String[] ARRAY_IRM_PROFILE_SETTINGS = { "Profile & Settings", "TBD", "TBD", "TBD"};
 	public static final String[] ARRAY_IRM_SECURITY_SETTINGS = { "Success", "TBD", "TBD", "TBD"};
+	public static final String[] ARRAY_IRM_SESSION_OUT = { "Logged Out", "TBD", "TBD", "TBD"};
+	public static final String[] ARRAY_IRM_TRANSFERS_PAGE = { "Transfers", "TBD", "TBD", "TBD"};
 
 
 

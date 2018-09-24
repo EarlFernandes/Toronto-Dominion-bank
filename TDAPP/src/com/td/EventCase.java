@@ -29,7 +29,7 @@ public class EventCase {
 
 		Accounts_Verify_Page, Accounts_VerifyAccountsPage, Accounts_VerifyTFSA_Activity, AddVaildEmail, verifyCAD_USD_AccountsInTotal,
 
-		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, Address_check, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
+		Add_Recipient_ErrorPage, AddCanadianPayee, AddPayee_SearchPayee, AddCard_MobilePayment, Profile_check, AddToTDMobilePayment, ApplePay_AddCard, ApplePay_SelectACard, ApplePay_CheckEligibleCard, ApplePay_ChangeDefaultCard, ApplePay_CheckPersonalCard, ApplePay_CheckBusinessCard, ApplePay_CheckDefaultCard, ApplePay_AddAllCards, ApplePay_OtherEligibleCards, Accounts_Credit_clickTransfer,
 
 		Banking_Header, Bill_PayCanada_Pay_Bill, Between_My_Accounts_RTB_permissible_transfer,
 
@@ -46,7 +46,7 @@ public class EventCase {
 
 		ClickMenu, ClickMenu_French, ClickMenuHome, clickMenuTrade, Confirm_order, Confirm_order_French, ClickPrivacy, ClickSave, ClickPhoneNumber, ClickClearText, ClickAddressDetail, ClickPopupGoBackButton,
 
-		ConfirmOrderCancel, ContactInfoEdit, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, CustomerEligibility_verify_Android, CustomerEligibility_verify_iOS, EditEmailAddressWithInvalidChar,
+		ConfirmOrderCancel, ContactInfoEdit, ValidateChangeConfirmOrderBuy_Sell, ConfirmOrderReciept, ConfirmOrderSendOrder, ConfirmOrderSendOrder_French, ConfirmPayee, ChangeDefaultCard, CardDetails_deleteicon, ConfirmPayee_InvalidAmount, CustomerEligibility_verify, EditEmailAddressWithInvalidChar,
 
 		Dashboard_Authentication, Dashboard_UnAuthentication, selectFirstLocation, VerifyUSDConversionRate, ClickQuoteButton, VerifyMaximumAmountError, clickManageAppointmentLink, VerifyBookAppointmentIconNotDisplayed, VerifyQuoteFundDetailsPageHeader,
 
@@ -60,7 +60,7 @@ public class EventCase {
 
 		HomeScreen_ClickAccounts, HomeScreen_ClickBills, HomeScreen_ClickDeposit, HomeScreen_clickInvestingFromHamburger, HomeScreen_ClickMarkets, HomeScreen_ClickQuickAccess, HomeScreen_ClickTrade, HomeScreen_clickTradeDashboard, HomeScreen_ClickTransfers, HomeScreen_ClickTransfersFrench, HomeScreen_clickWatchLists, HomeScreen_Investing, HomeScreen_Location_Details, HomeScreen_Transfer_Button, HomeScreen_WatchLists, HomeScreen_PayNow, Homescreen_ApplePay, HomeScreen_ClickTDMobilePayment,
 
-		Interac_AddRecipient, Interac_e_Transfer_verify_interacTransfer, Interac_Header, InteracTransfer_Cancel, InteracTransfer_VerifyAmount, InternationalMoneyTransfer, InternationalTab,
+		Interac_AddRecipient, Interac_e_Transfer_verify_interacTransfer, Interac_Header, InteracTransfer_Cancel, InteracTransfer_VerifyAmount, InternationalTab,
 
 		Investing_clickBackbtn, Investing_clickHoldings, Investing_clickInvestingAccount, Investing_clickInvestingAccounts,
 
@@ -178,7 +178,7 @@ public class EventCase {
 		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists, HomeScreen_QuickLink_Trade,
 
 		//IRM
-		Agree_click, Notnow_btn, Continue_popupNotnow, Continue_decline, Confirm_btn, SecuritySetup_confim, Hamburger_btn, Profile_Settings_btn, New_Security, Continue_main, Decline_btn, ProfileSettings_Validation, SenderInfo_Validation, IneligibleMsg, 
+		Agree_click, Notnow_btn, Continue_popupNotnow, Continue_decline, Confirm_btn, SecuritySetup_confim, Hamburger_btn, Profile_Settings_btn, New_Security, Continue_main, Decline_btn, ProfileSettings_Validation, SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, TestInEligibilityofID, TestEligibleIDs, VerifyTermsConditionsContent, Address_edit,
 		
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -960,10 +960,6 @@ public class EventCase {
 			Interac_Send_Money.get().sendMoneyVerifySuccessMsg();
 			break;
 			
-		case InternationalMoneyTransfer:
-			IRM.get().InternationalMoneyTransfer();
-			break;
-			
 		case InternationalTab:
 			IRM.get().internationalTab_click();
 			break;
@@ -972,12 +968,8 @@ public class EventCase {
 			IRM.get().getStarted_click();
 			break;
 			
-		case CustomerEligibility_verify_iOS:
-			IRM.get().name_validate_iOS();
-			break;
-			
-		case CustomerEligibility_verify_Android:
-			IRM.get().name_validate_Android();
+		case CustomerEligibility_verify:
+			IRM.get().Validate_Register_screen();
 			break;
 			
 		case Continue_click:
@@ -992,62 +984,61 @@ public class EventCase {
 			IRM.get().accept_click();
 			break;
 			
-		case Agree_click:
+		/*case Agree_click:
 			IRM.get().Agree_click();
-			break;
+			break;*/
 			
 		case ContactInfoEdit:
 			IRM.get().contact_info_edit_click();
 			break;
 			
-		case Address_check:
-			IRM.get().Customer_profile_validated();
+		case Profile_check:
+			IRM.get().Customer_profile_changes_validated();
 			break;
 			
-		case Notnow_btn:
-			IRM.get().Not_now_btn();
-			break;
+//		case Notnow_btn:
+//			IRM.get().Not_now_btn();
+//			break;
 			
-		case Continue_popupNotnow:
+		/*case Continue_popupNotnow:
 			IRM.get().Continue_popup_after_notnow();
-			break;
+			break;*/
 			
 		case Continue_decline:
 			IRM.get().Continue_btn_popup_on_decline();
 			break;
 			
-		case Confirm_btn:
+		/*case Confirm_btn:
 			IRM.get().Confirm_btn();
-			break;
-			
+			break;*/
 			
 		case Hamburger_btn:
 			IRM.get().Hamburger_button();
 			break;
 			
-		case Profile_Settings_btn:
+		/*case Profile_Settings_btn:
 			IRM.get().Profile_Settings();
-			break;
+			break;*/
 			
-		case New_Security:
+		/*case New_Security:
 			IRM.get().New_Security_settings();
-			break;
+			break;*/
 			
-		case Continue_main:
+		/*case Continue_main:
 			IRM.get().Continue_btn();
-			break;
+			break;*/
 			
 		case Decline_btn:
 			IRM.get().Decline_btn();
 			break;
 			
-		case ProfileSettings_Validation:
+		/*case ProfileSettings_Validation:
 			IRM.get().Profile_Settings_Validate();
 			break;
 			
 		case SecuritySetup_confim:
 			IRM.get().Security_Setup_Validate();
-			break;
+			break;*/
 			
 		case SenderInfo_Validation:
 			IRM.get().Verify_Sender_info();
@@ -1055,6 +1046,42 @@ public class EventCase {
 			
 		case IneligibleMsg:
 			IRM.get().Verify_ineligible_msg();
+			break;
+			
+		case Stubbing_enabled:
+			IRM.get().Stubbing_enable();
+			break;
+			
+		case Back_btn:
+			IRM.get().Back_click();
+			break;
+			
+		case Cancel_btn:
+			IRM.get().Cancel_click();
+			break;
+			
+		case VerifyAddress_edit:
+			IRM.get().Verify_address_edit_session_out();
+			break;
+			
+		case Address_edit:
+			IRM.get().Address_Edit();
+			break;
+			
+		case VerifyTermsConditionsError:
+			IRM.get().Verify_TermsConditions_Error();
+			break;
+			
+		case VerifyTermsConditionsContent:
+			IRM.get().TandC_content_verify();
+			break;
+			
+		case TestInEligibilityofID:
+			IRM.get().Test_ids();
+			break;
+			
+		case TestEligibleIDs:
+			IRM.get().Test_eligible_ids();
 			break;
 			
 		case HomeScreen_ClickBills:

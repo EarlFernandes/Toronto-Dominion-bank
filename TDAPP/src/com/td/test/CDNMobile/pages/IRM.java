@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Iterator;
 import com.td.StringArray;
 import com.td._CommonPage;
 
@@ -24,80 +25,80 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
  */
 public class IRM extends _CommonPage {
 	
-	@iOSXCUITFindBy(accessibility = "Transfers - International Transfers - International")
-	//@AndroidFindBy(xpath = "(//android.widget.Button[@resource-id='com.td:id/quick_link_item_layout_button'])[2]")
-	private MobileElement IntTrnsfrBtn;
-	
-	@iOSXCUITFindBy(accessibility = "International")
-	@AndroidFindBy(xpath = "//*[(@text='International' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/right_button' or @resource-id='com.td:id/right_button_text')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='International']")
+	@AndroidFindBy(xpath = "//*[(@text='International') and (@resource-id='com.td:id/right_button_text' or @resource-id='com.td:id/right_button')]")
 	private MobileElement IntTab;
 	
-	@iOSXCUITFindBy(accessibility = "Get Started")
-	@AndroidFindBy(xpath = "//*[(@text='Get started' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/btn_done' or @resource-id='com.td:id/btn_done_text')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Get Started']")
+	@AndroidFindBy(xpath = "//*[(@text='Get started') and (@resource-id='com.td:id/btn_done' or @resource-id='com.td:id/btn_done_text')]")
 	private MobileElement GetStarted;
 	
-	@iOSXCUITFindBy(accessibility = "Name")
-	@AndroidFindBy(xpath = "//*[(@text='Name' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/label_textview' or @resource-id='com.td:id/name_textview')]")
-	private MobileElement Name_text;
-	
-	@iOSXCUITFindBy(accessibility = "Continue")
-	@AndroidFindBy(xpath = "//*[(@text='Continue' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/right_button' or @resource-id='com.td:id/right_button_text')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='Continue') and (@resource-id='com.td:id/right_button' or @resource-id='com.td:id/right_button_text')]")
 	private MobileElement Continue_Btn_right;
 	
-	@iOSXCUITFindBy(accessibility = "term_conditon_checkbox")
-	@AndroidFindBy(xpath = "//*[(@text='Agree to Terms & Conditions' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/checkbox_btn' or @resource-id='com.td:id/checkbox_btn_text')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='I have read and agree to the above Terms & Conditions.']")
+	@AndroidFindBy(xpath = "//*[(@text='Agree to Terms & Conditions') and (@resource-id='com.td:id/checkbox_btn' or @resource-id='com.td:id/checkbox_btn_text')]")
 	private MobileElement Checkbox;
 	
-	@iOSXCUITFindBy(accessibility = "Accept")
-	@AndroidFindBy(xpath = "//*[(@text='Accept' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/right_button' or @resource-id='com.td:id/right_button_text')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Accept']")
+	@AndroidFindBy(xpath = "//*[(@text='Accept') and (@resource-id='com.td:id/right_button' or @resource-id='com.td:id/right_button_text')]")
 	private MobileElement Accept_Btn;
 	
-	@iOSXCUITFindBy(accessibility = "TDTERMS_BASE_ACCEPT_BTN")
-	@AndroidFindBy(xpath = "//*[(@text='Agree' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/btn_continue_text')]")
-	private MobileElement Agree_Btn;
+	//@iOSXCUITFindBy(accessibility = "TDTERMS_BASE_ACCEPT_BTN")
+	//@AndroidFindBy(xpath = "//*[(@text='Agree') and (@resource-id='com.td:id/btn_continue' or @resource-id='com.td:id/btn_continue_text')]")
+	//private MobileElement Agree_Btn;
 	
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='Edit'])[2]")
 	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.support.v4.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[3]/android.widget.TextView[2]")
 	private MobileElement Contact_edit;
 	
-	@iOSXCUITFindBy(accessibility = "ADDRESS")
-	@AndroidFindBy(xpath = "//*[(@text='Accept' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/right_button' or @resource-id='com.td:id/right_button_text')]")
-	private MobileElement Address_check;
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='Edit'])[1]")
+	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.support.v4.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView[2]")
+	private MobileElement Address_edit;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Not Now']")
-	@AndroidFindBy(xpath = "//*[(@text='Not Now' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/btn_cancel' or @resource-id='com.td:id/btn_cancel_text')]")
+	@AndroidFindBy(xpath = "//*[(@text='Not Now') and (@resource-id='com.td:id/btn_cancel' or @resource-id='com.td:id/btn_cancel_text')]")
 	private MobileElement Not_now_btn;
 	
 	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='Continue'])[2]")
-	@AndroidFindBy(xpath = "//*[(@text='CONTINUE' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='android:id/button1' or @resource-id='android:id/button1_text')]")
+	@AndroidFindBy(xpath = "//*[(@text='CONTINUE') and (@resource-id='android:id/button1' or @resource-id='android:id/button1_text')]")
 	private MobileElement Continue_btn_popup_after_notnow;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
-	@AndroidFindBy(xpath = "//*[(@text='CONTINUE' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='android:id/button1' or @resource-id='android:id/button1_text')]")
+	@AndroidFindBy(xpath = "//*[(@text='CONTINUE') and (@resource-id='android:id/button1' or @resource-id='android:id/button1_text')]")
 	private MobileElement Continue_btn_popup_on_decline;
 	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Yes']")
+	@AndroidFindBy(xpath = "//*[(@text='Yes') and (@resource-id='com.td:id/primary_button')]")
+	private MobileElement Yes_btn_popup_on_decline;
+	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Confirm']")
-	@AndroidFindBy(xpath = "//*[(@text='Confirm' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='android:id/button1' or @resource-id='android:id/button1_text')]")
+	@AndroidFindBy(xpath = "//*[(@text='Confirm') and (@resource-id='android:id/button1' or @resource-id='android:id/button1_text')]")
 	private MobileElement Confirm_btn;
 	
-	@iOSXCUITFindBy(accessibility = "QuickLinkLeftNavButton")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='QuickLinkLeftNavButton']")
 	@AndroidFindBy(xpath = "//*[@resource-id='com.td:id/hamburger' or @resource-id='com.td:id/menu_layout']")
 	private MobileElement Hamburger_btn;
 	
-	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings' or @label='Profil et paramètres' or @label='个人资料和设置' or @label='個人資料和設定']")
-	@AndroidFindBy(xpath = "//*[@text='Profile & Settings' or @text='Profil et paramètres' or @text='个人资料和设置' or @text='個人資料和設定']")
+	@iOSXCUITFindBy(xpath = "//*[@label='Profile & Settings']")
+	@AndroidFindBy(xpath = "//*[@text='Profile & Settings']")
 	private MobileElement profile_and_settings;
 	
-	@iOSXCUITFindBy(accessibility = "New Security Setup")
-	@AndroidFindBy(xpath = "//*[(@text='New Security Setup' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/profile_landing_nav_security' or @resource-id='com.td:id/nav_row_profile_title')]")
-	private MobileElement New_Security_Setup;
+	/*@iOSXCUITFindBy(accessibility = "New Security Setup")
+	@AndroidFindBy(xpath = "//*[(@text='New Security Setup') and (@resource-id='com.td:id/profile_landing_nav_security' or @resource-id='com.td:id/nav_row_profile_title')]")
+	private MobileElement New_Security_Setup;*/
 	
-	@iOSXCUITFindBy(accessibility = "Continue")
+	/*@iOSXCUITFindBy(accessibility = "Continue")
 	@AndroidFindBy(xpath = "//*[(@text='Continue') or (@resource-id='com.td:id/btn_primary' or @resource-id='com.td:id/btn_primary_text')]")
-	private MobileElement Continue_btn;
+	private MobileElement Continue_btn;*/
 	
-	@iOSXCUITFindBy(accessibility = "TDTERMS_BASE_DECLINE_BTN")
-	@AndroidFindBy(xpath = "//*[(@text='Decline' or @text='Virements' or @text='转账' or @text='轉賬') and (@resource-id='com.td:id/btn_cancel' or @resource-id='com.td:id/btn_cancel_text')]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Open Link']")
+	@AndroidFindBy(xpath = "//*[(@text='Continue') or (@resource-id='com.td:id/btn_primary' or @resource-id='com.td:id/btn_primary_text')]")
+	private MobileElement Continue_popup_for_addressedit;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Decline']")
+	@AndroidFindBy(xpath = "//*[(@text='Decline') and (@resource-id='com.td:id/btn_cancel' or @resource-id='com.td:id/left_button')]")
 	private MobileElement Decline_btn;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name='TD CANADA']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
@@ -121,8 +122,61 @@ public class IRM extends _CommonPage {
 	private MobileElement EmailLocator;
 	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='You are not eligible to use this service']")
-	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.support.v4.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[4]/android.widget.TextView[2]")
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.td:id/tv_common_title')]")
 	private MobileElement Ineligible_msg;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Something went wrong']")
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.td:id/error_title')]")
+	private MobileElement Generic_Error;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Please read the following terms and conditions and accept them below' or @name='Please accept the terms and conditions']")
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.td:id/alert_text')]")
+	private MobileElement TermsConditionserror;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name='Term & Condition' or @name='Term & Conditions']")
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.td:id/irm_tandc_title_view')]")
+	private MobileElement TermsConditionspagecontent;
+	
+	//@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='flyout_title'])[22]")
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@label='Banking Service Configuration']")
+	@AndroidFindBy(xpath = "//*[(@text='Cancel') and (@resource-id='com.td:id/left_button' or @resource-id='com.td:id/left_button_text')]")
+	private MobileElement Banking_config;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Feature Flags']")
+	@AndroidFindBy(xpath = "//*[(@text='Cancel') and (@resource-id='com.td:id/left_button' or @resource-id='com.td:id/left_button_text')]")
+	private MobileElement Feature_flag;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeSwitch[@name='Stubbing, Enable stubbed mode']")
+	@AndroidFindBy(xpath = "//*[(@text='Cancel') and (@resource-id='com.td:id/left_button' or @resource-id='com.td:id/left_button_text')]")
+	private MobileElement Stubbing_flag;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='header caret' or @name='Back' or @name='NAVIGATION_ITEM_BACK' or @name='No' or @name='Return to TD Canada']")
+	@AndroidFindBy(xpath = "//*[(@resource-id='android:id/up')]")
+	private MobileElement Back_btn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Cancel']")
+	@AndroidFindBy(xpath = "//*[(@text='Cancel') and (@resource-id='com.td:id/left_button' or @resource-id='com.td:id/left_button_text' or @resource-id='com.td:id/secondary_button')]")
+	private MobileElement Cancel_btn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Download the terms of use']")
+	@AndroidFindBy(xpath = "//*[(@text='Download Terms & Conditions') and (@resource-id='com.td:id/terms_download_btn')]")
+	private MobileElement DownloadTermsConditions;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='flyout_title'])[3]")
+	@AndroidFindBy(xpath = "//*[(@text='Home') and (@resource-id='com.td:id/foundation_flyout_profile_home_tile')]")
+	private MobileElement Home_btn;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='flyout_title'])[2]")
+	@AndroidFindBy(xpath = "//*[(@text='Logout') and (@resource-id='com.td:id/foundation_flyout_profile_login_logout_tile')]")
+	private MobileElement Logout_btn;
+	
+	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='Transfers' or @name='Send Money']")
+	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Send Money') and (@resource-id='android:id/action_bar_title')]")
+	private MobileElement TransfersOrSendMoney_page;
+	
+	/*@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='Logged Out' or @name='Send Money']")
+	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Send Money') and (@resource-id='android:id/action_bar_title')]")
+	private MobileElement Logged_out;*/
 	
 	private static IRM IRM;
 	public synchronized static IRM get() {
@@ -136,32 +190,12 @@ public class IRM extends _CommonPage {
 		PageFactory.initElements(
 				new AppiumFieldDecorator((CL.GetAppiumDriver()), new TimeOutDuration(15, TimeUnit.SECONDS)), this);
 	}
-	
-	public void InternationalMoneyTransfer() {
-		Decorator();
-		try
-		{
-			mobileAction.verifyElementIsDisplayed(IntTrnsfrBtn, "International Transfer Button");
-			mobileAction.FuncClick(IntTrnsfrBtn, "International Transfer Button");
-			//mobileAction.waitProgressBarVanish();
-		}
-		
-	catch (Exception e) {
-		CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-		try {
-			mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-		} catch (IOException ex) {
-			System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-	}
-	}
 		
 	public void internationalTab_click() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(IntTab, "International Tab");
+			////mobileAction.verifyElementIsDisplayed(IntTab, "International Tab");
 			mobileAction.FuncClick(IntTab, "International Tab");
 			//mobileAction.waitProgressBarVanish();
 
@@ -185,11 +219,9 @@ public class IRM extends _CommonPage {
 		Decorator();
 		try
 		{
-		
-			mobileAction.verifyElementIsDisplayed(Continue_Btn_right, "Continue Button");
+			//mobileAction.verifyElementIsDisplayed(Continue_Btn_right, "Continue Button");
 			mobileAction.FuncClick(Continue_Btn_right, "Continue Button");
 			//mobileAction.waitProgressBarVanish();
-			
 		}
 		catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -206,7 +238,7 @@ public class IRM extends _CommonPage {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Checkbox, "Checkbox Flag");
+			//mobileAction.verifyElementIsDisplayed(Checkbox, "Checkbox Flag");
 			mobileAction.FuncClick(Checkbox, "Checkbox Flag");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -225,7 +257,7 @@ public class IRM extends _CommonPage {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Accept_Btn, "Accept Button");
+			//mobileAction.verifyElementIsDisplayed(Accept_Btn, "Accept Button");
 			mobileAction.FuncClick(Accept_Btn, "Accept Button");
 			//mobileAction.waitProgressBarVanish();	
 		}
@@ -240,12 +272,12 @@ public class IRM extends _CommonPage {
 		}
 	}
 	
-	public void Agree_click() {
+	public void TandC_content_verify() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Agree_Btn, "Accept Button");
-			mobileAction.FuncClick(Agree_Btn, "Accept Button");
+			//mobileAction.verifyElementIsDisplayed(Accept_Btn, "Accept Button");
+			mobileAction.FuncClick(TermsConditionspagecontent, "Terms and Conditions content displayed");
 			//mobileAction.waitProgressBarVanish();	
 		}
 		catch (Exception e) {
@@ -259,11 +291,30 @@ public class IRM extends _CommonPage {
 		}
 	}
 	
+	/*public void Agree_click() {
+		Decorator();
+		try
+		{
+			//mobileAction.verifyElementIsDisplayed(Agree_Btn, "Accept Button");
+			mobileAction.FuncClick(Agree_Btn, "Accept Button");
+			//mobileAction.waitProgressBarVanish();	
+		}
+		catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}*/
+	
 	public void getStarted_click() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(GetStarted, "Get Started Button");
+			//mobileAction.verifyElementIsDisplayed(GetStarted, "Get Started Button");
 			mobileAction.FuncClick(GetStarted, "Get Started Button");
 			//mobileAction.waitProgressBarVanish();	
 		}
@@ -278,38 +329,24 @@ public class IRM extends _CommonPage {
 		}
 	}
 	
-	public void name_validate_iOS() {
-		Decorator();
-		try
-		{
-			MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Registration");
-			mobileAction.verifyElementTextContains(CSTPROFHDR,
-					this.getTextInCurrentLocale(StringArray.ARRAY_IRM_ELIGIBILITY_iOS));
-			//mobileAction.waitProgressBarVanish();
-			System.out.println("Customer eligibility check is done");
-		}
-		catch (Exception e) {
-			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
-			try {
-				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
-			} catch (IOException ex) {
-				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
-			}
-			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
-		}
-	}
 	
-	public void name_validate_Android() {
+	public void Validate_Register_screen() {
 		Decorator();
+		String title = "Registration, Register";
+		String[] title1 = title.split(",");
+		
 		try
 		{
+			for (int i=0; i<title1.length; i++) {
+				
 			MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Registration");
-			mobileAction.verifyElementTextContains(CSTPROFHDR,
-					this.getTextInCurrentLocale(StringArray.ARRAY_IRM_ELIGIBILITY_Android));
-			//mobileAction.waitProgressBarVanish();
-			System.out.println("Customer eligibility check is done");
+			if (title1[i].contains(CSTPROFHDR.getText())){
+				//mobileAction.verifyElementIsDisplayed(CSTPROFHDR, title1[i]);
+				break;
+			}
+			
+			System.out.println("Customer and account eligibility check is done");
+			}	
 		}
 		catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -326,9 +363,9 @@ public class IRM extends _CommonPage {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Contact_edit, "Edit contact information button");
+			//mobileAction.verifyElementIsDisplayed(Contact_edit, "Edit contact information button");
 			mobileAction.FuncClick(Contact_edit, "Contact information edit button");
-
+			
 			//mobileAction.waitProgressBarVanish();
 			System.out.println("Contact information edit button is present");
 		}
@@ -343,16 +380,18 @@ public class IRM extends _CommonPage {
 		}
 	}
 	
-	public void Customer_profile_validated() {
+	public void Customer_profile_changes_validated() {
 		Decorator();
 		try
 		{
 			MobileElement header = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(header, "Profile");
+			//mobileAction.verifyElementIsDisplayed(header, "Profile");
 			mobileAction.verifyElementTextContains(header,
 					this.getTextInCurrentLocale(StringArray.ARRAY_IRM_CUSTOMERPROFILE));
 			//mobileAction.waitProgressBarVanish();
 			System.out.println("Customer profile is validated");
+			
+			
 		}
 		catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -365,11 +404,11 @@ public class IRM extends _CommonPage {
 		}
 	}
 	
-	public void Not_now_btn() {
+	/*public void Not_now_btn() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Not_now_btn, "Not Now Button");
+			//mobileAction.verifyElementIsDisplayed(Not_now_btn, "Not Now Button");
 			mobileAction.FuncClick(Not_now_btn, "Not Now Button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -383,13 +422,13 @@ public class IRM extends _CommonPage {
 		}
 		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-	}
+	}*/
 	
-	public void Continue_popup_after_notnow() {
+	/*public void Continue_popup_after_notnow() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Continue_btn_popup_after_notnow, "Continue popup Button");
+			//mobileAction.verifyElementIsDisplayed(Continue_btn_popup_after_notnow, "Continue popup Button");
 			mobileAction.FuncClick(Continue_btn_popup_after_notnow, "Continue Popup Button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -403,13 +442,13 @@ public class IRM extends _CommonPage {
 		}
 		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-	}
+	}*/
 	
-	public void Confirm_btn() {
+	/*public void Confirm_btn() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Confirm_btn, "Confirm popup Button");
+			//mobileAction.verifyElementIsDisplayed(Confirm_btn, "Confirm popup Button");
 			mobileAction.FuncClick(Confirm_btn, "Confirm Popup Button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -423,13 +462,13 @@ public class IRM extends _CommonPage {
 		}
 		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-	}
+	}*/
 	
 	public void Continue_btn_popup_on_decline() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Continue_btn_popup_on_decline, "Continue popup Button");
+			//mobileAction.verifyElementIsDisplayed(Continue_btn_popup_on_decline, "Continue popup Button");
 			mobileAction.FuncClick(Continue_btn_popup_on_decline, "Continue Popup Button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -449,7 +488,7 @@ public class IRM extends _CommonPage {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Hamburger_btn, "Hamburger Button");
+			//mobileAction.verifyElementIsDisplayed(Hamburger_btn, "Hamburger Button");
 			mobileAction.FuncClick(Hamburger_btn, "Hamburger Button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -465,11 +504,11 @@ public class IRM extends _CommonPage {
 	}
 	}
 	
-	public void Profile_Settings() {
+	/*public void Profile_Settings() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(profile_and_settings, "Profile and Settings tab");
+			//mobileAction.verifyElementIsDisplayed(profile_and_settings, "Profile and Settings tab");
 			mobileAction.FuncClick(profile_and_settings, "Profile and Settings tab");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -483,24 +522,15 @@ public class IRM extends _CommonPage {
 		}
 		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-	}
+	}*/
 	
-	public void New_Security_settings() {
+	/*public void New_Security_settings() {
 		Decorator();
 		try
 		{
-			
-				/*if(mobileAction.FuncIsDisplayed(Not_now_btn, "Not Now Button") == true){
-			
-				mobileAction.FuncClick(Not_now_btn, "Not Now button clicked");
-				mobileAction.FuncClick(Continue_btn_popup, "Continue button popup clicked");
-			}
-		else {*/
-	
-			mobileAction.verifyElementIsDisplayed(New_Security_Setup, "New Security button");
+			//mobileAction.verifyElementIsDisplayed(New_Security_Setup, "New Security button");
 			mobileAction.FuncClick(New_Security_Setup, "New Security Button");
 			//mobileAction.waitProgressBarVanish();
-		
 		}
 		
 	catch (Exception e) {
@@ -512,13 +542,13 @@ public class IRM extends _CommonPage {
 		}
 		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-	}
+	}*/
 	
-	public void Continue_btn() {
+	/*public void Continue_btn() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Continue_btn, "Main Continue button");
+			//mobileAction.verifyElementIsDisplayed(Continue_btn, "Main Continue button");
 			mobileAction.FuncClick(Continue_btn, "Main Continue button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -532,13 +562,13 @@ public class IRM extends _CommonPage {
 		}
 		System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 	}
-	}
+	}*/
 	
 	public void Decline_btn() {
 		Decorator();
 		try
 		{
-			mobileAction.verifyElementIsDisplayed(Decline_btn, "Decline button");
+			//mobileAction.verifyElementIsDisplayed(Decline_btn, "Decline button");
 			mobileAction.FuncClick(Decline_btn, "Decline button");
 			//mobileAction.waitProgressBarVanish();
 		}
@@ -554,12 +584,12 @@ public class IRM extends _CommonPage {
 	}
 	}
 	
-	public void Profile_Settings_Validate() {
+	/*public void Profile_Settings_Validate() {
 		Decorator();
 		try
 		{
 			MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Profile & Settings");
+			//mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Profile & Settings");
 			mobileAction.verifyElementTextContains(CSTPROFHDR,
 					this.getTextInCurrentLocale(StringArray.ARRAY_IRM_PROFILE_SETTINGS));
 			//mobileAction.waitProgressBarVanish();
@@ -581,7 +611,7 @@ public class IRM extends _CommonPage {
 		try
 		{
 			MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
-			mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Success");
+			//mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Success");
 			mobileAction.verifyElementTextContains(CSTPROFHDR,
 					this.getTextInCurrentLocale(StringArray.ARRAY_IRM_SECURITY_SETTINGS));
 			//mobileAction.waitProgressBarVanish();
@@ -596,7 +626,7 @@ public class IRM extends _CommonPage {
 			}
 			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
-	}
+	}*/
 	
 	public void Verify_Sender_info() {
 		String NameProfile = getTestdata("NameProfile");
@@ -614,7 +644,6 @@ public class IRM extends _CommonPage {
 			mobileAction.verifyElement(HomePhoneLocator, HomePhoneProfile);
 			mobileAction.verifyElement(EmailLocator, EmailProfile);
 
-			
 			System.out.println("Customer Information has been verified");
 		}
 		catch (Exception e) {
@@ -631,15 +660,22 @@ public class IRM extends _CommonPage {
 		public void Verify_ineligible_msg() {
 			
 			String IneligibleMsg = getTestdata("IneligibleMsg");
+			String GenericError = getTestdata("GenericError");
 			mobileAction.sleep(5000);
 			Decorator();
 			try
 			{
+				if(mobileAction.FuncIsDisplayed(Ineligible_msg) == true) {
 				mobileAction.verifyElement(Ineligible_msg, IneligibleMsg);
-				
-
-				
+		
 				System.out.println("Ineligible message displayed has been verified");
+			
+				}
+				else {
+				mobileAction.verifyElement(Generic_Error, GenericError);
+				
+				System.out.println("Generic error displayed has been verified");
+				}
 			}
 			catch (Exception e) {
 				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
@@ -651,4 +687,291 @@ public class IRM extends _CommonPage {
 				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 			}
 	}
+		
+		public void Stubbing_enable() {
+			Decorator();
+			try
+			{
+				Thread.sleep(2000);
+				mobileAction.FuncSwipeUpTillScreenBottom(Banking_config);
+					mobileAction.FuncClick(Banking_config, "Banking configuration tab");
+				//mobileAction.verifyElementIsDisplayed(Feature_flag, "Feature flag tab");
+				mobileAction.FuncClick(Feature_flag, "Feature flag tab");
+				
+				//mobileAction.verifyElementIsDisplayed(Stubbing_flag, "Stubbing flag");
+				mobileAction.FuncClick(Stubbing_flag, "Stubbing flag");
+				
+				//mobileAction.verifyElementIsDisplayed(Back_btn, "Back Button");
+				mobileAction.FuncClick(Back_btn, "Back Button");
+				//mobileAction.waitProgressBarVanish();
+			}
+			
+		catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+		}
+			
+			public void Back_click() {
+				Decorator();
+				try
+				{
+					//mobileAction.verifyElementIsDisplayed(Back_btn, "Back Button");
+					mobileAction.FuncClick(Back_btn, "Back Button");
+					//mobileAction.waitProgressBarVanish();
+				}
+				
+			catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		}
+			
+			public void Cancel_click() {
+				Decorator();
+				try
+				{
+					//mobileAction.verifyElementIsDisplayed(Cancel_btn, "Cancel Button");
+					mobileAction.FuncClick(Cancel_btn, "Cancel Button");
+					//mobileAction.waitProgressBarVanish();
+				}
+				
+			catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		}
+			
+			
+			public void Address_Edit() {
+				Decorator();
+				try
+				{
+					
+					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
+					mobileAction.FuncClick(Address_edit, "Address edit Button");
+					//mobileAction.waitProgressBarVanish();
+					Thread.sleep(2000);
+					mobileAction.FuncClickBackButton();
+				}
+				
+			catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		}
+			
+			
+			public void Verify_address_edit_session_out() {
+				Decorator();
+				try
+				{
+					
+					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
+					mobileAction.FuncClick(Address_edit, "Address edit Button");
+					//mobileAction.waitProgressBarVanish();
+					
+					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
+					mobileAction.FuncClick(Cancel_btn, "Cancel Button clicked");
+					//mobileAction.waitProgressBarVanish();
+					
+					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
+					mobileAction.FuncClick(Address_edit, "Address edit Button");
+					//mobileAction.waitProgressBarVanish();
+					
+					//mobileAction.verifyElementIsDisplayed(Continue_popup_for_addressedit, "Continue pop Button");
+					mobileAction.FuncClick(Continue_popup_for_addressedit, "Continue pop Button");
+					Thread.sleep(10000);
+					try {
+					if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
+						mobileAction.FuncClick(Back_btn, "Back Button");
+					}
+					else {
+					mobileAction.FuncClickBackButton();
+					}
+					Thread.sleep(10000);
+					}
+					catch(Exception E) {
+						
+					}
+				
+					/*MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
+					//mobileAction.verifyElementIsDisplayed(CSTPROFHDR, "Logged Out");
+					mobileAction.verifyElementTextContains(CSTPROFHDR,
+							this.getTextInCurrentLocale(StringArray.ARRAY_IRM_SESSION_OUT));
+					//mobileAction.waitProgressBarVanish();
+					System.out.println("Session logged out successfully");*/
+					
+				}
+				
+			catch (Exception e) {
+				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				try {
+					mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+				} catch (IOException ex) {
+					System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+				System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+		}
+			
+			public void Verify_TermsConditions_Error() {
+				
+				String TermsConditionsError = getTestdata("Terms&ConditionsError");
+				mobileAction.sleep(5000);
+				Decorator();
+				try
+				{
+					//mobileAction.verifyElementIsDisplayed(TermsConditionserror, "Terms and conditions error message");
+					mobileAction.verifyElement(TermsConditionserror, TermsConditionsError);
+					Thread.sleep(2000);
+					System.out.println("Terms & Conditions error has been verified");
+					
+					mobileAction.FuncClick(DownloadTermsConditions, "Download T & C Button");
+				
+					try {
+						Thread.sleep(10000);
+						if(mobileAction.FuncIsDisplayed(Cancel_btn) == true) {
+							mobileAction.FuncClick(Cancel_btn, "Cancel Button");
+						}
+						else {
+							mobileAction.FuncClickBackButton();
+						}
+						Thread.sleep(10000);
+					}
+					catch(Exception E) {
+						
+					}
+					
+					mobileAction.FuncClick(Decline_btn, "Decline Button");
+					mobileAction.FuncClick(Yes_btn_popup_on_decline, "Yes button on decline popup");
+					Thread.sleep(5000);
+				}
+				catch (Exception e) {
+					CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+					try {
+						mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+					} catch (IOException ex) {
+						System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+					System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+				}
+			}
+				public void Test_ids () {
+					
+					Transfers trnsfr = new Transfers();
+					MenuPage menu = new MenuPage();
+					Login login = new Login();
+					String TestData = getTestdata("ID");
+
+
+					Decorator();
+					try
+					{
+						Thread.sleep(20000);
+
+						for (int i=0; i<TestData.length(); i++) {
+							String[] TestData1 = TestData.split(",");
+							
+						CL.getTestDataInstance().TCParameters.put("UserID", TestData1[i]);
+						menu.clickMenuTransfer();
+						login.login();
+						trnsfr.clickInterac_e_Transfer();
+						IRM.internationalTab_click();
+						IRM.Verify_ineligible_msg();
+						IRM.Back_click();
+						try {
+							if(TransfersOrSendMoney_page.isDisplayed()) {
+								IRM.Back_click();
+							}
+						}
+						catch (Exception E) {
+							
+						}
+						mobileAction.FuncClick(Logout_btn, "Logout Button");
+						IRM.Back_click();
+						mobileAction.FuncClick(Home_btn, "Home Button");
+						}
+						
+					}
+					catch (Exception e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						try {
+							mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+						} catch (IOException ex) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+		}
+				
+public void Test_eligible_ids () {
+					
+					Transfers trnsfr = new Transfers();
+					MenuPage menu = new MenuPage();
+					Login login = new Login();
+					String TestData = getTestdata("ID");
+
+					Decorator();
+					try
+					{
+						Thread.sleep(20000);
+
+						for (int i=0; i<=TestData.length(); i++) {
+							String[] TestData1 = TestData.split(",");
+							
+						CL.getTestDataInstance().TCParameters.put("UserID", TestData1[i]);
+						menu.clickMenuTransfer();
+						login.login();
+						trnsfr.clickInterac_e_Transfer();
+						IRM.internationalTab_click();
+						IRM.getStarted_click();
+						IRM.Validate_Register_screen();
+						IRM.Back_click();
+						IRM.Back_click();
+						try {
+							if(TransfersOrSendMoney_page.isDisplayed()) {
+								IRM.Back_click();
+							}
+						}
+						catch (Exception E) {
+							
+						}
+						mobileAction.FuncClick(Logout_btn, "Logout Button");
+						IRM.Back_click();
+						mobileAction.FuncClick(Home_btn, "Home Button");
+						}
+					}
+					catch (Exception e) {
+						CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+						try {
+							mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+						} catch (IOException ex) {
+							System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+						}
+						System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+					}
+		}
+			
+			
 }
