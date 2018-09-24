@@ -51,7 +51,8 @@ public class MainScreen extends _CommonPage {
 			"Passcode", "NewPasscode", "Email", "Name", "EmailProfile", "PhoneProfile", "PostSurveyText", "Response",
 			"ProfileType", "SecurityQuestion", "OTPSecurityCode", "UserProfileType", "SecurityQuestion", "Category",
 			"TransactionStatus", "Message", "Nickname", "AccountNumber", "SymbolImage", "NxtSymbol", "NxtSymbolImage",
-			"SymbolShortName", "Time", "AccountType","PIN", "NameProfile", "AddressProfile", "PhoneProfile", "HomePhoneProfile", "EmailProfile", "IneligibleMsg" };
+			"SymbolShortName", "Time", "AccountType","PIN", "NameProfile", "AddressProfile", "PhoneProfile", "HomePhoneProfile", "EmailProfile", "IneligibleMsg", "Terms&ConditionsError", "ID", "GenericError" + 
+					"" };
 
 	public void readSheet() {
 		CL.getTestDataInstance().TCParameters = new HashMap<String, String>();

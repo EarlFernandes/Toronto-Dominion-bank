@@ -118,6 +118,8 @@ public class MobileAction2 extends CommonLib {
 			throw e;
 		}
 	}
+	
+	
 
 	/**
 	 * This method will click over a particular coordinate the number of times

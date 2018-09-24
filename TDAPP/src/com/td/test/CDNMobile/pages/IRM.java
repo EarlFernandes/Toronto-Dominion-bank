@@ -158,6 +158,10 @@ public class IRM extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Cancel') and (@resource-id='com.td:id/left_button' or @resource-id='com.td:id/left_button_text' or @resource-id='com.td:id/secondary_button')]")
 	private MobileElement Cancel_btn;
 	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeButton[@name='Cancel'])[2]")
+	@AndroidFindBy(xpath = "//*[(@text='Cancel') and (@resource-id='com.td:id/left_button' or @resource-id='com.td:id/left_button_text' or @resource-id='com.td:id/secondary_button')]")
+	private MobileElement Cancel_btn_for_iOS_popup;
+	
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Download the terms of use']")
 	@AndroidFindBy(xpath = "//*[(@text='Download Terms & Conditions') and (@resource-id='com.td:id/terms_download_btn')]")
 	private MobileElement DownloadTermsConditions;
@@ -791,10 +795,18 @@ public class IRM extends _CommonPage {
 					mobileAction.FuncClick(Address_edit, "Address edit Button");
 					//mobileAction.waitProgressBarVanish();
 					
-					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
-					mobileAction.FuncClick(Cancel_btn, "Cancel Button clicked");
-					//mobileAction.waitProgressBarVanish();
 					
+					if(mobileAction.FuncIsDisplayed(Cancel_btn) == true) {
+					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
+					mobileAction.FuncClick(Cancel_btn, "Cancel Button");
+					//mobileAction.waitProgressBarVanish();
+					}
+					else
+					{
+						//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
+						mobileAction.FuncClick(Cancel_btn_for_iOS_popup, "Cancel Button for popup on iOS");
+						//mobileAction.waitProgressBarVanish();
+					}
 					//mobileAction.verifyElementIsDisplayed(Address_edit, "Address edit Button");
 					mobileAction.FuncClick(Address_edit, "Address edit Button");
 					//mobileAction.waitProgressBarVanish();

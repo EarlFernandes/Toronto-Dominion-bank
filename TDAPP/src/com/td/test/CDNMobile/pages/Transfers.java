@@ -173,6 +173,7 @@ public class Transfers extends _CommonPage {
 			mobileAction.verifyElementIsDisplayed(transfers_header, "Transfer Header");
 			mobileAction.FuncClick(Interac_e_Transfer_button, "Interac e_Transfer");
 			mobileAction.waitProgressBarVanish();
+			//mobileAction.sleep(2000);
 		} catch (NoSuchElementException e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
