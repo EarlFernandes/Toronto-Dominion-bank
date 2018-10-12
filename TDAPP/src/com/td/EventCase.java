@@ -178,7 +178,10 @@ public class EventCase {
 		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists, HomeScreen_QuickLink_Trade,
 
 		//IRM
-		Agree_click, Notnow_btn, Continue_popupNotnow, Continue_decline, Confirm_btn, SecuritySetup_confim, Hamburger_btn, Profile_Settings_btn, New_Security, Continue_main, Decline_btn, ProfileSettings_Validation, SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, TestInEligibilityofID, TestEligibleIDs, VerifyTermsConditionsContent, Address_edit,
+		SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, TestInEligibilityofID_android, TestInEligibilityofID_ios, TestEligibleIDs_android, TestEligibleIDs_ios, VerifyTermsConditionsContent, Address_edit, Verify_MissingInfo, Validate_QQScreen, Quick_Quotes,
+		
+		//OTPRefactor
+		Agree_click, Notnow_btn, Continue_popupNotnow, Continue_decline, Confirm_btn, SecuritySetup_confim, Hamburger_btn, Profile_Settings_btn, New_Security, Continue_main, Decline_btn, ProfileSettings_Validation,
 		
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -960,6 +963,8 @@ public class EventCase {
 			Interac_Send_Money.get().sendMoneyVerifySuccessMsg();
 			break;
 			
+//Start of IRM
+			
 		case InternationalTab:
 			IRM.get().internationalTab_click();
 			break;
@@ -984,9 +989,9 @@ public class EventCase {
 			IRM.get().accept_click();
 			break;
 			
-		/*case Agree_click:
-			IRM.get().Agree_click();
-			break;*/
+		case Agree_click:
+			OTPRefactor.get().Agree_click();
+			break;
 			
 		case ContactInfoEdit:
 			IRM.get().contact_info_edit_click();
@@ -996,49 +1001,49 @@ public class EventCase {
 			IRM.get().Customer_profile_changes_validated();
 			break;
 			
-//		case Notnow_btn:
-//			IRM.get().Not_now_btn();
-//			break;
+		case Notnow_btn:
+			OTPRefactor.get().Not_now_btn();
+			break;
 			
-		/*case Continue_popupNotnow:
-			IRM.get().Continue_popup_after_notnow();
-			break;*/
+		case Continue_popupNotnow:
+			OTPRefactor.get().Continue_popup_after_notnow();
+			break;
 			
 		case Continue_decline:
 			IRM.get().Continue_btn_popup_on_decline();
 			break;
 			
-		/*case Confirm_btn:
-			IRM.get().Confirm_btn();
-			break;*/
+		case Confirm_btn:
+			OTPRefactor.get().Confirm_btn();
+			break;
 			
 		case Hamburger_btn:
 			IRM.get().Hamburger_button();
 			break;
 			
-		/*case Profile_Settings_btn:
-			IRM.get().Profile_Settings();
-			break;*/
-			
-		/*case New_Security:
-			IRM.get().New_Security_settings();
-			break;*/
-			
-		/*case Continue_main:
-			IRM.get().Continue_btn();
-			break;*/
-			
-		case Decline_btn:
-			IRM.get().Decline_btn();
+		case Profile_Settings_btn:
+			OTPRefactor.get().Profile_Settings();
 			break;
 			
-		/*case ProfileSettings_Validation:
-			IRM.get().Profile_Settings_Validate();
+		case New_Security:
+			OTPRefactor.get().New_Security_settings();
+			break;
+			
+		case Continue_main:
+			OTPRefactor.get().Continue_btn();
+			break;
+			
+		case Decline_btn:
+			OTPRefactor.get().Decline_btn();
+			break;
+			
+		case ProfileSettings_Validation:
+			OTPRefactor.get().Profile_Settings_Validate();
 			break;
 			
 		case SecuritySetup_confim:
-			IRM.get().Security_Setup_Validate();
-			break;*/
+			OTPRefactor.get().Security_Setup_Validate();
+			break;
 			
 		case SenderInfo_Validation:
 			IRM.get().Verify_Sender_info();
@@ -1068,6 +1073,10 @@ public class EventCase {
 			IRM.get().Address_Edit();
 			break;
 			
+		case Verify_MissingInfo:
+			IRM.get().Verify_Missinginfo();
+			break;
+			
 		case VerifyTermsConditionsError:
 			IRM.get().Verify_TermsConditions_Error();
 			break;
@@ -1076,13 +1085,37 @@ public class EventCase {
 			IRM.get().TandC_content_verify();
 			break;
 			
-		case TestInEligibilityofID:
-			IRM.get().Test_ids();
+			
+			//Eligibility for IRM
+		case TestInEligibilityofID_android:
+			IRM.get().Test_ineligible_ids_android();
 			break;
 			
-		case TestEligibleIDs:
-			IRM.get().Test_eligible_ids();
+		case TestInEligibilityofID_ios:
+			IRM.get().Test_ineligible_ids_ios();
 			break;
+			
+		case TestEligibleIDs_android:
+			IRM.get().Test_eligible_ids_android();
+			break;
+			
+		case TestEligibleIDs_ios:
+			IRM.get().Test_eligible_ids_ios();
+			break;
+			
+			//QQ for IRM
+		case Validate_QQScreen:
+			IRM.get().Validate_QQScreen();
+			break;
+			
+		case Quick_Quotes:
+			IRM.get().Quick_quotes();
+			break;
+			
+			
+			
+//End of IRM
+			
 			
 		case HomeScreen_ClickBills:
 			HomeScreen.get().clickBill();

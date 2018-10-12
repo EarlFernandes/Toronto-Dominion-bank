@@ -192,17 +192,63 @@ public class IRM extends _CommonPage {
 	@AndroidFindBy(xpath = "//*[(@text='Home') and (@resource-id='com.td:id/foundation_flyout_profile_home_tile')]")
 	private MobileElement Home_btn;
 
-	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='flyout_title'])[2]")
+	@iOSXCUITFindBy(xpath = "//*[@label='Logout']")
 	@AndroidFindBy(xpath = "//*[(@text='Logout') and (@resource-id='com.td:id/foundation_flyout_profile_login_logout_tile')]")
 	private MobileElement Logout_btn;
+	
+	@iOSXCUITFindBy(xpath = "(//XCUIElementTypeStaticText[@name='flyout_title'])[2]")
+	@AndroidFindBy(xpath = "//*[(@text='Login') and (@resource-id='com.td:id/foundation_flyout_profile_login_logout_tile')]")
+	private MobileElement Login_btn;
 
 	@iOSXCUITFindBy(xpath = "//XCUIElementTypeNavigationBar[@name='Transfers' or @name='Send Money']")
 	@AndroidFindBy(xpath = "//*[(@text='Transfers' or @text='Send Money') and (@resource-id='android:id/action_bar_title')]")
 	private MobileElement TransfersOrSendMoney_page;
-	
+
 	@iOSFindBy(xpath = "//XCUIElementTypeOther[@name='Remember me on']")
 	@AndroidFindBy(xpath = "//android.widget.Switch[@resource-id='com.td:id/remember_switch' and @index='1']")
 	private static MobileElement RememberMe;
+
+	// Quick Quotes
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='Let's start your international transfer')]")
+	private MobileElement QQTitle;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='Country') and (@resource-id='com.td:id/value' or @resource-id='com.td:id/label')]")
+	private MobileElement Country_dropdown;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='Search') and (@resource-id='com.td:id/searchField')]")
+	private MobileElement Search_field;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.td:id/tv_name')]")
+	private MobileElement Select_option;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='State') and (@resource-id='com.td:id/value' or @resource-id='com.td:id/label')]")
+	private MobileElement State_dropdown;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='Currency') and (@resource-id='com.td:id/value' or @resource-id='com.td:id/label')]")
+	private MobileElement Currency_dropdown;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='CAD') and (@resource-id='com.td:id/title')]")
+	private MobileElement Currency1_select;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='USD') and (@resource-id='com.td:id/title')]")
+	private MobileElement Currency2_select;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@text='Amount') and (@resource-id='com.td:id/value' or @resource-id='com.td:id/label')]")
+	private MobileElement Amount;
+
+	// @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name='Continue']")
+	@AndroidFindBy(xpath = "//*[(@resource-id='com.td:id/btn_see_available_options')]")
+	private MobileElement See_Available_Options;
 
 	/*
 	 * @iOSXCUITFindBy(xpath =
@@ -356,14 +402,15 @@ public class IRM extends _CommonPage {
 
 				MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
 				if (title1[i].contains(CSTPROFHDR.getText())) {
-					//mobileAction.verifyElementIsDisplayed(CSTPROFHDR, title1[i]);
+					// mobileAction.verifyElementIsDisplayed(CSTPROFHDR, title1[i]);
 					System.out.println("Customer and account eligibility check is done");
-					mobileAction.GetReporting().FuncReport("Pass", "<b>Customer and account eligibility check</b> is done");
+					mobileAction.GetReporting().FuncReport("Pass",
+							"<b>Customer and account eligibility check</b> is done");
 					break;
-				}				
+				}
 			}
 		} catch (Exception e) {
-			//CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
 			} catch (IOException ex) {
@@ -628,7 +675,6 @@ public class IRM extends _CommonPage {
 				System.out.println("Ineligible message displayed has been verified");
 				mobileAction.GetReporting().FuncReport("Pass", "<b>Ineligible message</b> displayed has been verified");
 
-
 			} else if (mobileAction.FuncIsDisplayed(Generic_Error) == true) {
 				mobileAction.verifyElement(Generic_Error, GenericError);
 
@@ -643,9 +689,10 @@ public class IRM extends _CommonPage {
 
 			}
 		} catch (Exception e) {
-			//CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
-				mobileAction.GetReporting().FuncReport("Fail", "None of the <b>Ineligible error messages</b> were displayed");
+				mobileAction.GetReporting().FuncReport("Fail",
+						"None of the <b>Ineligible error messages</b> were displayed");
 			} catch (IOException ex) {
 				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
 			}
@@ -856,6 +903,7 @@ public class IRM extends _CommonPage {
 		}
 	}
 
+	// Eligibility and Ineligibility
 	public void Test_ineligible_ids_android() {
 
 		Transfers trnsfr = new Transfers();
@@ -863,36 +911,44 @@ public class IRM extends _CommonPage {
 		LoginIRM login = new LoginIRM();
 		String TestData = getTestdata("ID");
 		String[] TestData1 = TestData.split(",");
+		String TestData2 = getTestdata("InEligibleAccountType");
+		String[] TestData3 = TestData2.split(",");
+		String titleHeader = ("Authentication Denied");
 
 		Decorator();
 		try {
 			Thread.sleep(20000);
 
 			for (int i = 0; i < TestData1.length; i++) {
-				
 
 				CL.getTestDataInstance().TCParameters.put("UserID", TestData1[i]);
-				
+
 				menu.clickMenuTransfer();
-				
+
 				try {
-				login.login();
-				if(mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
-					continue;
+					login.login();
+					if (mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
+						continue;
+					}
+					if (titleHeader.contains(LoginIRM.logined_page_Header().getText())) {
+						IRM.Back_click();
+						continue;
+					}
+				} catch (Exception E) {
+
 				}
-				}
-				catch (Exception E) {
-					
-				}
-				System.out.println("Logged in with ID: " + TestData1[i]);
+				System.out.println("Logging in with ID: " + TestData1[i] + " for account type: " + TestData3[i]);
+				mobileAction.GetReporting().FuncReport("Pass",
+						"<b>Logging in with ID: </b>" + TestData1[i] + " <b>for account type:</b> " + TestData3[i]);
+
 				trnsfr.clickInterac_e_Transfer();
 				IRM.internationalTab_click();
 				try {
-				IRM.Verify_ineligible_msg();
-				}
-				catch(Exception e) {
+					IRM.Verify_ineligible_msg();
+				} catch (Exception e) {
 					System.out.println("Ineligible message or generic error not displayed");
-					mobileAction.GetReporting().FuncReport("Fail", "<b>Ineligible message or generic errors</b> not displayed");
+					mobileAction.GetReporting().FuncReport("Fail",
+							"<b>Ineligible message or generic errors</b> not displayed");
 				}
 
 				try {
@@ -945,51 +1001,54 @@ public class IRM extends _CommonPage {
 		LoginIRM login = new LoginIRM();
 		String TestData = getTestdata("ID");
 		String[] TestData1 = TestData.split(",");
+		String titleHeader = ("Authentication Denied");
 
 		Decorator();
 		try {
 			Thread.sleep(20000);
 
 			for (int i = 0; i < TestData1.length; i++) {
-				
+
 				CL.getTestDataInstance().TCParameters.put("UserID", TestData1[i]);
 				menu.clickMenuTransfer();
-				
+
 				System.out.println("Logged in with ID: " + TestData1[i]);
 				try {
 					try {
-					if (mobileAction.FuncIsDisplayed(RememberMe) == true) {
+						if (mobileAction.FuncIsDisplayed(RememberMe) == true) {
 							mobileAction.FuncClick(RememberMe, "Remember Me Switch");
-					}
-					}
-					catch (Exception E) {
-						
+						}
+					} catch (Exception E) {
+
 					}
 					login.login();
-					if(mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
+					if (mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
 						continue;
 					}
+					if (titleHeader.contains(LoginIRM.logined_page_Header().getText())) {
+						IRM.Back_click();
+						continue;
 					}
-					catch (Exception E) {
-						
-					}
+				} catch (Exception E) {
+
+				}
 				trnsfr.clickInterac_e_Transfer();
 				IRM.internationalTab_click();
 				try {
 					IRM.Verify_ineligible_msg();
-					}
-					catch(Exception e) {
-						System.out.println("Ineligible message or generic error not displayed");
-						mobileAction.GetReporting().FuncReport("Fail", "<b>Ineligible message or generic errors</b> not displayed");
-					}
-				
+				} catch (Exception e) {
+					System.out.println("Ineligible message or generic error not displayed");
+					mobileAction.GetReporting().FuncReport("Fail",
+							"<b>Ineligible message or generic errors</b> not displayed");
+				}
+
 				try {
 					while (mobileAction.FuncIsDisplayed(Logout_btn) == false) {
-					if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
-						IRM.Back_click();
-					} else {
-						mobileAction.FuncClick(Hamburger_btn, "Hamburger Button");
-					}
+						if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
+							IRM.Back_click();
+						} else {
+							mobileAction.FuncClick(Hamburger_btn, "Hamburger Button");
+						}
 					}
 				} catch (Exception E) {
 
@@ -998,7 +1057,7 @@ public class IRM extends _CommonPage {
 
 				IRM.Back_click();
 			}
-				
+
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
@@ -1017,26 +1076,38 @@ public class IRM extends _CommonPage {
 		LoginIRM login = new LoginIRM();
 		String TestData = getTestdata("ID");
 		String[] TestData1 = TestData.split(",");
+		String TestData4 = getTestdata("EligibleAccountType");
+		String[] TestData5 = TestData4.split(",");
+		String titleHeader = ("Authentication Denied");
 
 		Decorator();
 		try {
 			Thread.sleep(20000);
 
 			for (int i = 0; i < TestData1.length; i++) {
-				
 
 				CL.getTestDataInstance().TCParameters.put("UserID", TestData1[i]);
 				menu.clickMenuTransfer();
-				System.out.println("Logging in with ID: " + TestData1[i]);
+				System.out.println("Logging in with ID: " + TestData1[i] + " for account type: " + TestData5[i]);
+				mobileAction.GetReporting().FuncReport("Pass",
+						"<b>Logging in with ID: </b>" + TestData1[i] + " <b>for account type:</b> " + TestData5[i]);
 				try {
 					login.login();
-					if(mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
+					if (mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
 						continue;
 					}
+					if (titleHeader.contains(LoginIRM.logined_page_Header().getText())) {
+						IRM.Back_click();
+						continue;
 					}
-					catch (Exception E) {
-						
+					if (mobileAction.FuncIsDisplayed(Generic_Error) == true) {
+						IRM.Back_click();
+						IRM.Home_btn.click();
+						continue;
 					}
+				} catch (Exception E) {
+
+				}
 				trnsfr.clickInterac_e_Transfer();
 				IRM.internationalTab_click();
 				Thread.sleep(3000);
@@ -1045,16 +1116,20 @@ public class IRM extends _CommonPage {
 				try {
 					IRM.Validate_Register_screen();
 					mobileAction.FuncClick(Cancel_btn, "Cancel Button");
-					}
-					catch(Exception e) {
-						System.out.println("Register screen not displayed");
-						mobileAction.GetReporting().FuncReport("Fail", "<b>Register screen </b> not displayed");
+				} catch (Exception e) {
+					System.out.println("Register screen not displayed");
+					mobileAction.GetReporting().FuncReport("Fail", "<b>Register screen </b> not displayed");
+				}
+
+				while (mobileAction.FuncIsDisplayed(Logout_btn) == false) {
+					if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
+						mobileAction.FuncClick(Back_btn, "Back Button");
+					} else {
+						mobileAction.FuncClick(Hamburger_btn, "Hamburger Button");
 					}
 
-				IRM.Back_click();
-				if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
-					IRM.Back_click();
 				}
+
 				mobileAction.FuncClick(Logout_btn, "Logout Button");
 
 				if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
@@ -1083,33 +1158,42 @@ public class IRM extends _CommonPage {
 		LoginIRM login = new LoginIRM();
 		String TestData = getTestdata("ID");
 		String[] TestData1 = TestData.split(",");
+		String titleHeader = ("Authentication Denied");
 
 		Decorator();
 		try {
 			Thread.sleep(20000);
 
 			for (int i = 0; i < TestData1.length; i++) {
-				
+
 				CL.getTestDataInstance().TCParameters.put("UserID", TestData1[i]);
 				menu.clickMenuTransfer();
 				System.out.println("Logging in with ID: " + TestData1[i]);
 				try {
 					try {
-					if (mobileAction.FuncIsDisplayed(RememberMe) == true) {
+						if (mobileAction.FuncIsDisplayed(RememberMe) == true) {
 							mobileAction.FuncClick(RememberMe, "Remember Me Switch");
-					}
-					}
-					catch (Exception E) {
-						
+						}
+					} catch (Exception E) {
+
 					}
 					login.login();
-					if(mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
+					/*if (mobileAction.FuncIsDisplayed(LoginIRM.geterror()) == true) {
 						continue;
 					}
+					if (titleHeader.contains(LoginIRM.logined_page_Header().getText())) {
+						IRM.Back_click();
+						continue;
 					}
-					catch (Exception E) {
-						
-					}
+					
+					if (mobileAction.FuncIsDisplayed(Generic_Error) == true) {
+						IRM.Back_click();
+						IRM.Home_btn.click();
+						continue;
+					}*/
+				} catch (Exception E) {
+
+				}
 				trnsfr.clickInterac_e_Transfer();
 				IRM.internationalTab_click();
 				Thread.sleep(3000);
@@ -1118,19 +1202,18 @@ public class IRM extends _CommonPage {
 				try {
 					IRM.Validate_Register_screen();
 					mobileAction.FuncClick(Cancel_btn, "Cancel Button");
-					}
-					catch(Exception e) {
-						System.out.println("Register screen not displayed");
-						mobileAction.GetReporting().FuncReport("Fail", "<b>Register screen </b> not displayed");
-					}
+				} catch (Exception e) {
+					System.out.println("Register screen not displayed");
+					mobileAction.GetReporting().FuncReport("Fail", "<b>Register screen </b> not displayed");
+				}
 
 				try {
 					while (mobileAction.FuncIsDisplayed(Logout_btn) == false) {
-					if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
-						IRM.Back_click();
-					} else {
-						mobileAction.FuncClick(Hamburger_btn, "Hamburger Button");
-					}
+						if (mobileAction.FuncIsDisplayed(Back_btn) == true) {
+							IRM.Back_click();
+						} else {
+							mobileAction.FuncClick(Hamburger_btn, "Hamburger Button");
+						}
 					}
 				} catch (Exception E) {
 
@@ -1142,6 +1225,90 @@ public class IRM extends _CommonPage {
 			}
 		} catch (Exception e) {
 			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	// Quick Quotes
+
+	public void Validate_QQScreen() {
+		Decorator();
+		String title = "Let's start your international transfer, Register";
+		String[] title1 = title.split(",");
+
+		try {
+			for (int i = 0; i < title1.length; i++) {
+
+				// MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
+				if (title1[i].contains(QQTitle.getText())) {
+					// mobileAction.verifyElementIsDisplayed(CSTPROFHDR, title1[i]);
+					System.out.println("QQ screen is displayed");
+					mobileAction.GetReporting().FuncReport("Pass", "<b>QQ Screen</b> is displayed");
+					break;
+				}
+			}
+		} catch (Exception e) {
+			// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			try {
+				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
+			} catch (IOException ex) {
+				System.out.print("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+			}
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
+		}
+	}
+
+	public void Quick_quotes() {
+		Decorator();
+		String Country1 = getTestdata("Country");
+		String[] TestData1 = Country1.split(",");
+		String State1 = getTestdata("State");
+		String[] TestData2 = State1.split(",");
+		// String Currency = ("CAD, USD");
+		// String[] TestData3 = Currency.split(",");
+
+		try {
+			for (int i = 0; i < TestData1.length; i++) {
+
+				// MobileElement CSTPROFHDR = PageHeader.get().getHeaderTextElement();
+				mobileAction.FuncClick(Country_dropdown, "Country Dropdown");
+				mobileAction.FuncClick(Search_field, "Country Search");
+				mobileAction.FuncSendKeys(TestData1[i]);
+				mobileAction.FuncClick(Select_option, "Country Selection");
+				System.out.println("Country " + TestData1[i] + " is displayed");
+				mobileAction.GetReporting().FuncReport("Pass", "<b>Country</b> " + TestData1[i] + " is selected");
+
+				for (int j = 0; j < TestData2.length; j++) {
+					mobileAction.FuncClick(State_dropdown, "State Dropdown");
+					mobileAction.FuncClick(Search_field, "State Search");
+					mobileAction.FuncSendKeys(TestData2[j]);
+					mobileAction.FuncClick(Select_option, "State name");
+					System.out.println("State " + TestData2[j] + " is displayed");
+					mobileAction.GetReporting().FuncReport("Pass", "<b>State</b> " + TestData2[j] + " is selected");
+
+					// Currency selection (Currently defaulted to CAD and USD)
+					mobileAction.FuncClick(Currency_dropdown, "Currency Dropdown");
+					mobileAction.FuncClick(Currency1_select, "Currency Selection");
+					mobileAction.FuncClick(Currency_dropdown, "Currency Dropdown");
+					mobileAction.FuncClick(Currency2_select, "Currency Selection");
+
+				}
+
+				// mobileAction.verifyElementIsDisplayed(CSTPROFHDR, title1[i]);
+
+			}
+
+			mobileAction.FuncClick(Amount, "Amount Field");
+			mobileAction.FuncSendKeys("999");
+			mobileAction.FuncClick(See_Available_Options, "See Available Options Button");
+
+		} catch (Exception e) {
+			// CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			try {
 				mobileAction.GetReporting().FuncReport("Fail", "Test failed: " + e.getMessage());
 			} catch (IOException ex) {
