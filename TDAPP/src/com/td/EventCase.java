@@ -178,10 +178,10 @@ public class EventCase {
 		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists, HomeScreen_QuickLink_Trade,
 
 		//IRM
-		SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, TestInEligibilityofID_android, TestInEligibilityofID_ios, TestEligibleIDs_android, TestEligibleIDs_ios, VerifyTermsConditionsContent, Address_edit, Verify_MissingInfo, Validate_QQScreen, Quick_Quotes,
+		SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, Continue_decline, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, Hamburger_btn, TestInEligibilityofID_android, Continue_main, TestInEligibilityofID_ios, TestEligibleIDs_android, TestEligibleIDs_ios, VerifyTermsConditionsContent, Address_edit, Verify_MissingInfo, Validate_QQScreen, Quick_Quotes,
 		
 		//OTPRefactor
-		Agree_click, Notnow_btn, Continue_popupNotnow, Continue_decline, Confirm_btn, SecuritySetup_confim, Hamburger_btn, Profile_Settings_btn, New_Security, Continue_main, Decline_btn, ProfileSettings_Validation,
+		//Agree_click, Notnow_btn, Continue_popupNotnow,  Confirm_btn, SecuritySetup_confim,  Profile_Settings_btn, New_Security,  Decline_btn, ProfileSettings_Validation,
 		
 		// Login
 		Login_VerifyUserNotRemembered, Login_LoginUsingAccessCardNumber, Login_LoginUsingAlias, Login_DeleteAllRememberedIDs, Login_VerifyAllRememberedIDsDeleted, Login_VerifyRememberedIDs, Login_VerifyLoginMFA, Login_CloseApp,
@@ -989,9 +989,6 @@ public class EventCase {
 			IRM.get().accept_click();
 			break;
 			
-		case Agree_click:
-			OTPRefactor.get().Agree_click();
-			break;
 			
 		case ContactInfoEdit:
 			IRM.get().contact_info_edit_click();
@@ -1001,26 +998,31 @@ public class EventCase {
 			IRM.get().Customer_profile_changes_validated();
 			break;
 			
-		case Notnow_btn:
-			OTPRefactor.get().Not_now_btn();
-			break;
-			
-		case Continue_popupNotnow:
-			OTPRefactor.get().Continue_popup_after_notnow();
-			break;
-			
 		case Continue_decline:
 			IRM.get().Continue_btn_popup_on_decline();
-			break;
-			
-		case Confirm_btn:
-			OTPRefactor.get().Confirm_btn();
 			break;
 			
 		case Hamburger_btn:
 			IRM.get().Hamburger_button();
 			break;
 			
+		/*
+		case Agree_click:
+			OTPRefactor.get().Agree_click();
+			break;
+			
+			case Notnow_btn:
+			OTPRefactor.get().Not_now_btn();
+			break;
+			
+		case Continue_popupNotnow:
+			OTPRefactor.get().Continue_popup_after_notnow();
+			break;
+		
+		case Confirm_btn:
+			OTPRefactor.get().Confirm_btn();
+			break;
+		
 		case Profile_Settings_btn:
 			OTPRefactor.get().Profile_Settings();
 			break;
@@ -1043,7 +1045,7 @@ public class EventCase {
 			
 		case SecuritySetup_confim:
 			OTPRefactor.get().Security_Setup_Validate();
-			break;
+			break;*/
 			
 		case SenderInfo_Validation:
 			IRM.get().Verify_Sender_info();
