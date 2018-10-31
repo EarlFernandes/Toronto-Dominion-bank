@@ -568,7 +568,7 @@ public class LoginIRM extends _CommonPage {
 			e.printStackTrace();
 			try {
 				CL.GetReporting().FuncReport("Fail", "Login Failed");
-				CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+				//CL.getGlobalVarriablesInstance().bStopNextFunction = false;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -630,9 +630,19 @@ public class LoginIRM extends _CommonPage {
 			mobileAction.waitProgressBarVanish();
 			enterPwdifSystemError();
 	}
-		catch(Exception E)
-		{
-			
+		
+		catch (NoSuchElementException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("NoSuchElementException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (InterruptedException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("InterruptedException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (IOException e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("IOException from Method " + this.getClass().toString() + " " + e.getCause());
+		} catch (Exception e) {
+			CL.getGlobalVarriablesInstance().bStopNextFunction = false;
+			System.out.println("Exception from Method " + this.getClass().toString() + " " + e.getCause());
 		}
 	}
 		

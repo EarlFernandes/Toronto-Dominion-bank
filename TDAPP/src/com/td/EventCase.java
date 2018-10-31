@@ -178,7 +178,7 @@ public class EventCase {
 		HomeScreen_QuickLink_Chatbot, HomeScreen_Dashboard_Chatbot, HomeScreen_QuickLink_ShowWatchlists, HomeScreen_QuickLink_Trade,
 
 		//IRM
-		SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, Continue_decline, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, Hamburger_btn, TestInEligibilityofID_android, Continue_main, TestInEligibilityofID_ios, TestEligibleIDs_android, TestEligibleIDs_ios, VerifyTermsConditionsContent, Address_edit, Verify_MissingInfo, Validate_QQScreen, Quick_Quotes,
+		SenderInfo_Validation, IneligibleMsg, Stubbing_enabled, Back_btn, Continue_decline, VerifyAddress_edit, Cancel_btn, VerifyTermsConditionsError, Hamburger_btn, TestInEligibilityofID_android, Continue_main, TestInEligibilityofID_ios, TestEligibleIDs_android, TestEligibleIDs_ios, VerifyTermsConditionsContent, Address_edit, Verify_MissingInfo, Validate_QQScreen, Quick_Quotes, RememberMe_Switch,
 		
 		//OTPRefactor
 		//Agree_click, Notnow_btn, Continue_popupNotnow,  Confirm_btn, SecuritySetup_confim,  Profile_Settings_btn, New_Security,  Decline_btn, ProfileSettings_Validation,
@@ -1089,6 +1089,11 @@ public class EventCase {
 			
 			
 			//Eligibility for IRM
+			
+		case RememberMe_Switch:
+			IRM.get().RememberMe();
+			break;
+			
 		case TestInEligibilityofID_android:
 			IRM.get().Test_ineligible_ids_android();
 			break;
@@ -1111,7 +1116,7 @@ public class EventCase {
 			break;
 			
 		case Quick_Quotes:
-			IRM.get().Quick_quotes();
+			IRM.get().Quick_quotes_US();
 			break;
 			
 			
