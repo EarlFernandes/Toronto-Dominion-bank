@@ -11,7 +11,7 @@
 
 		<repository>
 			<id>internal</id>
-			<url>http://49.3.145.118:8080/repository/internal</url>
+			<url>http://tdcr-astko-cv01.d2-tdbfg.com:8080/repository/internal</url>
 		</repository>
 
 	</distributionManagement>
@@ -21,7 +21,7 @@
 		<repository>
 			<id>snapshots</id>
 			<name>Archiva Managed Snapshot Repository</name>
-			<url>http://49.3.145.118:8080/repository/internal</url>
+			<url>http://tdcr-astko-cv01.d2-tdbfg.com:8080/repository/internal</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -39,7 +39,7 @@
 		<pluginRepository>
 			<id>internal</id>
 			<name>Archiva Managed internal Repository</name>
-			<url>http://49.3.145.118:8080/repository/internal</url>
+			<url>http://tdcr-astko-cv01.d2-tdbfg.com:8080/repository/internal</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -155,6 +155,7 @@
 			<artifactId>pdfbox</artifactId>
 			<version>1.8.9</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.td.test.alm</groupId>
 			<artifactId>ALM</artifactId>
